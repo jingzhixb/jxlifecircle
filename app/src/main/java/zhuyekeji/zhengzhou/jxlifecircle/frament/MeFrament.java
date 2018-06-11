@@ -21,12 +21,20 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
+import zhuyekeji.zhengzhou.jxlifecircle.activity.DaiPingJiaActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.JiFenActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.activity.LiShiZuJiActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.MyAddressActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.MyConllentActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.MyFaBuActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.activity.MyFenSiActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.activity.MyGuanZhuActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.MyWalletActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.SettingActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.activity.SettingActivity2;
+import zhuyekeji.zhengzhou.jxlifecircle.activity.TuiGUangActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.activity.UserInfoActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.activity.YouHuiActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.adapter.MeAdapter;
 import zhuyekeji.zhengzhou.jxlifecircle.api.FragmentBackHandler;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseFragment;
@@ -67,19 +75,20 @@ public class MeFrament extends BaseFragment implements FragmentBackHandler
     private View view;
     Unbinder unbinder;
 
-    private List<MeBean> beans=new ArrayList<>();
+    private List<MeBean> beans = new ArrayList<>();
     private boolean isDoubleClick = false;
- private String[] textuser=new String[]{"我的收藏","我的发布","待评价","历史足迹",
-         "我的优惠卷","我的钱包","我的地址","推广有奖","设置","平台客服","生活服务","最新在线电影"};
- private int [] iconuser=new int[]{R.mipmap.shoucang,R.mipmap.fabu,R.mipmap.pingjia,R.mipmap.zuji,R.mipmap.youhuiquan,R.mipmap.qianbao,R.mipmap.dizhi,R.mipmap.tuiguang,
-         R.mipmap.shezhi,R.mipmap.kefu,R.mipmap.shenghuofuwu,R.mipmap.dianying};
+    private String[] textuser = new String[]{"我的收藏", "我的发布", "待评价", "历史足迹",
+            "我的优惠卷", "我的钱包", "我的地址", "推广有奖", "设置", "平台客服", "生活服务", "最新在线电影"};
+    private int[] iconuser = new int[]{R.mipmap.shoucang, R.mipmap.fabu, R.mipmap.pingjia, R.mipmap.zuji, R.mipmap.youhuiquan, R.mipmap.qianbao, R.mipmap.dizhi, R.mipmap.tuiguang,
+            R.mipmap.shezhi, R.mipmap.kefu, R.mipmap.shenghuofuwu, R.mipmap.dianying};
 
 
-    private String[] textshangjia=new String[]{"我的收藏","我的论坛",
-            "优惠卷","我的商品","我的钱包","我的地址","设置","应用推广","平台客服"};
+    private String[] textshangjia = new String[]{"我的收藏", "我的论坛",
+            "优惠卷", "我的商品", "我的钱包", "我的地址", "设置", "应用推广", "平台客服"};
 
 
-    private int [] iconshangjia=new int[]{R.mipmap.shoucang,R.mipmap.luntan,R.mipmap.youhuiquan,R.mipmap.shangpin,R.mipmap.qianbao,R.mipmap.dizhi,R.mipmap.shezhi,R.mipmap.tuiguang,R.mipmap.kefu};
+    private int[] iconshangjia = new int[]{R.mipmap.shoucang, R.mipmap.luntan, R.mipmap.youhuiquan, R.mipmap.shangpin, R.mipmap.qianbao, R.mipmap.dizhi, R.mipmap.shezhi, R.mipmap.tuiguang, R.mipmap.kefu};
+
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container)
     {
@@ -96,16 +105,16 @@ public class MeFrament extends BaseFragment implements FragmentBackHandler
     @Override
     protected void initData()
     {
-         for (int i=0;i<textuser.length;i++)
-         {
-             MeBean bean=new MeBean();
-             bean.setText(textuser[i]);
-             bean.setImage(iconuser[i]);
-             beans.add(bean);
-         }
-        GridLayoutManager manager=new GridLayoutManager(getActivity(),4);
-         rvMe.setLayoutManager(manager);
-        final MeAdapter adapter=new MeAdapter(getActivity(),R.layout.me_item,beans);
+        for (int i = 0; i < textuser.length; i++)
+        {
+            MeBean bean = new MeBean();
+            bean.setText(textuser[i]);
+            bean.setImage(iconuser[i]);
+            beans.add(bean);
+        }
+        GridLayoutManager manager = new GridLayoutManager(getActivity(), 4);
+        rvMe.setLayoutManager(manager);
+        final MeAdapter adapter = new MeAdapter(getActivity(), R.layout.me_item, beans);
         rvMe.setAdapter(adapter);
         adapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener()
         {
@@ -115,39 +124,45 @@ public class MeFrament extends BaseFragment implements FragmentBackHandler
                 switch (adapter.getItem(i).getText())
                 {
                     case "我的收藏":
-                        Intent intent=new Intent(getActivity(),MyConllentActivity.class);
+                        Intent intent = new Intent(getActivity(), MyConllentActivity.class);
                         startActivity(intent);
                         break;
                     case "我的发布":
-                        Intent intent1=new Intent(getActivity(),MyFaBuActivity.class);
+                        Intent intent1 = new Intent(getActivity(), MyFaBuActivity.class);
                         startActivity(intent1);
                         break;
                     case "待评价":
-
+                        Intent intent9 = new Intent(getActivity(), DaiPingJiaActivity.class);
+                        startActivity(intent9);
                         break;
                     case "历史足迹":
-
+                        Intent intent7 = new Intent(getActivity(), LiShiZuJiActivity.class);
+                        startActivity(intent7);
                         break;
                     case "我的优惠卷":
+                        Intent intent6 = new Intent(getActivity(), YouHuiActivity.class);
+                        startActivity(intent6);
 
                         break;
                     case "优惠卷":
-
+                        Intent intent8 = new Intent(getActivity(), YouHuiActivity.class);
+                        startActivity(intent8);
                         break;
                     case "我的钱包":
-                       Intent intent4=new Intent(getActivity(),MyWalletActivity.class);
-                       startActivity(intent4);
+                        Intent intent4 = new Intent(getActivity(), MyWalletActivity.class);
+                        startActivity(intent4);
                         break;
                     case "我的地址":
-                        Intent intent3=new Intent(getActivity(),MyAddressActivity.class);
+                        Intent intent3 = new Intent(getActivity(), MyAddressActivity.class);
                         startActivity(intent3);
                         break;
                     case "推广有奖":
-
+                        Intent intent5 = new Intent(getActivity(), TuiGUangActivity.class);
+                        startActivity(intent5);
                         break;
                     case "设置":
-                  Intent intent2=new Intent(getActivity(), SettingActivity.class);
-                  startActivity(intent2);
+                        Intent intent2 = new Intent(getActivity(), SettingActivity2.class);
+                        startActivity(intent2);
                         break;
                     case "平台客服":
 
@@ -216,16 +231,22 @@ public class MeFrament extends BaseFragment implements FragmentBackHandler
         switch (view.getId())
         {
             case R.id.im_user:
+                Intent intent1 = new Intent(getActivity(), UserInfoActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.ll_message:
                 break;
             case R.id.ll_jifen://积分
-                Intent intent=new Intent(getActivity(), JiFenActivity.class);
-            startActivity(intent);
+                Intent intent = new Intent(getActivity(), JiFenActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ll_guanzhu:
+                Intent intent2=new Intent(getActivity(),MyGuanZhuActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.ll_fensi:
+                Intent intent3=new Intent(getActivity(),MyFenSiActivity.class);
+                startActivity(intent3);
                 break;
         }
     }

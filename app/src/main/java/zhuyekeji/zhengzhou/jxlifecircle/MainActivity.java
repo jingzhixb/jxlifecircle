@@ -1,48 +1,57 @@
 package zhuyekeji.zhengzhou.jxlifecircle;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.base.FragmentController;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.other.BackHandlerHelper;
 
-public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener
+public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener
 {
 
-
-   // @BindView(R.id.frame_layout)
+    @BindView(R.id.frame_layout)
     FrameLayout frameLayout;
-  //  @BindView(R.id.rb_home)
+    @BindView(R.id.rb_home)
     RadioButton rbHome;
-  //  @BindView(R.id.rb_friend)
+    @BindView(R.id.rb_friend)
     RadioButton rbFriend;
-  //  @BindView(R.id.rb_order)
+    @BindView(R.id.rb_order)
     RadioButton rbOrder;
-   // @BindView(R.id.rb_me)
+    @BindView(R.id.rb_me)
     RadioButton rbMe;
-  //  @BindView(R.id.hometab_radio)
+    @BindView(R.id.hometab_radio)
     RadioGroup hometabRadio;
     private FragmentController controller;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public int getViewId()
     {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        //ButterKnife.bind(this);
-        frameLayout=findViewById(R.id.frame_layout);
-        rbHome=findViewById(R.id.rb_home);
-        rbFriend=findViewById(R.id.rb_friend);
-        rbOrder=findViewById(R.id.rb_order);
-        rbMe=findViewById(R.id.rb_me);
-        hometabRadio=findViewById(R.id.hometab_radio);
-        initListener();
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void processLogic()
+    {
+initListener();
+    }
+
+    @Override
+    protected void setListener()
+    {
+
+    }
+
+    @Override
+    protected Context getActivityContext()
+    {
+        return this;
     }
 
     @SuppressLint("MissingSuperCall")
@@ -91,5 +100,13 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

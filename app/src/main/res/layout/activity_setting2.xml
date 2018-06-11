@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/f5f5f5"
+    android:orientation="vertical"
+    tools:context="zhuyekeji.zhengzhou.jxlifecircle.activity.SettingActivity2">
+
+    <include layout="@layout/title_layout"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/rl_xiugaipassword"
+        android:layout_height="47dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/title_666"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="22dp"
+            android:text="修改密码"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:background="@mipmap/youjiant"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="22dp"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/view_color"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/rl_calean"
+        android:layout_height="47dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/title_666"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="22dp"
+            android:text="清除缓存"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:background="@mipmap/youjiant"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="22dp"
+            android:id="@+id/x"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/x"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/title_999"
+            android:textSize="@dimen/sp_12"
+            android:id="@+id/tv_cache"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/view_color"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/rl_guanyu"
+        android:layout_height="47dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/title_666"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="22dp"
+            android:text="关于软件"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:background="@mipmap/youjiant"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="22dp"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/view_color"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/rl_genduo"
+        android:layout_height="47dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/title_666"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="22dp"
+            android:text="更多"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:background="@mipmap/youjiant"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="22dp"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/view_color"/>
+    </RelativeLayout>
+</LinearLayout>

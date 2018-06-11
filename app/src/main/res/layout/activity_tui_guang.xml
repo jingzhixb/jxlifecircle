@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="zhuyekeji.zhengzhou.jxlifecircle.activity.TuiGUangActivity">
+
+    <include layout="@layout/title_layout" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@mipmap/tuiguan1" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/jxcolor">
+
+        <ImageView
+            android:id="@+id/x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/tuiguan2" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/x"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="22dp"
+            android:background="@mipmap/tuiguang3">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/tuiguang">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/ll_1"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="22dp"
+                    android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/sp_12"
+                    android:textColor="#772c18"
+                    android:background="@drawable/circle_tuiguang"
+                    android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold"
+                        android:text="用户邀请好友成功注册后即可获得平台奖励的10个平台币"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/ll_2"
+                    android:layout_below="@id/ll_1"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="22dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="1"
+                        android:gravity="center"
+                        android:textSize="@dimen/sp_12"
+                        android:textColor="#772c18"
+                        android:background="@drawable/circle_tuiguang"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold"
+                        android:text="用户邀请好友成功注册后即可获得平台奖励的10个平台币"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/ll_3"
+                    android:layout_below="@id/ll_2"
+                    android:layout_marginRight="22dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="1"
+                        android:gravity="center"
+                        android:textSize="@dimen/sp_12"
+                        android:textColor="#772c18"
+                        android:background="@drawable/circle_tuiguang"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold"
+                        android:text="用户邀请好友成功注册后即可获得平台奖励的10个平台币"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:background="@mipmap/yaoqing" />
+    </RelativeLayout>
+</LinearLayout>

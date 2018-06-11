@@ -40,7 +40,7 @@
                     android:id="@+id/rb_home"
                     style="@style/RadioButtonBottomTab"
                     android:paddingTop="3dp"
-                    android:paddingBottom="5dp"
+                    android:paddingBottom="3dp"
                     android:drawableTop="@drawable/tab_0_back"
                     android:text="首页" />
 
@@ -48,21 +48,21 @@
                     android:id="@+id/rb_friend"
                     style="@style/RadioButtonBottomTab"
                     android:paddingTop="3dp"
-                    android:paddingBottom="5dp"
+                    android:paddingBottom="3dp"
                     android:drawableTop="@drawable/tab_1_back"
                     android:text="朋友圈" />
                 <RadioButton
                     android:id="@+id/rb_order"
                     style="@style/RadioButtonBottomTab"
                     android:paddingTop="3dp"
-                    android:paddingBottom="5dp"
+                    android:paddingBottom="3dp"
                     android:drawableTop="@drawable/tab_2_back"
                     android:text="订单" />
                 <RadioButton
                     android:id="@+id/rb_me"
                     style="@style/RadioButtonBottomTab"
                     android:paddingTop="3dp"
-                    android:paddingBottom="5dp"
+                    android:paddingBottom="3dp"
                     android:drawableTop="@drawable/tab_3_back"
                     android:text="我的" />
             </RadioGroup>

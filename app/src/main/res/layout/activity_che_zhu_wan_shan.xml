@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="@color/f5f5f5"
     android:layout_height="match_parent"
     tools:context="zhuyekeji.zhengzhou.jxlifecircle.login.CheZhuWanShanActivity">
 <include layout="@layout/title_layout"/>
@@ -12,6 +13,7 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_marginRight="22dp"
+        android:id="@+id/sf"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="22dp"
         android:layout_height="100dp">
@@ -119,7 +121,7 @@
                 android:layout_below="@id/im_jiashi"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:text="上传身份证正面"
+                android:text="上传驾驶证"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
 
@@ -152,7 +154,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/im_xingshi"
                 android:layout_marginTop="10dp"
-                android:text="上传身份证正面"
+                android:text="上传行驶证"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
     </LinearLayout>
@@ -178,7 +180,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="商家注册协议"
+            android:text="上传车辆型号与车牌照片"
             android:textSize="@dimen/sp_13"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/im_chepai"

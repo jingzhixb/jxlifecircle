@@ -8,5 +8,4 @@
         android:startColor="@color/jxcolor"
 
         android:endColor="@color/darkcyan"/>
-
 </shape>

@@ -2,8 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="@color/f5f5f5"
     android:layout_height="match_parent">
-<include layout="@layout/title_layout"/>
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:text="订单"
+    android:textStyle="bold"
+    android:gravity="center"
+    android:textSize="@dimen/sp_17"
+    android:textColor="@color/white"
+    android:background="@color/jxcolor"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="92dp"
@@ -49,8 +59,6 @@
             android:background="@mipmap/waimai"
             android:layout_height="35dp" />
     </RelativeLayout>
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="92dp"

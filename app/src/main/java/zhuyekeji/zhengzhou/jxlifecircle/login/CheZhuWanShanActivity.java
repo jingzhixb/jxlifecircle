@@ -77,7 +77,9 @@ public class CheZhuWanShanActivity extends BaseActivity
     LinearLayout llXieyi;
     @BindView(R.id.wancheng)
     TextView wancheng;
-    private boolean mXieyi=false;
+    @BindView(R.id.sf)
+    LinearLayout sf;
+    private boolean mXieyi = false;
     private File mFile;
     private Uri mUri;
     private static final int REQUEST_CODE_TAKE_PHOTO = 1;
@@ -88,7 +90,8 @@ public class CheZhuWanShanActivity extends BaseActivity
     private File jiashiFile;
     private File xingshiFile;
     private File chepaiFile;
-    private int photoType=1;
+    private int photoType = 1;
+
     @Override
     public int getViewId()
     {
@@ -98,8 +101,14 @@ public class CheZhuWanShanActivity extends BaseActivity
     @Override
     protected void processLogic()
     {
-tvTitle.setText("完善资料");
-init();
+        String type=getIntent().getStringExtra("type");
+        if (type!=null&&type.equals("2"))
+        {
+            sf.setVisibility(View.GONE);
+            llXieyi.setVisibility(View.GONE);
+        }
+        tvTitle.setText("完善资料");
+        init();
     }
 
     @Override
@@ -131,33 +140,34 @@ init();
                 finish();
                 break;
             case R.id.im_zheng://正面
-                photoType=1;
-            chooseType();
+                photoType = 1;
+                chooseType();
                 break;
             case R.id.im_fan://反面
-                photoType=2;
+                photoType = 2;
                 chooseType();
                 break;
             case R.id.im_jiashi://驾驶证
-                photoType=3;
+                photoType = 3;
                 chooseType();
                 break;
             case R.id.im_xingshi://行驶证
-                photoType=4;
+                photoType = 4;
                 chooseType();
                 break;
             case R.id.im_chepai://车牌
-                photoType=5;
+                photoType = 5;
                 chooseType();
                 break;
             case R.id.im_xieyi:
                 if (!mXieyi)
                 {
                     imXieyi.setBackground(getResources().getDrawable(R.mipmap.gouxuan_on));
-                    mXieyi=true;
-                }else {
+                    mXieyi = true;
+                } else
+                {
                     imXieyi.setBackground(getResources().getDrawable(R.mipmap.gouxuan_off));
-                    mXieyi=false;
+                    mXieyi = false;
                 }
                 break;
             case R.id.wancheng:
@@ -166,32 +176,40 @@ init();
     }
 
 
-    private void chooseType() {
+    private void chooseType()
+    {
         final String[] stringItems = {"拍照", "从相册选取"};
         final ActionSheetDialog dialog = new ActionSheetDialog(mContext, stringItems, null);
         dialog.title("选择头像").titleTextSize_SP(14.5f).show();
 
 
-        dialog.setOnOperItemClickL(new OnOperItemClickL() {
+        dialog.setOnOperItemClickL(new OnOperItemClickL()
+        {
             @SuppressLint("WrongConstant")
             @Override
-            public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
+            public void onOperItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                switch (position)
+                {
                     //拍照
                     case 0:
-                        if (PermissionUtils.isGranted(Manifest.permission.CAMERA)) {
+                        if (PermissionUtils.isGranted(Manifest.permission.CAMERA))
+                        {
                             uploadAvatarFromPhotoRequest();
                             dialog.dismiss();
-                        }else {
+                        } else
+                        {
                             PermissionUtils.permission(Manifest.permission.CAMERA).request();
                         }
                         break;
                     //相册
                     case 1:
-                        if (PermissionUtils.isGranted(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                        if (PermissionUtils.isGranted(Manifest.permission.READ_EXTERNAL_STORAGE))
+                        {
                             uploadAvatarFromAlbumRequest();
                             dialog.dismiss();
-                        }else {
+                        } else
+                        {
                             PermissionUtils.permission(Manifest.permission.READ_EXTERNAL_STORAGE).request();
                         }
                         break;
@@ -207,26 +225,35 @@ init();
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_ALBUM && data != null) {
+        if (requestCode == REQUEST_CODE_ALBUM && data != null)
+        {
             Uri newUri;
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
+            {
                 newUri = Uri.parse("file:///" + CropUtils.getPath(this, data.getData()));
-            } else {
+            } else
+            {
                 newUri = data.getData();
             }
-            if (newUri != null) {
+            if (newUri != null)
+            {
                 startPhotoZoom(newUri);
-            } else {
+            } else
+            {
                 Toast.makeText(this, "没有得到相册图片", Toast.LENGTH_LONG).show();
             }
             //相机
-        } else if (requestCode == REQUEST_CODE_TAKE_PHOTO) {
+        } else if (requestCode == REQUEST_CODE_TAKE_PHOTO)
+        {
             startPhotoZoom(mUri);
-        } else if (requestCode == REQUEST_CODE_CROUP_PHOTO) {
+        } else if (requestCode == REQUEST_CODE_CROUP_PHOTO)
+        {
             uploadAvatarFromPhoto();
         }
     }
-    private void uploadAvatarFromPhoto() {
+
+    private void uploadAvatarFromPhoto()
+    {
         compressAndUploadAvatar(mFile.getPath());
     }
 
@@ -236,33 +263,36 @@ init();
      *
      * @param fileSrc
      */
-    private void compressAndUploadAvatar(String fileSrc) {
+    private void compressAndUploadAvatar(String fileSrc)
+    {
         final File cover = FilesUtil.getSmallBitmap(this, fileSrc);
         //加载本地图片
         Uri uri = Uri.fromFile(cover);
-        if (photoType == 1) {
+        if (photoType == 1)
+        {
             imageZheng.setVisibility(View.VISIBLE);
             Glide.with(App.getInstance()).load(uri).into(imageZheng);
             frontFile = FilesUtil.getFileByUri(uri, this);
-        } else if (photoType == 2) {
+        } else if (photoType == 2)
+        {
             imageFan.setVisibility(View.VISIBLE);
             Glide.with(App.getInstance()).load(uri).into(imageFan);
             backFile = FilesUtil.getFileByUri(uri, this);
-        }else if (photoType==3)
+        } else if (photoType == 3)
         {
             imageJiashi.setVisibility(View.VISIBLE);
             Glide.with(App.getInstance()).load(uri).into(imageJiashi);
-            jiashiFile=FilesUtil.getFileByUri(uri,this);
-        }else if (photoType==4)
+            jiashiFile = FilesUtil.getFileByUri(uri, this);
+        } else if (photoType == 4)
         {
             imageXingshi.setVisibility(View.VISIBLE);
             Glide.with(App.getInstance()).load(uri).into(imageXingshi);
-            xingshiFile=FilesUtil.getFileByUri(uri,this);
-        }else if (photoType==5)
+            xingshiFile = FilesUtil.getFileByUri(uri, this);
+        } else if (photoType == 5)
         {
             imageChepai.setVisibility(View.VISIBLE);
             Glide.with(App.getInstance()).load(uri).into(imageChepai);
-            chepaiFile=FilesUtil.getFileByUri(uri,this);
+            chepaiFile = FilesUtil.getFileByUri(uri, this);
         }
 
 
@@ -270,7 +300,9 @@ init();
 
 //        DreamApi.uploadAvator(this, 0x002, token, file, uploadCallBack);
     }
-    public void startPhotoZoom(Uri uri) {
+
+    public void startPhotoZoom(Uri uri)
+    {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -283,10 +315,12 @@ init();
         intent.putExtra("outputFormat", "JPEG");// 返回格式
         startActivityForResult(intent, REQUEST_CODE_CROUP_PHOTO);
     }
+
     /**
      * photo
      */
-    private void uploadAvatarFromPhotoRequest() {
+    private void uploadAvatarFromPhotoRequest()
+    {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
@@ -297,11 +331,13 @@ init();
     /**
      * album
      */
-    private void uploadAvatarFromAlbumRequest() {
+    private void uploadAvatarFromAlbumRequest()
+    {
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
         startActivityForResult(photoPickerIntent, REQUEST_CODE_ALBUM);
     }
+
     /**
      * 建立相机存储的缓存的路径
      */

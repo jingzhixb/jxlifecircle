@@ -59,7 +59,23 @@
         <activity android:name=".activity.TiXianActivity" />
         <activity android:name=".orderactivity.ShopOrderActivity" />
         <activity android:name=".orderactivity.ShopOrderShangjiaActivity" />
-        <activity android:name=".homeacyivity.CitySelectActivity"></activity>
+        <activity android:name=".homeacyivity.CitySelectActivity" />
+        <activity android:name=".orderactivity.OrderJiFenActivity" />
+        <activity android:name=".orderactivity.UserPinCheActivity" />
+        <activity android:name=".orderactivity.SiJiPinCheActivity" />
+        <activity android:name=".activity.TuiGUangActivity" />
+        <activity android:name=".activity.UserInfoActivity" />
+        <activity android:name=".activity.CDActivity" />
+        <activity android:name=".activity.BingPhoneActivity" />
+        <activity android:name=".activity.NewPhoneActivity" />
+        <activity android:name=".activity.YouHuiActivity" />
+        <activity android:name=".activity.LiShiZuJiActivity" />
+        <activity android:name=".activity.DaiPingJiaActivity" />
+        <activity android:name=".activity.SettingActivity2" />
+        <activity android:name=".activity.XiuGaiMMActivity" />
+        <activity android:name=".activity.XiuGaiMMActivity2" />
+        <activity android:name=".activity.MyGuanZhuActivity" />
+        <activity android:name=".activity.MyFenSiActivity"></activity>
     </application>
 
 </manifest>
