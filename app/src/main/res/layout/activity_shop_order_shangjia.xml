@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="zhuyekeji.zhengzhou.jxlifecircle.activity.MyConllentActivity">
+    <include layout="@layout/title_layout"/>
+
+    <com.flyco.tablayout.CommonTabLayout
+        android:id="@+id/tl_connlent"
+        app:tl_textSelectColor="@color/jxcolor"
+        app:tl_textsize="@dimen/sp_15"
+        app:tl_indicator_width="40dp"
+        app:tl_textUnselectColor="@color/title_666"
+        android:layout_width="match_parent"
+        app:tl_indicator_color="@color/jxcolor"
+        app:tl_underline_color="@color/jxcolor"
+        android:layout_height="48dp"/>
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

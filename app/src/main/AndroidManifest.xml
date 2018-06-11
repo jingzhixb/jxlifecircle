@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="zhuyekeji.zhengzhou.jxlifecircle">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="zhuyekeji.zhengzhou.jxlifecircle.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity android:name=".utils.util.PermissionUtils$PermissionActivity" />
+        <activity android:name=".login.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".login.RegisterActivity" />
+        <activity android:name=".login.SetPasswordActivity" />
+        <activity android:name=".login.WanShanActivity1" />
+        <activity android:name=".login.CheZhuWanShanActivity" />
+        <activity android:name=".login.PaiSongWanShanActivity" />
+        <activity android:name=".login.ShangJiaWanShanActivity" />
+        <activity android:name=".login.UserWanShanActivity" />
+        <activity android:name=".login.OtherRegistActivity" />
+        <activity android:name=".login.ShangJiaWanShanActivity1" />
+        <activity android:name=".activity.MyConllentActivity" />
+        <activity android:name=".activity.MyFaBuActivity" />
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.JiFenActivity" />
+        <activity android:name=".activity.MyAddressActivity" />
+        <activity android:name=".activity.AddAddressActivity" />
+        <activity android:name=".activity.MyWalletActivity" />
+        <activity android:name=".TiXIanJiLuActivity" />
+        <activity android:name=".activity.TiXianActivity" />
+        <activity android:name=".orderactivity.ShopOrderActivity" />
+        <activity android:name=".orderactivity.ShopOrderShangjiaActivity" />
+        <activity android:name=".homeacyivity.CitySelectActivity"></activity>
+    </application>
+
+</manifest>

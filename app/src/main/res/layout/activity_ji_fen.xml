@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="zhuyekeji.zhengzhou.jxlifecircle.activity.JiFenActivity">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="287dp"
+    android:background="@mipmap/bg">
+    <RelativeLayout
+        android:layout_width="50dp"
+        android:id="@+id/rl_back"
+        android:layout_marginTop="20dp"
+        android:layout_height="50dp">
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_centerInParent="true"
+    android:background="@mipmap/back"
+    android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/tv_alljifen"
+        android:textSize="50sp"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:textStyle="bold"
+        android:text="1000"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_17"
+        android:text="当前积分"
+        android:layout_below="@id/tv_alljifen"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:id="@+id/rl_mingxi"
+       android:layout_height="50dp">
+       <View
+           android:layout_width="5dp"
+           android:layout_centerVertical="true"
+           android:layout_marginLeft="22dp"
+           android:background="@color/orange"
+           android:layout_height="18dp"/>
+       <TextView
+           android:background="@color/white"
+           android:text="积分明细"
+           android:layout_marginLeft="40dp"
+           android:textSize="@dimen/sp_15"
+           android:textColor="@color/title_666"
+           android:gravity="center_vertical"
+           android:layout_width="match_parent"
+           android:layout_height="50dp" />
+   </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/view_color"/>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/rl_duihuan"
+        android:layout_height="72dp">
+        <TextView
+            android:background="@color/white"
+            android:text="积分明细"
+            android:layout_marginLeft="22dp"
+            android:id="@+id/x"
+            android:textSize="@dimen/sp_15"
+            android:textColor="@color/title_666"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_below="@id/x"
+            android:layout_marginLeft="22dp"
+            android:textColor="@color/title_999"
+            android:textSize="@dimen/sp_12"
+            android:text="2018-1-22"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/tv_shop_jifen"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="22dp"
+            android:textSize="20sp"
+            android:text="-10分"
+            android:textColor="@color/title_333"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/view_color"/>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/rl_qiandao"
+        android:layout_height="72dp">
+        <TextView
+            android:background="@color/white"
+            android:text="每日签到"
+            android:layout_marginLeft="22dp"
+            android:id="@+id/xx"
+            android:textSize="@dimen/sp_15"
+            android:textColor="@color/title_666"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_below="@id/xx"
+            android:layout_marginLeft="22dp"
+            android:textColor="@color/title_999"
+            android:textSize="@dimen/sp_12"
+            android:text="2018-1-22"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/tv_qiandao_jifen"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="22dp"
+            android:textSize="20sp"
+            android:text="+10分"
+            android:textColor="@color/orange"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>

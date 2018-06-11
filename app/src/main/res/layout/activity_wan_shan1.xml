@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="zhuyekeji.zhengzhou.jxlifecircle.login.RegisterActivity">
+
+    <include layout="@layout/title_layout" />
+
+    <EditText
+        android:id="@+id/ed_mobile"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:hint="请输入您的真实姓名"
+        android:paddingLeft="22dp"
+        android:textColor="@color/title_666"
+        android:textSize="@dimen/sp_15" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/view_color" />
+
+    <EditText
+        android:id="@+id/ed_againpassword"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:inputType="number"
+        android:gravity="center_vertical"
+        android:hint="请输入您的联系方式"
+        android:paddingLeft="22dp"
+        android:textColor="@color/title_666"
+        android:textSize="@dimen/sp_15" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/view_color" />
+
+    <EditText
+        android:id="@+id/ed_shenfencar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:inputType="number"
+        android:gravity="center_vertical"
+        android:hint="请输入您的身份证号码"
+        android:paddingLeft="22dp"
+        android:textColor="@color/title_666"
+        android:textSize="@dimen/sp_15" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:id="@+id/ll_xieyi"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_marginLeft="22dp"
+            android:id="@+id/im_xieyi"
+            android:background="@mipmap/gouxuan_off"
+            android:layout_height="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/title_999"
+            android:id="@+id/tv_xieyi"
+            android:layout_marginLeft="10dp"
+            android:text="司机注册协议"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/next">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:id="@+id/next"
+            android:layout_marginRight="22dp"
+            android:gravity="center"
+            android:text="下一步"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_17" />
+    </RelativeLayout>
+
+</LinearLayout>

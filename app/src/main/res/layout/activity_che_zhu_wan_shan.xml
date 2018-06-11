@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="zhuyekeji.zhengzhou.jxlifecircle.login.CheZhuWanShanActivity">
+<include layout="@layout/title_layout"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="22dp"
+        android:layout_height="100dp">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/zheng_stoken"
+            android:layout_marginRight="7dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/image_zheng"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:scaleType="centerCrop"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:layout_width="40dp"
+                android:background="@mipmap/jia"
+                android:id="@+id/im_zheng"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="40dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/title_666"
+                android:textSize="@dimen/sp_13"
+                android:id="@+id/tv_zheng"
+                android:layout_below="@id/im_zheng"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="上传身份证正面"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/zheng_stoken"
+            android:layout_marginLeft="7dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/image_fan"
+                android:visibility="gone"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:id="@+id/im_fan"
+                android:background="@mipmap/jia"
+                android:layout_height="40dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/title_666"
+                android:textSize="@dimen/sp_13"
+                android:id="@+id/tv_fan"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/im_fan"
+                android:layout_marginTop="10dp"
+                android:text="上传身份证正面"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="22dp"
+        android:layout_height="100dp">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/zheng_stoken"
+            android:layout_marginRight="7dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/image_jiashi"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:scaleType="centerCrop"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:layout_width="40dp"
+                android:background="@mipmap/jia"
+                android:id="@+id/im_jiashi"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="40dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/title_666"
+                android:textSize="@dimen/sp_13"
+                android:id="@+id/tv_jiashi"
+                android:layout_below="@id/im_jiashi"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="上传身份证正面"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/zheng_stoken"
+            android:layout_marginLeft="7dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/image_xingshi"
+                android:visibility="gone"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:id="@+id/im_xingshi"
+                android:background="@mipmap/jia"
+                android:layout_height="40dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/title_666"
+                android:textSize="@dimen/sp_13"
+                android:id="@+id/tv_xingshi"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/im_xingshi"
+                android:layout_marginTop="10dp"
+                android:text="上传身份证正面"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="155dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:id="@+id/image_chepai"
+            android:scaleType="centerCrop"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_width="40dp"
+            android:background="@mipmap/jia"
+            android:id="@+id/im_chepai"
+            android:layout_centerInParent="true"
+            android:layout_height="40dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="商家注册协议"
+            android:textSize="@dimen/sp_13"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/im_chepai"
+            android:textColor="@color/title_666"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:id="@+id/ll_xieyi"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_marginLeft="22dp"
+            android:id="@+id/im_xieyi"
+            android:background="@mipmap/gouxuan_on"
+            android:layout_height="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/title_999"
+            android:id="@+id/tv_xieyi"
+            android:layout_marginLeft="10dp"
+            android:text="司机注册协议"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/next">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:id="@+id/wancheng"
+            android:layout_marginRight="22dp"
+            android:gravity="center"
+            android:text="完成"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_17" />
+    </RelativeLayout>
+</LinearLayout>

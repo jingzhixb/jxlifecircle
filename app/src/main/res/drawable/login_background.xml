@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/login"/>
+  <gradient android:startColor="@color/login"  android:endColor="@color/login_end"/>
+    <size android:width="500dp" android:height="45dp"></size>
+    <corners android:topLeftRadius="5dp"
+        android:topRightRadius="5dp"
+        android:bottomRightRadius="5dp"
+        android:bottomLeftRadius="5dp"/>
+    <stroke android:color="@color/white"
+        android:width="1dp"/><!--i'm smart-->
+</shape>

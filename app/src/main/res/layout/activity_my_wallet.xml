@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="zhuyekeji.zhengzhou.jxlifecircle.activity.MyWalletActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="287dp"
+        android:background="@color/red">
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:id="@+id/rl_back"
+            android:layout_marginTop="20dp"
+            android:layout_height="50dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@mipmap/back"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/tv_allmoney"
+            android:textSize="50sp"
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:textStyle="bold"
+            android:text="1000"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="余額（元）"
+            android:textColor="@color/white"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="100dp"
+            android:textSize="@dimen/sp_14"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="108dp"
+            android:textColor="@color/title_666"
+            android:gravity="center"
+            android:textSize="@dimen/sp_16"
+            android:text="提現"
+            android:layout_marginBottom="36dp"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/tv_tixian"
+            android:background="@drawable/qiandao"
+            android:layout_centerHorizontal="true"
+            android:layout_height="36dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:id="@+id/rl_jilu"
+        android:layout_height="45dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/title_666"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="22dp"
+            android:text="提現记录"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:background="@mipmap/youjiant"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/view_color"/>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/rl_shouzhi"
+        android:background="@color/white"
+        android:layout_height="45dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/title_666"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="22dp"
+            android:text="收支记录"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:background="@mipmap/youjiant"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+   <android.support.v7.widget.RecyclerView
+       android:id="@+id/rv_type"
+       android:layout_marginTop="10dp"
+       android:background="@color/white"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
+</LinearLayout>

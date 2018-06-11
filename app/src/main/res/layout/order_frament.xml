@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+<include layout="@layout/title_layout"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/rl_tuangou"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:background="@drawable/order_bg">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:background="@drawable/order_lan"
+            android:scaleType="fitXY"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/dodgerblue"
+            android:layout_marginLeft="50dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:id="@+id/x"
+            android:text="团购商城订单"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="20dp"
+            android:id="@+id/message"
+            android:layout_toRightOf="@id/x"
+            android:layout_marginTop="30dp"
+            android:textSize="@dimen/sp_12"
+            android:text="6"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@drawable/circle_read"
+            android:layout_marginLeft="10dp"
+            android:layout_height="20dp" />
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/waimai"
+            android:layout_height="35dp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        android:id="@+id/rl_jifen"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:background="@drawable/order_bg">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:background="@drawable/order_lv"
+            android:scaleType="fitXY"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/jxcolor"
+            android:layout_marginLeft="50dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:id="@+id/xx"
+            android:text="团购商城订单"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="20dp"
+            android:id="@+id/message_tuangou"
+            android:layout_toRightOf="@id/xx"
+            android:layout_marginTop="30dp"
+            android:textSize="@dimen/sp_12"
+            android:text="6"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@drawable/circle_read"
+            android:layout_marginLeft="10dp"
+            android:layout_height="20dp" />
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/jifenorder"
+            android:layout_height="35dp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="22dp"
+        android:id="@+id/rl_pinche"
+        android:layout_marginRight="22dp"
+        android:background="@drawable/order_bg">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:background="@drawable/order_huang"
+            android:scaleType="fitXY"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/orange"
+            android:layout_marginLeft="50dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:id="@+id/xxx"
+            android:text="团购商城订单"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="20dp"
+            android:id="@+id/message_pinche"
+            android:layout_toRightOf="@id/xxx"
+            android:layout_marginTop="30dp"
+            android:textSize="@dimen/sp_12"
+            android:text="6"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@drawable/circle_read"
+            android:layout_marginLeft="10dp"
+            android:layout_height="20dp" />
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/pinche"
+            android:layout_height="35dp" />
+    </RelativeLayout>
+</LinearLayout>
