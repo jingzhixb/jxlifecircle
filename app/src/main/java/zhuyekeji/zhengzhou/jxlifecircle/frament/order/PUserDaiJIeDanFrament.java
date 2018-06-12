@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import zhuyekeji.zhengzhou.jxlifecircle.R;
+import zhuyekeji.zhengzhou.jxlifecircle.adapter.PUserDaiJieAdapter;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseFragment;
 
 /**
@@ -13,6 +14,7 @@ import zhuyekeji.zhengzhou.jxlifecircle.base.BaseFragment;
 
 public class PUserDaiJIeDanFrament extends BaseFragment
 {
+    private PUserDaiJieAdapter adapter;
     private View view;
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container)
@@ -24,7 +26,7 @@ public class PUserDaiJIeDanFrament extends BaseFragment
     @Override
     protected void initListener()
     {
-
+adapter=new PUserDaiJieAdapter(getActivity(),R.layout.puserdaijie_item,null);
     }
 
     @Override

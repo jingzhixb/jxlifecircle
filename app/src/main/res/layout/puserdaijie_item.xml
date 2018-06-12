@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="13dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/address"
+            android:layout_marginLeft="22dp"
+            android:textColor="@color/title_333"
+            android:textSize="@dimen/sp_17"
+            android:text="郑州-北京"
+            android:textStyle="bold"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/sp_12"
+            android:textColor="@color/title_666"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="22dp"
+            android:text="22222"
+            android:id="@+id/tv_start_time"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/title_999"
+            android:layout_marginRight="5dp"
+            android:text="  出发时间："
+            android:drawableLeft="@mipmap/time"
+            android:layout_toLeftOf="@id/tv_start_time"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="@color/title_666"
+        android:textSize="@dimen/sp_15"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="15dp"
+        android:maxLines="2"
+        android:id="@+id/delite"
+        android:text="上课的方式开发并开始播放的客户附上你们就开了电脑风扇"
+        android:layout_height="wrap_content" />
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+      <TextView
+          android:layout_width="wrap_content"
+          android:textSize="@dimen/sp_15"
+          android:textColor="@color/red"
+          android:layout_marginLeft="22dp"
+          android:text="￥100"
+          android:layout_marginTop="16dp"
+          android:id="@+id/tv_price"
+          android:layout_marginBottom="26dp"
+          android:layout_height="wrap_content" />
+      <TextView
+          android:layout_width="75dp"
+          android:layout_alignParentRight="true"
+          android:layout_marginRight="22dp"
+          android:background="@drawable/next"
+          android:textColor="@color/white"
+          android:textSize="@dimen/sp_14"
+          android:gravity="center"
+          android:text="申请退款"
+          android:layout_alignTop="@id/tv_price"
+          android:layout_height="25dp" />
+  </RelativeLayout>
+</LinearLayout>

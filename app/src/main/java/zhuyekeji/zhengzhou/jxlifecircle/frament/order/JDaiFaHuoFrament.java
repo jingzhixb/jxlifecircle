@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import zhuyekeji.zhengzhou.jxlifecircle.R;
+import zhuyekeji.zhengzhou.jxlifecircle.adapter.JiFenOrderAdapter;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseFragment;
 
 /**
@@ -13,6 +14,7 @@ import zhuyekeji.zhengzhou.jxlifecircle.base.BaseFragment;
 
 public class JDaiFaHuoFrament extends BaseFragment
 {
+    private JiFenOrderAdapter adapter;
     View view;
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container)
@@ -30,6 +32,6 @@ public class JDaiFaHuoFrament extends BaseFragment
     @Override
     protected void initData()
     {
-
+adapter=new JiFenOrderAdapter(getActivity(),R.layout.jifenorder_item,null);
     }
 }

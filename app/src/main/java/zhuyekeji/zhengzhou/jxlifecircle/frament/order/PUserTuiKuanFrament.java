@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import zhuyekeji.zhengzhou.jxlifecircle.R;
+import zhuyekeji.zhengzhou.jxlifecircle.adapter.PUserTuiKuanAdapter;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseFragment;
 
 /**
@@ -14,10 +15,12 @@ import zhuyekeji.zhengzhou.jxlifecircle.base.BaseFragment;
 public class PUserTuiKuanFrament extends BaseFragment
 {
     private View view;
+    private PUserTuiKuanAdapter adapter;
+
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container)
     {
-        view=LayoutInflater.from(getActivity()).inflate(R.layout.shop_frament,null);
+        view = LayoutInflater.from(getActivity()).inflate(R.layout.shop_frament, null);
         return view;
     }
 
@@ -30,6 +33,6 @@ public class PUserTuiKuanFrament extends BaseFragment
     @Override
     protected void initData()
     {
-
+        adapter = new PUserTuiKuanAdapter(getActivity(), R.layout.pusertuikuan_item, null);
     }
 }

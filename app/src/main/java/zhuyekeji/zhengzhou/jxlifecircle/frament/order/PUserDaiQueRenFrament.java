@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import zhuyekeji.zhengzhou.jxlifecircle.R;
+import zhuyekeji.zhengzhou.jxlifecircle.adapter.PUserQueRenAdapter;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseFragment;
 
 /**
@@ -14,6 +15,7 @@ import zhuyekeji.zhengzhou.jxlifecircle.base.BaseFragment;
 public class PUserDaiQueRenFrament extends BaseFragment
 {
     private View view;
+    private PUserQueRenAdapter adapter;
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container)
     {
@@ -30,6 +32,6 @@ public class PUserDaiQueRenFrament extends BaseFragment
     @Override
     protected void initData()
     {
-
+adapter=new PUserQueRenAdapter(getActivity(),R.layout.puserqueren_item,null);
     }
 }

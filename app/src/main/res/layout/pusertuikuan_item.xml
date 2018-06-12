@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp">
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="22dp"
+            android:text="郑州-北京"
+            android:textColor="@color/title_333"
+            android:textSize="@dimen/sp_17"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="22dp"
+            android:text="22222"
+            android:textColor="@color/jxcolor"
+            android:textSize="@dimen/sp_12" />
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:textColor="@color/title_999"-->
+        <!--android:layout_marginRight="5dp"-->
+        <!--android:text="  出发时间："-->
+        <!--android:drawableLeft="@mipmap/time"-->
+        <!--android:layout_toLeftOf="@id/tv_start_time"-->
+        <!--android:layout_height="wrap_content" />-->
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/delite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="15dp"
+        android:maxLines="2"
+        android:text="上课的方式开发并开始播放的客户附上你们就开了电脑风扇"
+        android:textColor="@color/title_666"
+        android:textSize="@dimen/sp_15" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="22dp"
+            android:id="@+id/x"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="5dp"
+            android:drawableLeft="@mipmap/time"
+            android:text=" 出发时间："
+            android:textColor="@color/title_999" />
+
+        <TextView
+            android:id="@+id/tv_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="22222"
+            android:layout_toRightOf="@id/x"
+            android:layout_marginBottom="2dp"
+            android:textColor="@color/title_666"
+            android:textSize="@dimen/sp_12" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥100"
+            android:layout_marginRight="22dp"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/red"
+            android:textSize="@dimen/sp_15" />
+    </RelativeLayout>
+
+</LinearLayout>
