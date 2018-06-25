@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#4d000000"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_above="@id/cha"
+        android:id="@+id/r"
+        android:layout_marginBottom="30dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/out"
+            android:id="@+id/out"
+            android:layout_height="60dp" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:id="@+id/ershou"
+            android:background="@mipmap/ershou"
+            android:layout_marginLeft="40dp"
+            android:layout_height="60dp" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:id="@+id/other"
+            android:background="@mipmap/other"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:layout_height="60dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_above="@id/r"
+        android:layout_marginBottom="30dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="60dp"
+            android:id="@+id/find"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/find"
+            android:layout_height="60dp" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:background="@mipmap/zp"
+            android:id="@+id/zhaopin"
+            android:layout_marginLeft="40dp"
+            android:layout_height="60dp" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:background="@mipmap/mm"
+            android:id="@+id/miaomu"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:layout_height="60dp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:background="@mipmap/cha"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/cha"
+        android:layout_marginBottom="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

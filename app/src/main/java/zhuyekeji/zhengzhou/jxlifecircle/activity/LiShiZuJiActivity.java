@@ -10,6 +10,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
+import zhuyekeji.zhengzhou.jxlifecircle.adapter.LiShiZuJuAdapter;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
 
 public class LiShiZuJiActivity extends BaseActivity
@@ -21,7 +22,7 @@ public class LiShiZuJiActivity extends BaseActivity
     TextView tvTitle;
     @BindView(R.id.rv_lishi)
     RecyclerView rvLishi;
-
+private LiShiZuJuAdapter adapter;
     @Override
     public int getViewId()
     {
@@ -40,6 +41,7 @@ public class LiShiZuJiActivity extends BaseActivity
                 finish();
             }
         });
+        adapter=new LiShiZuJuAdapter(this,R.layout.lishi_item,null);
     }
 
     @Override

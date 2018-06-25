@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-  <gradient android:startColor="@color/login_end" android:angle="270" android:endColor="@color/rb_check"/>
+  <gradient android:startColor="@color/rb_check" android:angle="270" android:endColor="@color/login_end"/>
     <size android:width="25dp" android:height="92dp"></size>
     <corners android:topLeftRadius="3dp"
         android:topRightRadius="3dp"

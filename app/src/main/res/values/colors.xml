@@ -57,7 +57,7 @@
     <color name="rb_text_check">#ff5200</color>
     <color name="button_namgdan">#ffbe0d</color>
     <color name="ad_color">#66080000</color>
-    <color name="rb_check">#6600a3ed</color>
+    <color name="rb_check">#8dd0ff</color>
     <color name="colorGray">#ccc</color>
     <color name="qianhui">#E0E0E0</color>
     <color name="gray">#808080</color>
@@ -70,7 +70,7 @@
     <color name="orange">#FFA500</color><!--橙色 -->
     <color name="orgere2">#f7ce65</color>
     <color name="login">#65ccb4</color>
-    <color name="login_end">#60c2cb</color>
+    <color name="login_end">#1695ed</color>
     <color name="tran">#00000000</color>
     //okgoDialog
     <color name="title_666">#666666</color>
@@ -84,4 +84,6 @@
  <color name="title_333">#333333</color>
     <color name="jxcolor">#4bde94</color>
     <color name="search">#7de3b0</color>
+    <color name="lvstart">#8deb71</color>
+    <color name="lvend">#7acb62</color>
 </resources>

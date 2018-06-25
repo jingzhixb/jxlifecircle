@@ -75,7 +75,21 @@
         <activity android:name=".activity.XiuGaiMMActivity" />
         <activity android:name=".activity.XiuGaiMMActivity2" />
         <activity android:name=".activity.MyGuanZhuActivity" />
-        <activity android:name=".activity.MyFenSiActivity"></activity>
+        <activity android:name=".activity.MyFenSiActivity" />
+        <activity android:name=".fabuactivity.ErShouCheActivity" />
+        <activity android:name=".fabuactivity.ErShouFangActivirt" />
+        <activity android:name=".fabuactivity.MiaoMuActivity" />
+        <activity android:name=".fabuactivity.OtherActivity" />
+        <activity android:name=".fabuactivity.ZhaoPinActivity" />
+        <activity android:name=".activity.ShopCooperation" />
+        <activity android:name=".activity.ShopCoreActivity" />
+        <activity android:name=".activity.CooperationMeiShiActivity" />
+        <activity android:name=".activity.AddressSelectActivity" />
+        <activity android:name=".activity.ShopTypeActivity" />
+        <activity android:name=".activity.ShopOrederActivity" />
+        <activity android:name=".activity.OrderDelitActivity" />
+        <activity android:name=".activity.MyAllShopActivity" />
+        <activity android:name=".activity.NewShopActivity"></activity>
     </application>
 
 </manifest>

@@ -11,6 +11,18 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+
+    lintOptions {
+        disable 'InvalidPackage'
+        //Umeng的包里面的values-zh干扰导致问题,只要添加下面这一句就可以了
+        disable 'MissingTranslation'
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -59,5 +71,8 @@ dependencies {
     compile 'com.yanzhenjie:recyclerview-swipe:1.1.4'
     //广告栏
     compile 'cn.bingoogolapple:bga-banner:2.1.7@aar'
+
+    //百度地图
+    compile files('libs/BaiduLBS_Android.jar')
 
 }

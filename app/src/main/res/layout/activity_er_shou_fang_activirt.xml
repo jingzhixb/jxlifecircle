@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/f5f5f5"
+    tools:context="zhuyekeji.zhengzhou.jxlifecircle.fabuactivity.ErShouFangActivirt">
+    <include layout="@layout/title_layout"/>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/title_666"
+                    android:text="发布类型"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="22dp"
+                    android:layout_height="wrap_content" />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="22dp"
+                    android:id="@+id/sp"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:hint="请输入您发布的内容"
+                android:gravity="top"
+                android:paddingTop="5dp"
+                android:paddingLeft="22dp"
+                android:textSize="@dimen/sp_14"
+                android:textColorHint="@color/title_999"
+                android:background="@color/white"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/title_666"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="22dp"
+                    android:text="房子类型"
+                    android:layout_height="wrap_content" />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:gravity="end|center_vertical"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="22dp"
+                    android:textColor="@color/title_333"
+                    android:layout_height="match_parent" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/view_color"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/title_666"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="22dp"
+                    android:text="房子样式"
+                    android:layout_height="wrap_content" />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:gravity="end|center_vertical"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="22dp"
+                    android:textColor="@color/title_333"
+                    android:layout_height="match_parent" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/view_color"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/title_666"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="22dp"
+                    android:text="面积"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:layout_width="197dp"
+                    android:background="@null"
+                    android:gravity="end|center_vertical"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="22dp"
+                    android:textColor="@color/title_333"
+                    android:textColorHint="@color/title_999"
+                    android:layout_height="match_parent" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/view_color"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/title_666"
+                    android:text="地理位置"
+                    android:id="@+id/x"
+                    android:layout_marginLeft="22dp"
+                    android:layout_height="wrap_content" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/x"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="13dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="22dp"
+                        android:id="@+id/c"
+                        android:background="@mipmap/dizhi"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/title_333"
+                        android:textSize="@dimen/sp_14"
+                        android:layout_toRightOf="@id/c"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="3dp"
+                        android:text="回复是符合双方都是"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@mipmap/youjiant"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="22dp"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/view_color"/>
+            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/title_666"
+                android:textSize="@dimen/sp_14"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="15dp"
+                android:text="图片"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:background="@mipmap/top"
+                    android:layout_marginLeft="22dp"
+                    android:id="@+id/top"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_toRightOf="@id/top"
+                    android:layout_marginBottom="13dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/title_666"
+                    android:text="置顶（10元/天）"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_15"
+                android:gravity="center"
+                android:text="确认发布"
+                android:background="@color/jxcolor"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

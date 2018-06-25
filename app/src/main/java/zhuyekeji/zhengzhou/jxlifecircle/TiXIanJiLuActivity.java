@@ -2,16 +2,22 @@ package zhuyekeji.zhengzhou.jxlifecircle;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.flyco.tablayout.SlidingTabLayout;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import zhuyekeji.zhengzhou.jxlifecircle.adapter.JiLuAdapter;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.frament.user.PayJiLuFrament;
+import zhuyekeji.zhengzhou.jxlifecircle.frament.user.TiXianJiluFrament;
 
 public class TiXIanJiLuActivity extends BaseActivity
 {
@@ -21,8 +27,12 @@ public class TiXIanJiLuActivity extends BaseActivity
     RelativeLayout rlBack;
     @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.rv_zhichu)
-    RecyclerView rvZhichu;
+    @BindView(R.id.slidingtl)
+    SlidingTabLayout slidingtl;
+    @BindView(R.id.viewpage)
+    ViewPager viewpage;
+    private String[] titles = new String[]{"支出记录", "提现记录"};
+    private ArrayList<Fragment> mFraments = new ArrayList<>();
 
     @Override
     public int getViewId()
@@ -47,9 +57,11 @@ public class TiXIanJiLuActivity extends BaseActivity
     @Override
     protected void setListener()
     {
-        JiLuAdapter adapter=new JiLuAdapter(this,R.layout.jilu_item,null);
-        rvZhichu.setLayoutManager(new LinearLayoutManager(this));
-        rvZhichu.setAdapter(adapter);
+        JiLuAdapter adapter = new JiLuAdapter(this, R.layout.jilu_item, null);
+
+        mFraments.add(new PayJiLuFrament());
+        mFraments.add(new TiXianJiluFrament());
+        slidingtl.setViewPager(viewpage, titles, this, mFraments);
     }
 
     @Override

@@ -32,6 +32,8 @@ import zhuyekeji.zhengzhou.jxlifecircle.activity.MyGuanZhuActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.MyWalletActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.SettingActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.SettingActivity2;
+import zhuyekeji.zhengzhou.jxlifecircle.activity.ShopCooperation;
+import zhuyekeji.zhengzhou.jxlifecircle.activity.ShopCoreActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.TuiGUangActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.UserInfoActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.YouHuiActivity;
@@ -78,9 +80,9 @@ public class MeFrament extends BaseFragment implements FragmentBackHandler
     private List<MeBean> beans = new ArrayList<>();
     private boolean isDoubleClick = false;
     private String[] textuser = new String[]{"我的收藏", "我的发布", "待评价", "历史足迹",
-            "我的优惠卷", "我的钱包", "我的地址", "推广有奖", "设置", "平台客服", "生活服务", "最新在线电影"};
+            "我的优惠卷", "我的钱包", "我的地址", "推广有奖", "设置", "平台客服", "生活服务", "最新在线电影","商家中心","商家合作"};
     private int[] iconuser = new int[]{R.mipmap.shoucang, R.mipmap.fabu, R.mipmap.pingjia, R.mipmap.zuji, R.mipmap.youhuiquan, R.mipmap.qianbao, R.mipmap.dizhi, R.mipmap.tuiguang,
-            R.mipmap.shezhi, R.mipmap.kefu, R.mipmap.shenghuofuwu, R.mipmap.dianying};
+            R.mipmap.shezhi, R.mipmap.kefu, R.mipmap.shenghuofuwu, R.mipmap.dianying,R.mipmap.ic_launcher,R.mipmap.ic_launcher};
 
 
     private String[] textshangjia = new String[]{"我的收藏", "我的论坛",
@@ -179,6 +181,14 @@ public class MeFrament extends BaseFragment implements FragmentBackHandler
                         break;
                     case "我的论坛":
 
+                        break;
+                    case "商家合作":
+                    Intent intent10=new Intent(getActivity(),ShopCooperation.class);
+                    startActivity(intent10);
+                        break;
+                    case "商家中心":
+                        Intent intent11=new Intent(getActivity(),ShopCoreActivity.class);
+                        startActivity(intent11);
                         break;
 
                 }

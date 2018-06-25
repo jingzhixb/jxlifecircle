@@ -3,23 +3,31 @@ package zhuyekeji.zhengzhou.jxlifecircle.frament;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ViewFlipper;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cn.bingoogolapple.bgabanner.BGABanner;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
+import zhuyekeji.zhengzhou.jxlifecircle.adapter.MyGridViewAdapter;
 import zhuyekeji.zhengzhou.jxlifecircle.api.FragmentBackHandler;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseFragment;
+import zhuyekeji.zhengzhou.jxlifecircle.bean.HomeIconInfo;
 import zhuyekeji.zhengzhou.jxlifecircle.homeacyivity.CitySelectActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.other.UIThread;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ActivityUtils;
@@ -59,9 +67,15 @@ public class HomeFrament extends BaseFragment implements FragmentBackHandler
     NestedScrollView nestscrollview;
     @BindView(R.id.refreshlayout)
     SmartRefreshLayout refreshlayout;
+    @BindView(R.id.home_viewpage)
+    ViewPager homeViewpage;
     private View view;
     Unbinder unbinder;
     private boolean isDoubleClick = false;
+     private int[] img=new int[]{R.mipmap.youhuigou,R.mipmap.pinche,R.mipmap.xiangqin,R.mipmap.zhibo,
+             R.mipmap.ershouche,R.mipmap.ershoufang
+             ,R.mipmap.bianmin,R.mipmap.kanjia};
+     private String [] titles=new String[]{"优惠购","拼车","相亲","直播","二手车","二手房","便民信息","砍价免费拿"};
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container)
@@ -73,21 +87,36 @@ public class HomeFrament extends BaseFragment implements FragmentBackHandler
     @Override
     protected void initListener()
     {
-rlCity.setOnClickListener(new View.OnClickListener()
-{
-    @Override
-    public void onClick(View view)
-    {
-        Intent intent=new Intent(getActivity(), CitySelectActivity.class);
-        startActivity(intent);
-    }
-});
+        rlCity.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(getActivity(), CitySelectActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     protected void initData()
     {
+         View page1=getActivity().getLayoutInflater().inflate(R.layout.home_grid,null);
+         View page2=getActivity().getLayoutInflater().inflate(R.layout.home_grid,null);
+        GridView gridView1=page1.findViewById(R.id.grid);
+        GridView gridView2=page2.findViewById(R.id.grid);
 
+        List<HomeIconInfo> mHomeData=new ArrayList<>();
+        for (int i=0;i<titles.length;i++)
+        {
+            mHomeData.add(new HomeIconInfo(titles[i],img[i]));
+        }
+        List<View> mViews=new ArrayList<>();
+        gridView1.setAdapter(new MyGridViewAdapter(mHomeData,getActivity()));
+        gridView2.setAdapter(new MyGridViewAdapter(mHomeData,getActivity()));
+        mViews.add(page1);
+        mViews.add(page2);
+        homeViewpage.setAdapter(new MyPagerAdapter(mViews));
     }
 
     @Override
@@ -127,5 +156,45 @@ rlCity.setOnClickListener(new View.OnClickListener()
     {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+
+    public class MyPagerAdapter extends PagerAdapter
+    {
+
+        //存放外界传来的集合数据
+        private List<View> mViews = new ArrayList<>();
+
+        //构造方法,进行容器数据的初始化,必须把外界的数据传进来,让ViewPager进行加载显示
+        //提示:有些参数没有数据,但是代码中用到了,第一个想到的构造方法,传数据
+        public MyPagerAdapter(List<View> views) {
+            mViews = views;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            //从容器里拿数据
+            View view = mViews.get(position);
+            //把控件对象放入ViewPager的容器里,进行显示
+            container.addView(view);
+            //把控件显示出来,方便销毁
+            return view;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            //把不用的View对象销毁,防止内存泄漏
+            container.removeView(mViews.get(position));
+        }
+
+        @Override
+        public int getCount() {
+            return mViews.size();
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
     }
 }
