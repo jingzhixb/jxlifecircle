@@ -36,6 +36,7 @@ public class RegisterActivity extends BaseActivity
     TextView next;
     private String type;
     private MyCountDownTimer myCountDownTimer;
+    private String mPhone;
 
     @Override
     public int getViewId()
@@ -99,6 +100,7 @@ public class RegisterActivity extends BaseActivity
             case R.id.bt_yanzheng://获取验证码
                 if (RegexUtils.isMobileExact(edMobile.getText().toString().trim()))
                 {
+                    mPhone=edMobile.getText().toString().trim();
                     myCountDownTimer = new MyCountDownTimer(60000, 1000);
                     myCountDownTimer.start();
                 } else
@@ -108,6 +110,7 @@ public class RegisterActivity extends BaseActivity
                 break;
             case R.id.next://下一步
                 Intent intent=new Intent(RegisterActivity.this,SetPasswordActivity.class);
+                intent.putExtra("phone",mPhone);
                 intent.putExtra("type",type);
                 startActivity(intent);
                 break;

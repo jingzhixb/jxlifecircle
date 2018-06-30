@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/f5f5f5"
+    android:layout_height="match_parent"
+    tools:context="zhuyekeji.zhengzhou.jxlifecircle.activity.PingJiaDeliteActivity">
+<include layout="@layout/title_layout"
+    android:id="@+id/r"/>
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:background="@color/white"
+      android:layout_below="@id/r"
+      android:id="@+id/rl_dingdan"
+      android:layout_height="wrap_content">
+      <TextView
+          android:layout_width="wrap_content"
+          android:textSize="@dimen/sp_15"
+          android:textColor="@color/title_666"
+          android:text="订单编号:"
+          android:id="@+id/x"
+          android:layout_marginTop="16dp"
+          android:layout_marginLeft="22dp"
+          android:layout_height="wrap_content" />
+      <TextView
+          android:layout_width="wrap_content"
+          android:id="@+id/tv_bianhao"
+          android:layout_toRightOf="@id/x"
+          android:layout_marginTop="16dp"
+          android:layout_marginLeft="5dp"
+          android:layout_height="wrap_content" />
+      <ImageView
+          android:layout_width="100dp"
+          android:layout_below="@id/x"
+          android:layout_marginLeft="22dp"
+          android:id="@+id/im_title"
+          android:layout_marginTop="15dp"
+          android:layout_height="75dp" />
+      <TextView
+          android:layout_width="wrap_content"
+          android:textColor="@color/title_333"
+          android:textSize="@dimen/sp_14"
+          android:layout_marginRight="22dp"
+          android:maxLines="2"
+          android:id="@+id/tv_title"
+          android:layout_alignTop="@id/im_title"
+          android:layout_marginLeft="11dp"
+          android:layout_marginTop="4dp"
+          android:layout_toRightOf="@id/im_title"
+          android:layout_height="wrap_content" />
+      <TextView
+          android:layout_width="wrap_content"
+          android:textSize="@dimen/sp_12"
+          android:textColor="@color/title_999"
+          android:layout_below="@id/tv_title"
+          android:layout_alignLeft="@id/tv_title"
+          android:layout_marginTop="20dp"
+          android:layout_toRightOf="@id/im_title"
+          android:layout_height="wrap_content" />
+  </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/rv_pinlu"
+        android:background="@color/white"
+        android:layout_below="@id/rl_dingdan"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:id="@+id/rr"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_height="45dp">
+        <EditText
+            android:layout_width="match_parent"
+            android:background="@drawable/huifu_bg"
+            android:layout_toLeftOf="@id/tv_fasong"
+            android:layout_marginRight="10dp"
+            android:hint="回复"
+            android:paddingLeft="9dp"
+            android:textSize="@dimen/sp_14"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical|start"
+            android:layout_marginLeft="22dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="发送"
+            android:textSize="@dimen/sp_14"
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_fasong"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_marginRight="18dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/fasong_bg"
+            android:layout_height="30dp" />
+    </RelativeLayout>
+</RelativeLayout>

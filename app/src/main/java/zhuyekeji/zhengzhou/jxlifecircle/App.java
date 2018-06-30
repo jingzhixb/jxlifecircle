@@ -2,6 +2,7 @@ package zhuyekeji.zhengzhou.jxlifecircle;
 
 import android.app.Application;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
@@ -36,6 +37,7 @@ public class App extends Application
         super.onCreate();
         Utils.init(this);
         instance=this;
+        SDKInitializer.initialize(getApplicationContext());
         initOkGo();
     }
 

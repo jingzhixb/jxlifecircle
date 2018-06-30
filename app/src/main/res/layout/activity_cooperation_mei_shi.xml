@@ -218,6 +218,83 @@
                     android:background="@color/view_color"/>
             </RelativeLayout>
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginRight="22dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="22dp"
+                android:layout_height="100dp">
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:id="@+id/rl_zheng"
+                    android:orientation="vertical"
+                    android:background="@drawable/zheng_stoken"
+                    android:layout_marginRight="7dp"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/image_zheng"
+                        android:layout_width="match_parent"
+                        android:visibility="gone"
+                        android:scaleType="centerCrop"
+                        android:layout_height="match_parent" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:background="@mipmap/jia"
+                        android:id="@+id/im_zheng"
+                        android:layout_marginTop="20dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="40dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/title_666"
+                        android:textSize="@dimen/sp_13"
+                        android:id="@+id/tv_zheng"
+                        android:layout_below="@id/im_zheng"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="上传身份证正面"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:id="@+id/rl_fan"
+                    android:background="@drawable/zheng_stoken"
+                    android:layout_marginLeft="7dp"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/image_fan"
+                        android:visibility="gone"
+                        android:scaleType="centerCrop"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_gravity="center"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/im_fan"
+                        android:background="@mipmap/jia"
+                        android:layout_height="40dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/title_666"
+                        android:textSize="@dimen/sp_13"
+                        android:id="@+id/tv_fan"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/im_fan"
+                        android:layout_marginTop="10dp"
+                        android:text="上传身份证正面"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:textSize="@dimen/sp_12"
@@ -251,6 +328,7 @@
                     android:layout_marginTop="10dp"
                     android:text="营业执照"
                     android:textSize="@dimen/sp_13"
+                    android:id="@+id/tv_zhizhao"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@id/im_registerxieyi"
                     android:textColor="@color/title_666"

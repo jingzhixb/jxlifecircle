@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/f5f5f5"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="zhuyekeji.zhengzhou.jxlifecircle.homeacyivity.TouPiaoActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/jxcolor">
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@mipmap/back"
+                android:layout_marginLeft="22dp"
+               />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/tv_search"
+            android:layout_toRightOf="@id/rl_back"
+            android:background="@drawable/search_bg">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:background="@mipmap/sousuo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="45dp"
+                android:text="请输入关键字"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_12" />
+        </RelativeLayout>
+        <TextView
+            android:layout_width="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:textSize="@dimen/sp_12"
+            android:textColor="@color/white"
+            android:text="搜索"
+            android:background="@drawable/searcht"
+            android:id="@+id/tv_search"
+            android:layout_alignParentRight="true"
+            android:layout_height="30dp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="@color/white">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/jxcolor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="355"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/title_666"
+                android:text="报名人数"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/jxcolor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="355"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/sp_12"
+                android:text="累计票数"
+                android:textColor="@color/title_666"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/jxcolor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="355"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/title_666"
+                android:layout_marginTop="10dp"
+                android:text="累计访问人数"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/slidingtl"
+        android:layout_marginTop="10dp"
+        app:tl_textSelectColor="@color/jxcolor"
+        app:tl_textsize="@dimen/sp_15"
+        app:tl_tab_space_equal="true"
+        android:background="@color/white"
+        app:tl_indicator_width="40dp"
+        app:tl_textUnselectColor="@color/title_666"
+        android:layout_width="match_parent"
+        app:tl_indicator_color="@color/jxcolor"
+        app:tl_underline_color="@color/jxcolor"
+        android:layout_height="48dp"
+        />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpage"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:background="@android:color/white"/>
+</LinearLayout>

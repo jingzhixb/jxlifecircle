@@ -9,11 +9,17 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lzy.okgo.model.Response;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
+import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
+import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.JsonUtile;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
 
 public class ShopCoreActivity extends BaseActivity
 {
@@ -49,7 +55,8 @@ public class ShopCoreActivity extends BaseActivity
     @Override
     protected void processLogic()
     {
-tvTitle.setText("商家中心");
+        tvTitle.setText("商家中心");
+        JxApiCallBack.shopcore(getToken(),1,this,callBack);
     }
 
     @Override
@@ -58,6 +65,32 @@ tvTitle.setText("商家中心");
 
     }
 
+    CallBack callBack=new CallBack()
+    {
+        @Override
+        public void onSuccess(int what, Response<String> result)
+        {
+           String body=JsonUtile.getbody(result.body());
+           if (!body.equals(""))
+           {
+
+           }else {
+               ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+           }
+        }
+
+        @Override
+        public void onFail(int what, Response<String> result)
+        {
+
+        }
+
+        @Override
+        public void onFinish(int what)
+        {
+
+        }
+    };
     @Override
     protected Context getActivityContext()
     {
@@ -80,17 +113,29 @@ tvTitle.setText("商家中心");
             case R.id.rl_back:
                 finish();
                 break;
-            case R.id.ll_info:
+            case R.id.ll_info://商家信息
+                Intent intent4 = new Intent(ShopCoreActivity.this, ShopInfoActivity.class);
+                startActivity(intent4);
                 break;
             case R.id.rl_dingdan://商家订单
-                Intent intent=new Intent(ShopCoreActivity.this,ShopOrederActivity.class);
-            startActivity(intent);
+                if (true)
+                {
+                    Intent intent = new Intent(ShopCoreActivity.this, ShopOrederActivity.class);
+                    startActivity(intent);
+                } else
+                {
+                    Intent intent = new Intent(ShopCoreActivity.this, ShopOrederActivity2.class);
+                    startActivity(intent);
+                }
+
                 break;
             case R.id.rl_guanli://商品管理
-                Intent intent1=new Intent(ShopCoreActivity.this,MyAllShopActivity.class);
-            startActivity(intent1);
+                Intent intent1 = new Intent(ShopCoreActivity.this, MyAllShopActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.rl_youhui://优惠卷
+                Intent intent = new Intent(ShopCoreActivity.this, ShopYouHuiJuanActivity.class);
+                startActivity(intent);
                 break;
         }
     }

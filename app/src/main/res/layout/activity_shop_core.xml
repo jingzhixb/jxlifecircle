@@ -41,10 +41,11 @@
                 android:layout_height="11dp" />
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_below="@id/tv_title"
+                android:layout_below="@id/tv_name"
                 android:layout_marginTop="5dp"
                 android:textSize="@dimen/sp_13"
                 android:id="@+id/tv_type"
+
                 android:textColor="@color/white"
                 android:text="食品类"
                 android:layout_height="wrap_content" />

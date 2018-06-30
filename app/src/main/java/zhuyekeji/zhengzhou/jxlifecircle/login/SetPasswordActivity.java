@@ -14,7 +14,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
+import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
 
 public class SetPasswordActivity extends BaseActivity
 {
@@ -90,25 +92,41 @@ mType=getIntent().getStringExtra("type");
             case R.id.tv_xieyi:
                 break;
             case R.id.wancheng:
-                if (mType.equals("1"))
-                {
-                    Intent intent=new Intent(SetPasswordActivity.this,UserWanShanActivity.class);//用戶
-                    startActivity(intent);
-                } else if (mType.equals("2"))
-                {
-                    Intent intent=new Intent(SetPasswordActivity.this,ShangJiaWanShanActivity1.class);//商家
-                    startActivity(intent);
-                } else if (mType.equals("3"))
-                {
-                    Intent intent=new Intent(SetPasswordActivity.this,ShangJiaWanShanActivity1.class);//派送
-                    intent.putExtra("type",mType);
-                    startActivity(intent);
-                } else if (mType.equals("4"))
-                {
-                    Intent intent=new Intent(SetPasswordActivity.this,ShangJiaWanShanActivity1.class);//車主
-                    intent.putExtra("type",mType);
-                    startActivity(intent);
-                }
+                 String number=edMobile.getText().toString().trim();//第一次密码
+                 String password=edAgainpassword.getText().toString().trim();//第二次密码
+                 if (number!=null&&number.equals(password)&number.length()>0)
+                 {
+                     String phone=getIntent().getStringExtra("phone");
+                     if (mType.equals("1"))
+                     {
+                         Intent intent=new Intent(SetPasswordActivity.this,UserWanShanActivity.class);//用戶
+                         intent.putExtra("password",password);
+                         intent.putExtra("phone",phone);
+                         startActivity(intent);
+                     } else if (mType.equals("2"))
+                     {
+                         Intent intent=new Intent(SetPasswordActivity.this,ShangJiaWanShanActivity1.class);//商家
+                         intent.putExtra("password",password);
+                         intent.putExtra("phone",phone);
+                         startActivity(intent);
+                     } else if (mType.equals("3"))
+                     {
+                         Intent intent=new Intent(SetPasswordActivity.this,ShangJiaWanShanActivity1.class);//派送
+                         intent.putExtra("password",password);
+                         intent.putExtra("phone",phone);
+                         intent.putExtra("type",mType);
+                         startActivity(intent);
+                     } else if (mType.equals("4"))
+                     {
+                         Intent intent=new Intent(SetPasswordActivity.this,ShangJiaWanShanActivity1.class);//車主
+                         intent.putExtra("phone",phone);
+                         intent.putExtra("type",mType);
+                         startActivity(intent);
+                     }
+                 }else {
+                     ToastUtils.showShort("请输入密码");
+                 }
+              //  JxApiCallBack.user_register();
 
                 break;
         }

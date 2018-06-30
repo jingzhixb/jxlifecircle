@@ -72,7 +72,7 @@ public class MyAllShopActivity extends BaseActivity
             case R.id.tv_type:
                 break;
             case R.id.rl_newshop:
-                Intent intent=new Intent(MyAllShopActivity.this,NewShopActivity.class);
+                Intent intent=new Intent(MyAllShopActivity.this,NewShopActivity.class);//新增商品
                 startActivity(intent);
                 break;
         }

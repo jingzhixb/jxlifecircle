@@ -299,7 +299,12 @@
                         android:inAnimation="@anim/anim_in"
                         android:outAnimation="@anim/anim_out"/>
                 </RelativeLayout>
-
+<android.support.design.widget.FloatingActionButton
+    android:layout_width="45dp"
+    android:layout_gravity="right"
+    android:id="@+id/fl_button"
+    android:layout_marginRight="22dp"
+    android:layout_height="45dp" />
 
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>

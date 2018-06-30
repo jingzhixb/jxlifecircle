@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.OrderDelitActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.activity.PingJiaDeliteActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.adapter.ShopDaiXiaoFeiAdapter;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseFragment;
 import zhuyekeji.zhengzhou.jxlifecircle.bean.JiFenOrderBean;
@@ -75,6 +76,8 @@ public class ShopPinJiaFrament extends BaseFragment
                 switch (view.getId())
                 {
                     case R.id.hexiao:
+                        Intent intent=new Intent(getActivity(),PingJiaDeliteActivity.class);
+                        startActivity(intent);
                         break;
                 }
             }

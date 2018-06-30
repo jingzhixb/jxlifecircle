@@ -3,12 +3,14 @@ package zhuyekeji.zhengzhou.jxlifecircle.frament;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -29,6 +31,9 @@ import zhuyekeji.zhengzhou.jxlifecircle.api.FragmentBackHandler;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseFragment;
 import zhuyekeji.zhengzhou.jxlifecircle.bean.HomeIconInfo;
 import zhuyekeji.zhengzhou.jxlifecircle.homeacyivity.CitySelectActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.homeacyivity.KanJiaListActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.homeacyivity.PinCheActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.homeacyivity.TouPiaoActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.other.UIThread;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ActivityUtils;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
@@ -69,13 +74,15 @@ public class HomeFrament extends BaseFragment implements FragmentBackHandler
     SmartRefreshLayout refreshlayout;
     @BindView(R.id.home_viewpage)
     ViewPager homeViewpage;
+    @BindView(R.id.fl_button)
+    FloatingActionButton flButton;
     private View view;
     Unbinder unbinder;
     private boolean isDoubleClick = false;
-     private int[] img=new int[]{R.mipmap.youhuigou,R.mipmap.pinche,R.mipmap.xiangqin,R.mipmap.zhibo,
-             R.mipmap.ershouche,R.mipmap.ershoufang
-             ,R.mipmap.bianmin,R.mipmap.kanjia};
-     private String [] titles=new String[]{"优惠购","拼车","相亲","直播","二手车","二手房","便民信息","砍价免费拿"};
+    private int[] img = new int[]{R.mipmap.youhuigou, R.mipmap.pinche, R.mipmap.xiangqin, R.mipmap.zhibo,
+            R.mipmap.ershouche, R.mipmap.ershoufang
+            , R.mipmap.bianmin, R.mipmap.kanjia};
+    private String[] titles = new String[]{"优惠购", "拼车", "相亲", "直播", "二手车", "二手房", "便民信息", "砍价免费拿"};
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container)
@@ -96,24 +103,51 @@ public class HomeFrament extends BaseFragment implements FragmentBackHandler
                 startActivity(intent);
             }
         });
+        flButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent=new Intent(getActivity(),TouPiaoActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     protected void initData()
     {
-         View page1=getActivity().getLayoutInflater().inflate(R.layout.home_grid,null);
-         View page2=getActivity().getLayoutInflater().inflate(R.layout.home_grid,null);
-        GridView gridView1=page1.findViewById(R.id.grid);
-        GridView gridView2=page2.findViewById(R.id.grid);
+        View page1 = getActivity().getLayoutInflater().inflate(R.layout.home_grid, null);
+        View page2 = getActivity().getLayoutInflater().inflate(R.layout.home_grid, null);
+        final GridView gridView1 = page1.findViewById(R.id.grid);
+        GridView gridView2 = page2.findViewById(R.id.grid);
 
-        List<HomeIconInfo> mHomeData=new ArrayList<>();
-        for (int i=0;i<titles.length;i++)
+        List<HomeIconInfo> mHomeData = new ArrayList<>();
+        for (int i = 0; i < titles.length; i++)
         {
-            mHomeData.add(new HomeIconInfo(titles[i],img[i]));
+            mHomeData.add(new HomeIconInfo(titles[i], img[i]));
         }
-        List<View> mViews=new ArrayList<>();
-        gridView1.setAdapter(new MyGridViewAdapter(mHomeData,getActivity()));
-        gridView2.setAdapter(new MyGridViewAdapter(mHomeData,getActivity()));
+        List<View> mViews = new ArrayList<>();
+        gridView1.setAdapter(new MyGridViewAdapter(mHomeData, getActivity()));
+        gridView2.setAdapter(new MyGridViewAdapter(mHomeData, getActivity()));
+        gridView1.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+            {
+                switch (i)
+                {
+                    case 7://砍价
+                        Intent intent = new Intent(getActivity(), KanJiaListActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 1://拼车
+                        Intent intent1 = new Intent(getActivity(), PinCheActivity.class);
+                        startActivity(intent1);
+                        break;
+                }
+            }
+        });
         mViews.add(page1);
         mViews.add(page2);
         homeViewpage.setAdapter(new MyPagerAdapter(mViews));
@@ -167,12 +201,14 @@ public class HomeFrament extends BaseFragment implements FragmentBackHandler
 
         //构造方法,进行容器数据的初始化,必须把外界的数据传进来,让ViewPager进行加载显示
         //提示:有些参数没有数据,但是代码中用到了,第一个想到的构造方法,传数据
-        public MyPagerAdapter(List<View> views) {
+        public MyPagerAdapter(List<View> views)
+        {
             mViews = views;
         }
 
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        public Object instantiateItem(ViewGroup container, int position)
+        {
             //从容器里拿数据
             View view = mViews.get(position);
             //把控件对象放入ViewPager的容器里,进行显示
@@ -182,18 +218,21 @@ public class HomeFrament extends BaseFragment implements FragmentBackHandler
         }
 
         @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
+        public void destroyItem(ViewGroup container, int position, Object object)
+        {
             //把不用的View对象销毁,防止内存泄漏
             container.removeView(mViews.get(position));
         }
 
         @Override
-        public int getCount() {
+        public int getCount()
+        {
             return mViews.size();
         }
 
         @Override
-        public boolean isViewFromObject(View view, Object object) {
+        public boolean isViewFromObject(View view, Object object)
+        {
             return view == object;
         }
     }

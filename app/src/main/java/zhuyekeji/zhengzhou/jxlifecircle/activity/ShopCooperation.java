@@ -72,18 +72,22 @@ tvTitle.setText("商家合作");
                 break;
             case R.id.rl_meishi:
                 Intent intent=new Intent(ShopCooperation.this,CooperationMeiShiActivity.class);
+                intent.putExtra("type","1");
                 startActivity(intent);
                 break;
             case R.id.rl_jiudian:
                 Intent intent1=new Intent(ShopCooperation.this,CooperationMeiShiActivity.class);
+                intent1.putExtra("type","2");
                 startActivity(intent1);
                 break;
             case R.id.rl_dujia:
                 Intent intent2=new Intent(ShopCooperation.this,CooperationMeiShiActivity.class);
+                intent2.putExtra("type","3");
                 startActivity(intent2);
                 break;
             case R.id.rl_zonghe:
                 Intent intent3=new Intent(ShopCooperation.this,CooperationMeiShiActivity.class);
+                intent3.putExtra("type","4");
                 startActivity(intent3);
                 break;
         }

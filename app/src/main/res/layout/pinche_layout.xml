@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/bg"
+    android:paddingRight="22dp"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="40dp"
+        android:background="@mipmap/sanjiaobai"
+        android:layout_height="10dp" />
+<RelativeLayout
+    android:layout_width="80dp"
+    android:layout_alignParentRight="true"
+    android:layout_marginTop="50dp"
+    android:id="@+id/xl"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/sp_15"
+            android:id="@+id/renfindche"
+            android:textColor="@color/jxcolor"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="人找车"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/view_color"
+            android:layout_height="1dp"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/sp_15"
+            android:textColor="@color/jxcolor"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:id="@+id/chefindren"
+            android:text="车找人"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/view_color"
+            android:layout_height="1dp"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/sp_15"
+            android:textColor="@color/jxcolor"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="天天拼车"
+            android:id="@+id/tiantian"
+            android:layout_marginBottom="20dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</RelativeLayout>
+    
+</RelativeLayout>

@@ -29,13 +29,29 @@ import zhuyekeji.zhengzhou.jxlifecircle.widget.CustomProgressDialog;
  * 加载弹框
  * ================================================
  */
-public abstract class StringDialogCallback extends StringCallback {
+public abstract class StringDialogCallback extends StringCallback
+{
 
     private CustomProgressDialog dialog;
 
-    public StringDialogCallback(Activity activity, String content) {
+    public StringDialogCallback(Activity activity, String content, boolean isShow)
+    {
 //        dialog = new ProgressDialog(activity);
+        if (!isShow)
+        {
+            return;
+        }
+        dialog = new CustomProgressDialog(activity, content);
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setContentView(R.layout.layout_progress);
+        dialog.setCanceledOnTouchOutside(false);
+//        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//        dialog.setMessage(content);
+    }
 
+    public StringDialogCallback(Activity activity, String content)
+    {
+//        dialog = new ProgressDialog(activity);
         dialog = new CustomProgressDialog(activity, content);
 //        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 //        dialog.setContentView(R.layout.layout_progress);
@@ -45,15 +61,19 @@ public abstract class StringDialogCallback extends StringCallback {
     }
 
     @Override
-    public void onStart(Request<String, ? extends Request> request) {
-        if (dialog != null && !dialog.isShowing()) {
+    public void onStart(Request<String, ? extends Request> request)
+    {
+        if (dialog != null && !dialog.isShowing())
+        {
             dialog.show();
         }
     }
 
     @Override
-    public void onFinish() {
-        if (dialog != null && dialog.isShowing()) {
+    public void onFinish()
+    {
+        if (dialog != null && dialog.isShowing())
+        {
             dialog.dismiss();
         }
     }
@@ -62,7 +82,8 @@ public abstract class StringDialogCallback extends StringCallback {
     public void onError(Response<String> response)
     {
         super.onError(response);
-        if (dialog != null && dialog.isShowing()) {
+        if (dialog != null && dialog.isShowing())
+        {
             dialog.dismiss();
         }
     }

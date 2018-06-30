@@ -11,6 +11,21 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+
+    <!-- 百度地图API所需权限 -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 访问精确位置的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -20,6 +35,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        <!-- 百度地图API KEY -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="1RWywqQB094e14nM50TxMlhgBXzcvePa" />
+        <!-- 百度定位服务 -->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
+        <!--1RWywqQB094e14nM50TxMlhgBXzcvePa-->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="zhuyekeji.zhengzhou.jxlifecircle.FileProvider"
@@ -89,7 +116,27 @@
         <activity android:name=".activity.ShopOrederActivity" />
         <activity android:name=".activity.OrderDelitActivity" />
         <activity android:name=".activity.MyAllShopActivity" />
-        <activity android:name=".activity.NewShopActivity"></activity>
+        <activity android:name=".activity.NewShopActivity" />
+        <activity android:name=".activity.PingJiaDeliteActivity" />
+        <activity android:name=".activity.BiaoQianActivity" />
+        <activity android:name=".activity.MiaoShuActivity" />
+        <activity android:name=".activity.TypeActivity" />
+        <activity android:name=".activity.ShopOrederActivity2" />
+        <activity android:name=".activity.ShopYouHuiJuanActivity" />
+        <activity android:name=".activity.AddYouHuiJuanActivity" />
+        <activity android:name=".activity.ShopInfoActivity" />
+        <activity android:name=".homeacyivity.KanJiaListActivity" />
+        <activity android:name=".homeacyivity.KanJiaShareActivity" />
+        <activity android:name=".homeacyivity.TouPiaoActivity" />
+        <activity android:name=".homeacyivity.TouPiaoDeliteActivity" />
+        <activity android:name=".homeacyivity.PinCheActivity" />
+        <activity android:name=".homeacyivity.PinCheFaBuActivity"></activity>
+        <activity
+            android:name="me.iwf.photopicker.PhotoPickerActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="me.iwf.photopicker.PhotoPagerActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>

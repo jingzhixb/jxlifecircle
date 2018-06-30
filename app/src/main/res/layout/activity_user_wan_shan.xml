@@ -10,9 +10,10 @@
 
     <include layout="@layout/title_layout" />
 
-    <android.support.v4.widget.CircleImageView
+    <zhuyekeji.zhengzhou.jxlifecircle.widget.CircleImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:id="@+id/im_img"
         android:layout_marginBottom="40dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp" />
