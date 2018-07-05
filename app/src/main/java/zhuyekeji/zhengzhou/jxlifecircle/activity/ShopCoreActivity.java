@@ -56,7 +56,7 @@ public class ShopCoreActivity extends BaseActivity
     protected void processLogic()
     {
         tvTitle.setText("商家中心");
-        JxApiCallBack.shopcore(getToken(),1,this,callBack);
+      //  JxApiCallBack.shopcore(getToken(),1,this,callBack);
     }
 
     @Override

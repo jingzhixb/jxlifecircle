@@ -1,5 +1,6 @@
 package zhuyekeji.zhengzhou.jxlifecircle.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.lzy.okgo.model.Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
 import zhuyekeji.zhengzhou.jxlifecircle.adapter.YouHuiJuanAdapter;
+import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
+import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.bean.JiFenOrderBean;
 
@@ -45,6 +49,10 @@ public class ShopYouHuiJuanActivity extends BaseActivity
     @Override
     protected void processLogic()
     {
+        if (false)
+        {
+            JxApiCallBack.couponlist(getToken(),1,3,ShopYouHuiJuanActivity.this,callBack);
+        }
         for (int i = 0; i < 3; i++)
         {
             beans.add(new JiFenOrderBean());
@@ -61,10 +69,14 @@ public class ShopYouHuiJuanActivity extends BaseActivity
                 switch (view.getId())
                 {
                     case R.id.tv_bianji://编辑优惠卷
+                        Intent intent=new Intent(mContext,AddYouHuiJuanActivity.class);
+                    startActivity(intent);
                         break;
                     case R.id.xiajia://下架哟优惠卷
+                        JxApiCallBack.unordown(getToken(),1,"",2, (Activity) mContext,callBack);
                         break;
                     case R.id.tv_shanchu://删除优惠卷
+                        JxApiCallBack.del_youhuijuan(getToken(),1,1, (Activity) mContext,callBack);
                         break;
                 }
             }
@@ -105,4 +117,24 @@ public class ShopYouHuiJuanActivity extends BaseActivity
                 break;
         }
     }
+    CallBack callBack=new CallBack()
+    {
+        @Override
+        public void onSuccess(int what, Response<String> result)
+        {
+
+        }
+
+        @Override
+        public void onFail(int what, Response<String> result)
+        {
+
+        }
+
+        @Override
+        public void onFinish(int what)
+        {
+
+        }
+    };
 }

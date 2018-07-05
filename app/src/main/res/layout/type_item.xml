@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="45dp">
+        <EditText
+            android:layout_width="100dp"
+            android:textColor="@color/title_666"
+            android:textColorHint="@color/title_999"
+            android:hint="请输入分类名称"
+            android:id="@+id/name"
+            android:background="@null"
+            android:textSize="@dimen/sp_14"
+            android:layout_marginLeft="22dp"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="22dp"
+            android:background="@mipmap/shanchu2"
+            android:id="@+id/jian"
+            android:layout_marginLeft="22dp"
+            android:layout_height="20dp" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@mipmap/jia2"
+            android:id="@+id/jia2"
+            android:layout_toLeftOf="@id/jian"
+            android:layout_marginLeft="22dp"
+            android:layout_height="20dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/view_color"/>
+    </RelativeLayout>
+</LinearLayout>

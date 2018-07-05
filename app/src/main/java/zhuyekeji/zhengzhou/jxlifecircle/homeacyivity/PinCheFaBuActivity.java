@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import zhuyekeji.zhengzhou.jxlifecircle.R;
+import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
 
 public class PinCheFaBuActivity extends BaseActivity
@@ -20,7 +21,10 @@ public class PinCheFaBuActivity extends BaseActivity
     @Override
     protected void processLogic()
     {
-
+      if (false)
+      {
+          //JxApiCallBack.addchefindren();
+      }
     }
 
     @Override
@@ -32,6 +36,6 @@ public class PinCheFaBuActivity extends BaseActivity
     @Override
     protected Context getActivityContext()
     {
-        return null;
+        return this;
     }
 }

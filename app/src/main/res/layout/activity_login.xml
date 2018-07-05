@@ -144,12 +144,14 @@
         <ImageView
             android:layout_width="40dp"
             android:background="@mipmap/q"
+            android:id="@+id/qq"
             android:layout_marginRight="22dp"
             android:layout_height="40dp" />
         <ImageView
             android:layout_width="40dp"
             android:layout_marginLeft="22dp"
             android:background="@mipmap/w"
+            android:id="@+id/wx"
             android:layout_height="40dp" />
     </LinearLayout>
 

@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +32,7 @@ public class CustomProgressDialog extends Dialog implements DialogInterface.OnCa
         mContext = new WeakReference<>(context);
 
         @SuppressLint("InflateParams")
-        View view = LayoutInflater.from(context).inflate(R.layout.dialog_custom_progress, null);
+        LinearLayout view = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.dialog_custom_progress, null);
         TextView tvMessage = (TextView) view.findViewById(R.id.tv_message);
         if (!TextUtils.isEmpty(message)) {
             tvMessage.setText(message);

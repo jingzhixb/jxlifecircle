@@ -29,6 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import zhuyekeji.zhengzhou.jxlifecircle.App;
+import zhuyekeji.zhengzhou.jxlifecircle.MainActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.UserInfoActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
@@ -54,7 +55,7 @@ public class UserWanShanActivity extends BaseActivity
     TextView tvSkip;
     @BindView(R.id.im_img)
     CircleImageView imImg;
-    private String mPhone,mPassword;
+    private String mPhone, mPassword;
     private File mFile;
     private Uri mUri;
     private static final int REQUEST_CODE_TAKE_PHOTO = 1;
@@ -72,8 +73,8 @@ public class UserWanShanActivity extends BaseActivity
     protected void processLogic()
     {
         tvTitle.setText("完善资料");
-        mPassword=getIntent().getStringExtra("password");
-        mPhone=getIntent().getStringExtra("phone");
+        mPassword = getIntent().getStringExtra("password");
+        mPhone = getIntent().getStringExtra("phone");
         init();
     }
 
@@ -89,7 +90,7 @@ public class UserWanShanActivity extends BaseActivity
         return this;
     }
 
-    @OnClick({R.id.rl_back, R.id.wancheng, R.id.tv_skip,R.id.im_img})
+    @OnClick({R.id.rl_back, R.id.wancheng, R.id.tv_skip, R.id.im_img})
     public void onViewClicked(View view)
     {
         switch (view.getId())
@@ -98,15 +99,18 @@ public class UserWanShanActivity extends BaseActivity
                 finish();
                 break;
             case R.id.wancheng://完成
+             // JxApiCallBack.edit_header(getToken(),);
                 break;
             case R.id.tv_skip://跳过
-                JxApiCallBack.user_register(mPhone,mPassword,"","",1, UserWanShanActivity.this,callBack);
+                Intent intent = new Intent(UserWanShanActivity.this, MainActivity.class);
+                startActivity(intent);
                 break;
             case R.id.im_img:
                 chooseType();
                 break;
         }
     }
+
     /**
      * 建立相机存储的缓存的路径
      */
@@ -122,6 +126,7 @@ public class UserWanShanActivity extends BaseActivity
             mUri = FileProvider.getUriForFile(App.getInstance(), "zhuyekeji.zhengzhou.jxlifecircle.FileProvider", mFile);
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -131,57 +136,71 @@ public class UserWanShanActivity extends BaseActivity
     }
 
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_ALBUM && data != null) {
+        if (requestCode == REQUEST_CODE_ALBUM && data != null)
+        {
             Uri newUri;
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
+            {
                 newUri = Uri.parse("file:///" + CropUtils.getPath(this, data.getData()));
-            } else {
+            } else
+            {
                 newUri = data.getData();
             }
-            if (newUri != null) {
+            if (newUri != null)
+            {
                 startPhotoZoom(newUri);
-            } else {
+            } else
+            {
                 Toast.makeText(this, "没有得到相册图片", Toast.LENGTH_LONG).show();
             }
             //相机
-        } else if (requestCode == REQUEST_CODE_TAKE_PHOTO) {
+        } else if (requestCode == REQUEST_CODE_TAKE_PHOTO)
+        {
             startPhotoZoom(mUri);
-        } else if (requestCode == REQUEST_CODE_CROUP_PHOTO) {
+        } else if (requestCode == REQUEST_CODE_CROUP_PHOTO)
+        {
             uploadAvatarFromPhoto();
         }
     }
 
-    private void chooseType() {
+    private void chooseType()
+    {
         final String[] stringItems = {"拍照", "从相册选取"};
         final ActionSheetDialog dialog = new ActionSheetDialog(mContext, stringItems, null);
         dialog.title("选择头像").titleTextSize_SP(14.5f).show();
 
 
-        dialog.setOnOperItemClickL(new OnOperItemClickL() {
+        dialog.setOnOperItemClickL(new OnOperItemClickL()
+        {
             @SuppressLint("WrongConstant")
             @Override
-            public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
+            public void onOperItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                switch (position)
+                {
                     //拍照
                     case 0:
-                        if (PermissionUtils.isGranted(Manifest.permission.CAMERA)) {
+                        if (PermissionUtils.isGranted(Manifest.permission.CAMERA))
+                        {
                             uploadAvatarFromPhotoRequest();
                             dialog.dismiss();
-                        }else {
+                        } else
+                        {
                             PermissionUtils.permission(Manifest.permission.CAMERA).request();
                         }
                         break;
                     //相册
                     case 1:
-                        if (PermissionUtils.isGranted(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                        if (PermissionUtils.isGranted(Manifest.permission.READ_EXTERNAL_STORAGE))
+                        {
                             uploadAvatarFromAlbumRequest();
                             dialog.dismiss();
-                        }else {
+                        } else
+                        {
                             PermissionUtils.permission(Manifest.permission.READ_EXTERNAL_STORAGE).request();
                         }
                         break;
@@ -193,7 +212,8 @@ public class UserWanShanActivity extends BaseActivity
         });
     }
 
-    private void uploadAvatarFromPhoto() {
+    private void uploadAvatarFromPhoto()
+    {
         compressAndUploadAvatar(mFile.getPath());
     }
 
@@ -203,21 +223,24 @@ public class UserWanShanActivity extends BaseActivity
      *
      * @param fileSrc
      */
-    private void compressAndUploadAvatar(String fileSrc) {
+    private void compressAndUploadAvatar(String fileSrc)
+    {
         final File cover = FilesUtil.getSmallBitmap(this, fileSrc);
         //加载本地图片
         Uri uri = Uri.fromFile(cover);
         Glide.with(App.getInstance()).load(uri).into(imImg);
-        File file= FilesUtil.getFileByUri(uri, this);
-        if (file!=null)
+        File file = FilesUtil.getFileByUri(uri, this);
+        if (file != null)
         {
-            JxApiCallBack.up_img(file,1,this,callBack);
+            JxApiCallBack.up_img(file, 1, this, callBack);
         }
         //上传文件
 
 //        DreamApi.uploadAvator(this, 0x002, token, file, uploadCallBack);
     }
-    public void startPhotoZoom(Uri uri) {
+
+    public void startPhotoZoom(Uri uri)
+    {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -230,10 +253,12 @@ public class UserWanShanActivity extends BaseActivity
         intent.putExtra("outputFormat", "JPEG");// 返回格式
         startActivityForResult(intent, REQUEST_CODE_CROUP_PHOTO);
     }
+
     /**
      * photo
      */
-    private void uploadAvatarFromPhotoRequest() {
+    private void uploadAvatarFromPhotoRequest()
+    {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
@@ -244,36 +269,39 @@ public class UserWanShanActivity extends BaseActivity
     /**
      * album
      */
-    private void uploadAvatarFromAlbumRequest() {
+    private void uploadAvatarFromAlbumRequest()
+    {
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
         startActivityForResult(photoPickerIntent, REQUEST_CODE_ALBUM);
     }
-    CallBack callBack=new CallBack()
+
+    CallBack callBack = new CallBack()
     {
         @Override
         public void onSuccess(int what, Response<String> result)
         {
-                 switch (what)
-                 {
-                     case 1://图片上传
-                         try
-                         {
-                             JSONObject object=new JSONObject(result.body());
-                             String code=object.getString("code");
-                             if (code.equals("200"))
-                             {
-                                 JSONObject jsonObject=new JSONObject(object.getString("body"));
-                                 mFileid = jsonObject.getString("fileid");
-                             }else {
-                                 ToastUtils.showShort(object.getString("result"));
-                             }
-                         } catch (JSONException e)
-                         {
-                             e.printStackTrace();
-                         }
-                         break;
-                 }
+            switch (what)
+            {
+                case 1://图片上传
+                    try
+                    {
+                        JSONObject object = new JSONObject(result.body());
+                        String code = object.getString("code");
+                        if (code.equals("200"))
+                        {
+                            JSONObject jsonObject = new JSONObject(object.getString("body"));
+                            mFileid = jsonObject.getString("fileid");
+                        } else
+                        {
+                            ToastUtils.showShort(object.getString("result"));
+                        }
+                    } catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    break;
+            }
         }
 
         @Override

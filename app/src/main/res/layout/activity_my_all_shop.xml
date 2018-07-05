@@ -12,7 +12,6 @@
 
 
     <RelativeLayout
-        android:layout_marginTop="22dp"
         android:layout_width="match_parent"
         android:layout_below="@+id/xx"
         android:layout_above="@id/x"

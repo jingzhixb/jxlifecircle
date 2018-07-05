@@ -10,12 +10,20 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lzy.okgo.model.Response;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
+import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.JsonUtile;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.SPUtils;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
 
 public class SetPasswordActivity extends BaseActivity
@@ -36,7 +44,7 @@ public class SetPasswordActivity extends BaseActivity
     TextView tvXieyi;
     @BindView(R.id.ll_xieyi)
     LinearLayout llXieyi;
-    private boolean mXieyi=false;
+    private boolean mXieyi = false;
     private String mType;
 
     @Override
@@ -54,7 +62,7 @@ public class SetPasswordActivity extends BaseActivity
     @Override
     protected void setListener()
     {
-mType=getIntent().getStringExtra("type");
+        mType = getIntent().getStringExtra("type");
     }
 
     @Override
@@ -83,52 +91,92 @@ mType=getIntent().getStringExtra("type");
                 if (!mXieyi)
                 {
                     imXieyi.setBackground(getResources().getDrawable(R.mipmap.gouxuan_on));
-                    mXieyi=true;
-                }else {
+                    mXieyi = true;
+                } else
+                {
                     imXieyi.setBackground(getResources().getDrawable(R.mipmap.gouxuan_off));
-                    mXieyi=false;
+                    mXieyi = false;
                 }
                 break;
             case R.id.tv_xieyi:
                 break;
             case R.id.wancheng:
-                 String number=edMobile.getText().toString().trim();//第一次密码
-                 String password=edAgainpassword.getText().toString().trim();//第二次密码
-                 if (number!=null&&number.equals(password)&number.length()>0)
-                 {
-                     String phone=getIntent().getStringExtra("phone");
-                     if (mType.equals("1"))
-                     {
-                         Intent intent=new Intent(SetPasswordActivity.this,UserWanShanActivity.class);//用戶
-                         intent.putExtra("password",password);
-                         intent.putExtra("phone",phone);
-                         startActivity(intent);
-                     } else if (mType.equals("2"))
-                     {
-                         Intent intent=new Intent(SetPasswordActivity.this,ShangJiaWanShanActivity1.class);//商家
-                         intent.putExtra("password",password);
-                         intent.putExtra("phone",phone);
-                         startActivity(intent);
-                     } else if (mType.equals("3"))
-                     {
-                         Intent intent=new Intent(SetPasswordActivity.this,ShangJiaWanShanActivity1.class);//派送
-                         intent.putExtra("password",password);
-                         intent.putExtra("phone",phone);
-                         intent.putExtra("type",mType);
-                         startActivity(intent);
-                     } else if (mType.equals("4"))
-                     {
-                         Intent intent=new Intent(SetPasswordActivity.this,ShangJiaWanShanActivity1.class);//車主
-                         intent.putExtra("phone",phone);
-                         intent.putExtra("type",mType);
-                         startActivity(intent);
-                     }
-                 }else {
-                     ToastUtils.showShort("请输入密码");
-                 }
-              //  JxApiCallBack.user_register();
+                String number = edMobile.getText().toString().trim();//第一次密码
+                String password = edAgainpassword.getText().toString().trim();//第二次密码
+                if (number != null && number.equals(password) & number.length() > 0)
+                {
+                    String phone = getIntent().getStringExtra("phone");
+                    if (mType.equals("1"))
+                    {
+                        JxApiCallBack.user_register(phone, password, 1, SetPasswordActivity.this, callBack);
+//                         Intent intent=new Intent(SetPasswordActivity.this,UserWanShanActivity.class);//用戶
+//                         intent.putExtra("password",password);
+//                         intent.putExtra("phone",phone);
+//                         startActivity(intent);
+                    } else if (mType.equals("2"))
+                    {
+                        Intent intent = new Intent(SetPasswordActivity.this, ShangJiaWanShanActivity1.class);//商家
+                        intent.putExtra("password", password);
+                        intent.putExtra("phone", phone);
+                        startActivity(intent);
+                    } else if (mType.equals("3"))
+                    {
+                        Intent intent = new Intent(SetPasswordActivity.this, ShangJiaWanShanActivity1.class);//派送
+                        intent.putExtra("password", password);
+                        intent.putExtra("phone", phone);
+                        intent.putExtra("type", mType);
+                        startActivity(intent);
+                    } else if (mType.equals("4"))
+                    {
+                        Intent intent = new Intent(SetPasswordActivity.this, ShangJiaWanShanActivity1.class);//車主
+                        intent.putExtra("phone", phone);
+                        intent.putExtra("type", mType);
+                        startActivity(intent);
+                    }
+                } else
+                {
+                    ToastUtils.showShort("请输入密码");
+                }
+                //  JxApiCallBack.user_register();
 
                 break;
         }
     }
+
+    CallBack callBack = new CallBack()
+    {
+        @Override
+        public void onSuccess(int what, Response<String> result)
+        {
+            if (JsonUtile.getCode(result.body()).equals("200"))
+            {
+                try
+                {
+                    JSONObject object = new JSONObject(JsonUtile.getbody(result.body()));
+                    String token = object.getString("token");
+                    SPUtils.getInstance().put("token", token);
+                    Intent intent = new Intent(SetPasswordActivity.this, UserWanShanActivity.class);//用戶
+                    startActivity(intent);
+                } catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            } else
+            {
+                ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+            }
+        }
+
+        @Override
+        public void onFail(int what, Response<String> result)
+        {
+
+        }
+
+        @Override
+        public void onFinish(int what)
+        {
+
+        }
+    };
 }

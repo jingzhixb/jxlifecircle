@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="18dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="22dp"
+        android:textSize="@dimen/sp_13"
+        android:textColor="@color/white"
+        android:text="起"
+        android:id="@+id/qi"
+        android:gravity="center"
+        android:background="@color/orange"
+        android:layout_height="18dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="@color/title_333"
+        android:layout_toRightOf="@id/qi"
+        android:textSize="@dimen/sp_14"
+        android:id="@+id/start"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/phone"
+        android:background="@mipmap/dh"
+        android:layout_alignParentRight="true"
+        android:layout_height="18dp" />
+</RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="18dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="22dp"
+            android:textSize="@dimen/sp_13"
+            android:textColor="@color/white"
+            android:text="终"
+            android:id="@+id/end"
+            android:gravity="center"
+            android:background="@color/orange"
+            android:layout_height="18dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/title_333"
+            android:layout_toRightOf="@id/end"
+            android:textSize="@dimen/sp_14"
+            android:text="正在"
+            android:id="@+id/zhongdian"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="22dp"
+            android:textSize="@dimen/sp_13"
+            android:textColor="@color/white"
+            android:text="车找人"
+            android:id="@+id/type"
+            android:gravity="center"
+            android:background="@color/orange"
+            android:layout_height="18dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/title_666"
+            android:layout_toRightOf="@id/type"
+            android:textSize="@dimen/sp_14"
+            android:id="@+id/time"
+            android:text="03月08日，大概07点出发"
+            android:singleLine="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="22dp"
+        android:textSize="@dimen/sp_14"
+        android:id="@+id/content"
+        android:text="冯绍峰开始复苏和方式"
+        android:textColor="@color/title_666"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="17dp"
+        android:background="@color/view_color"/>
+</LinearLayout>

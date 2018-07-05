@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/f5f5f5"
+    tools:context="zhuyekeji.zhengzhou.jxlifecircle.activity.PInCheDeliteActivity">
+
+    <include layout="@layout/title_layout"
+        android:id="@+id/xc"/>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_below="@id/xc"
+    android:layout_above="@id/ll"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/xcc"
+            android:background="@color/white"
+            android:paddingBottom="15dp"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="18dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="22dp"
+                    android:textSize="@dimen/sp_13"
+                    android:textColor="@color/white"
+                    android:text="起"
+                    android:id="@+id/qi"
+                    android:gravity="center"
+                    android:background="@color/orange"
+                    android:layout_height="18dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/title_333"
+                    android:layout_toRightOf="@id/qi"
+                    android:textSize="@dimen/sp_14"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="18dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="22dp"
+                    android:textSize="@dimen/sp_13"
+                    android:textColor="@color/white"
+                    android:text="起"
+                    android:id="@+id/end"
+                    android:gravity="center"
+                    android:background="@color/orange"
+                    android:layout_height="18dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/title_333"
+                    android:layout_toRightOf="@id/end"
+                    android:textSize="@dimen/sp_14"
+                    android:text="正在"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/phone"
+                    android:background="@mipmap/dhh"
+                    android:layout_alignParentRight="true"
+                    android:layout_height="18dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="22dp"
+                    android:textSize="@dimen/sp_13"
+                    android:textColor="@color/white"
+                    android:text="车找人"
+                    android:id="@+id/type"
+                    android:gravity="center"
+                    android:background="@color/orange"
+                    android:layout_height="18dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/title_666"
+                    android:layout_toRightOf="@id/type"
+                    android:textSize="@dimen/sp_14"
+                    android:text="03月08日，大概07点出发"
+                    android:singleLine="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="22dp"
+                android:textSize="@dimen/sp_14"
+                android:id="@+id/kongwei"
+                android:text="冯绍峰开始复苏和方式"
+                android:textColor="@color/title_666"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="22dp"
+                android:textSize="@dimen/sp_14"
+                android:id="@+id/lianxiren"
+                android:text="冯绍峰开始复苏和方式"
+                android:textColor="@color/title_666"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="22dp"
+                android:textSize="@dimen/sp_14"
+                android:id="@+id/quancheng"
+                android:text="冯绍峰开始复苏和方式"
+                android:textColor="@color/title_666"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="22dp"
+                android:textSize="@dimen/sp_14"
+                android:id="@+id/content"
+                android:text="冯绍峰开始复苏和方式"
+                android:textColor="@color/title_666"
+                android:layout_height="wrap_content" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="12dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/title_999"
+                    android:textSize="@dimen/sp_12"
+                    android:text="15小时前"
+                    android:id="@+id/time"
+                    android:layout_marginLeft="22dp"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/title_999"
+                    android:textSize="@dimen/sp_12"
+                    android:text="15浏览"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="22dp"
+                    android:id="@+id/liulan"
+                    android:layout_marginLeft="22dp"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_toLeftOf="@id/liulan"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="-13dp"
+                    android:background="@mipmap/hert"
+                    android:layout_height="13dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="15dp"
+            android:layout_below="@id/xcc"
+            android:background="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/title_999"
+                    android:textSize="@dimen/sp_12"
+                    android:text="热门路线"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="22dp"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@mipmap/youjiant"
+                    android:layout_marginRight="@dimen/dp_22"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/view_color"/>
+            </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_hot_route"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"/>
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+</ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/ll"
+        android:layout_alignParentBottom="true"
+        android:layout_height="45dp">
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="45dp">
+            <ImageView
+                android:layout_width="20dp"
+                android:background="@mipmap/pl"
+                android:layout_marginTop="5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/title_666"
+                android:layout_marginBottom="3dp"
+                android:text="评论"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:background="@color/orange"
+            android:layout_height="45dp">
+            <ImageView
+                android:layout_width="20dp"
+                android:background="@mipmap/sx"
+                android:layout_marginTop="5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/white"
+                android:layout_marginBottom="3dp"
+                android:text="私信"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="@color/jxcolor"
+            android:layout_height="45dp">
+            <ImageView
+                android:layout_width="20dp"
+                android:background="@mipmap/dh2"
+                android:layout_marginTop="5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/white"
+                android:layout_marginBottom="3dp"
+                android:text="电话"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

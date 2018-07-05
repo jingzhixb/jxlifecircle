@@ -41,6 +41,9 @@ public class TouPiaoNewFrament extends BaseFragment
     protected View initView(LayoutInflater inflater, ViewGroup container)
     {
         view = LayoutInflater.from(getActivity()).inflate(R.layout.utils_item, null);
+        view.setFocusable(true);
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
         return view;
     }
 

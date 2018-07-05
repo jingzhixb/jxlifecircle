@@ -12,6 +12,7 @@ import com.lzy.okgo.https.HttpsUtils;
 import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.HttpParams;
+import com.umeng.socialize.PlatformConfig;
 
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -95,5 +96,19 @@ public class App extends Application
                 .addCommonHeaders(headers)                      //全局公共头
                 .addCommonParams(params);
 
+    }
+
+
+    //各个平台的配置
+    {
+        //微信
+      //  PlatformConfig.setWeixin("wxa372aef05ce3769b", "67e84a335b5fe291ba2bebef2aa0efec");
+
+        // PlatformConfig.setWeixin("wx2df607a3ab792365","b87da1aec3653bc51a3ab618466a04f3");
+
+        //新浪微博(第三个参数为回调地址)//原来签名d2690089032b7ee13d3e8cc5e4357b93
+      //  PlatformConfig.setSinaWeibo("3729388083", "830346c946e542d1849d2951cc43ab22", "http://sns.whalecloud.com/sina2/callback");
+
+        PlatformConfig.setQQZone("1106936651", "gkB6epKYAfeznbUz");
     }
 }

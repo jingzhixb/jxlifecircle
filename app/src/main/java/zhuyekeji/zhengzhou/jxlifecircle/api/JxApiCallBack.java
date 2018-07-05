@@ -6,6 +6,7 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * Created by Administrator on 2018/6/29.
@@ -20,14 +21,12 @@ password	string	是	密码
 nickname	string	否	用户昵称
 headerid	int	否	头像id
     * */
-    public static void user_register(String user_phone, String password, String nickname,
-                                     String headerid, final int what, Activity activity, final CallBack callBack)
+    public static void user_register(String user_phone, String password
+            , final int what, Activity activity, final CallBack callBack)
     {
         OkGo.<String>post(Jxapi.USER_REGISTER)
                 .params("user_phone",user_phone)
                 .params("password",password)
-                .params("nickname",nickname)
-                .params("headerid",headerid)
                 .execute(new StringDialogCallback(activity,"加载中")
                 {
                     @Override
@@ -193,6 +192,720 @@ shopid	int	是	店铺id
                 .params("token",token)
                 .params("shopid",shopid)
                 .execute(new StringDialogCallback(activity,"请稍后")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+
+
+
+    /*
+用途：		店铺信息提交审核
+token	string	是	用户登录唯一标识
+shopid	int	是	店铺id
+brand_pic	int	否	招牌照片id
+name	string	否	店铺名称
+tel	string	否	店铺电话
+addr	string	是	地址
+* */
+    public static void shop_check(String token,int shopid,int brand_pic,String name,
+                                  String tel,String addr,final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.SHOP_CHECK)
+                .params("token",token)
+                .params("shopid",shopid)
+                .params("brand_pic",brand_pic)
+                .params("name",name)
+                .params("tel",tel)
+                .params("addr",addr)
+                .execute(new StringDialogCallback(activity,"请稍后")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+
+
+    /*
+用途：		店铺详情资料
+token	string	是	用户登录唯一标识
+shopid	int	是	店铺id
+* */
+    public static void shop_list(String token,int shopid,final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.SHOP_LIST)
+                .params("token",token)
+                .params("shopid",shopid)
+                .execute(new StringDialogCallback(activity,"请稍后")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+
+
+    /*
+用途：			商品管理-新建商品
+token	string	是	登录唯一标识
+shopid	int	是	店铺id
+type	int	是	1添加分类产品，2添加套餐产品
+pic	int	是	产品图片id
+title	string	是	商品名称
+desc	string	是	商品描述
+label	string	否	商品标签（多个标签之间用‘’英文‘’逗号拼接）
+type_meal	array	是	分类产品传分类id，套餐产品传套餐内容数组
+price	float	是	价格
+market_price	float	是	市场价
+validity_time	string	否	有效期或者酒店入住时间（开始时间和结束时间之间用英文逗号拼接）
+use_time_f	string	否	使用时间1
+use_time_s	string	否	使用时间2
+is_week	int	是	节假日通用（1是2否） 或 房间数量
+rule	string	是	使用规则
+* */
+    public static void add_shop(String token, int shopid, int type, int pic,
+                                String title, String desc, String label, List<String> type_meal,String price ,
+                                float market_price,String validity_time,String use_time_f,
+                                String use_time_s,int is_week,String rule,
+                                final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.ADD_SHOP)
+                .params("token",token)
+                .params("shopid",shopid)
+                .params("type",type)
+                .params("pic",pic)
+                .params("title",title)
+                .params("desc",desc)
+                .params("label",label)
+                .addUrlParams("type_meal",type_meal)
+                .params("price",price)
+                .params("market_price",market_price)
+                .params("validity_time",validity_time)
+                .params("use_time_f",use_time_f)
+                .params("use_time_s",use_time_s)
+                .params("is_week",is_week)
+                .params("rule",rule)
+
+                .execute(new StringDialogCallback(activity,"请稍后")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+
+    /*
+用途：			编辑产品原始数据、产品下架
+token	string	是	登录唯一标识
+pid	int	是	产品id
+type	int	是	1产品编辑数据 2下架
+* */
+    public static void set_shelf(String token,int pid,int type,final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.SET_SHELF)
+                .params("token",token)
+                .params("pid",pid)
+                .params("type",type)
+                .execute(new StringDialogCallback(activity,"请稍后")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+/*
+*
+* 	编辑头像昵称
+key	参数类型	是否必须	参数解释
+nickname	string	否	用户昵称
+header_pic	int	否	头像id
+token	string	是	登录唯一标识
+*
+* */
+
+    public static void edit_header(String token,String nickname,int header_pic,final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.EDIT_USER)
+                .params("token",token)
+                .params("nickname",nickname)
+                .params("header_pic",header_pic)
+                .execute(new StringDialogCallback(activity,"请稍后")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+*
+* 		添加产品分类
+token	string	是	登录标识
+shopid	int	是	店铺id
+class_name	string	是	分类名称
+*
+* */
+
+    public static void add_type(String token,String class_name,int shopid,final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.ADD_TYPE)
+                .params("token",token)
+                .params("class_name",class_name)
+                .params("shopid",shopid)
+                .execute(new StringDialogCallback(activity,"请稍后")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+        /*
+*
+* 		删除产品分类
+token	string	是	登录标识
+class_Id	int	是	分类id
+*
+* */
+
+    public static void del_type(String token,int class_Id,final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.DEL_TYPE)
+                .params("token",token)
+                .params("class_Id",class_Id)
+                .execute(new StringDialogCallback(activity,"请稍后")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+    /*
+    *	编辑产品信息提交
+    * token	string	是	登录唯一标识
+pic	int	否	产品图片id
+title	string	否	产品名称
+desc	string	否	产品描述
+price	float	否	产品描述
+label	string	否	产品标签（多个标签之间用英文逗号分隔）
+type_meal	string	否	分类产品传分类id，套餐产品传套餐内容数组
+price	float	否	价格
+market_price	float	否	市场价
+validity_time	string	否	有效期或入住时间（开始时间和结束时间之间用英文逗号拼接）
+use_time_f	string	否	使用时间1（开始时间和结束时间之间用英文逗号拼接）
+use_time_s	string	否	使用时间2（开始时间和结束时间之间用英文逗号拼接）
+is_week	int	否	节假日通用（1是2否） 或 房间数量
+rule	string	否	使用规则
+    * */
+    public static void edit_shop(String token, int shopid, int type, int pic,
+                                String title, String desc, String label, List<String> type_meal,String price ,
+                                float market_price,String validity_time,String use_time_f,
+                                String use_time_s,int is_week,String rule,
+                                final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.EDIT_GOODS)
+                .params("token",token)
+                .params("shopid",shopid)
+                .params("type",type)
+                .params("pic",pic)
+                .params("title",title)
+                .params("desc",desc)
+                .params("label",label)
+                .addUrlParams("type_meal",type_meal)
+                .params("price",price)
+                .params("market_price",market_price)
+                .params("validity_time",validity_time)
+                .params("use_time_f",use_time_f)
+                .params("use_time_s",use_time_s)
+                .params("is_week",is_week)
+                .params("rule",rule)
+
+                .execute(new StringDialogCallback(activity,"请稍后")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：商品管理-商品列表
+token	string	是	登录唯一标识
+shopid	int	是	店铺id
+type	int	否	1分类产品 2套餐产品
+type_meal	int	否	分类id(当type是1时，传入该值)
+is_shelf	int	否	2已下架产品
+* */
+    public static void goods_list(String token, int shopid
+                                  ,int type,int type_meal,int is_shelf
+            , final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.USER_REGISTER)
+                .params("token",token)
+                .params("shopid",shopid)
+                .params("type",type)
+                .params("type_meal",type_meal)
+                .params("is_shelf",is_shelf)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+
+
+    /*
+用途：商家添加优惠券
+token	string	是
+coupon_money	string	是	面值金额，整数
+coupon_label	int	是	优惠券标签
+coupon_num	string	是	优惠券总数，必须是整数
+coupon_price	string	是	优惠券价格，可以是小数
+* */
+    public static void add_youhuijuan(String token, String coupon_money
+            ,int coupon_label,int coupon_num,String coupon_price
+            , final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.ADD_YOUHUIJUAN)
+                .params("token",token)
+                .params("coupon_money",coupon_money)
+                .params("coupon_label",coupon_label)
+                .params("coupon_num",coupon_num)
+                .params("coupon_price",coupon_price)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：删除优惠卷
+token		是
+theid	int	是	优惠券编号
+* */
+    public static void del_youhuijuan(String token, int theid
+            , final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.DEL_YOUHUIJUAN)
+                .params("token",token)
+                .params("theid",theid)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：	优惠券上、下架
+token		是
+theid	int	是	优惠券编号
+sta	int	是	优惠券上、下架状态值
+* */
+    public static void unordown(String token, int theid,String sta
+            , final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.UPORDOWN)
+                .params("token",token)
+                .params("theid",theid)
+                .params("sta",sta)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+
+    /*
+用途：	展示商家发布过的优惠券
+token	string	是
+userid	int	是	用户id
+* */
+    public static void couponlist(String token, int userid
+            , final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.COUPONLIST)
+                .params("token",token)
+                .params("userid",userid)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：	优惠券点击编辑时返回的数据
+token	string	是
+theid	int	是	优惠券编号
+* */
+    public static void editcoupon(String token, int theid
+            , final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.EDITCONPOU)
+                .params("token",token)
+                .params("theid",theid)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：	优惠券信息修改
+token	string	是
+coupon_money	string	是	优惠券面额，整数
+coupon_label	int	是	优惠券标签
+coupon_num	string	是	优惠券数量
+coupon_price	string	是	优惠券价格，可以是小数
+couid	int	是	优惠券编号
+* */
+    public static void updatecoupon(String token, String coupon_money
+            ,int coupon_label,int coupon_num,String coupon_price,int couid
+            , final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.UPDATECOUPON)
+                .params("token",token)
+                .params("coupon_money",coupon_money)
+                .params("coupon_label",coupon_label)
+                .params("coupon_num",coupon_num)
+                .params("coupon_price",coupon_price)
+                .params("couid",couid)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：	优惠券点击编辑时返回的数据
+token	string	是
+* */
+    public static void mycoupon(String token,
+            final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.MYCOUPON)
+                .params("token",token)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+    /*
+用途：	优惠购中点击优惠券时显示所有优惠券商家信息
+token		是
+thelat	float	是	用户坐标纬度
+thelng	float	是	用户坐标经度
+* */
+    public static void couponshop(String token,float thelat,float thelng,
+                                final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.MYCOUPON)
+                .params("token",token)
+                .params("thelat",thelat)
+                .params("thelng",thelng)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+    /*
+用途：		获取拼车所有信息据
+token	string	是
+city int 城市ID
+* */
+    public static void getallpinche(String token,int city,
+                                final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.GETALLPINCHE)
+                .params("token",token)
+                .params("city",city)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：		获取拼车下的车找人信息
+token	string	是
+city int 城市ID
+* */
+    public static void chefindren(String token,int city,
+                                    final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.CHRFINDREN)
+                .params("token",token)
+                .params("city",city)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：			获取人找车信息
+token	string	是
+city int 城市ID
+* */
+    public static void renfindche(String token,int city,
+                                  final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.RENFINDCHE)
+                .params("token",token)
+                .params("city",city)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：			天天拼车
+token	string	是
+city int 城市ID
+* */
+    public static void tiantianpin(String token,int city,
+                                  final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.TIANTIANPIN)
+                .params("token",token)
+                .params("city",city)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：			添加人找车信息
+token	string	是	token
+city	int	是	当前城市ID
+is_top	int	否	是否置顶，1为置顶，默认为0
+setout	int	是	出发城市ID
+destination	int	是	目的城市id
+time	int	是	出发时间戳
+passenger	int	是	乘车人数
+contact	string	是	联系人
+contact_tel	long	是	联系电话
+oth_requst	string	是	其他需求
+* */
+    public static void addrenindche(String token,int city,int is_top,int setout,int destination,
+                                   int time,int passenger,String contact,String contact_tel,String oth_requst,
+                                   final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.ADDRENFINDCHE)
+                .params("token",token)
+                .params("city",city)
+                .params("is_top",is_top)
+                .params("setout",setout)
+                .params("destination",destination)
+                .params("time",time)
+                .params("passenger",passenger)
+                .params("contact",contact)
+                .params("contact_tel",contact_tel)
+                .params("oth_requst",oth_requst)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：			添加车找人
+token	string	是	token
+city	int	是	当前城市ID
+setout	int	是	出发城市ID
+destination	int	是	目的城市ID
+time	int	是	出发时间戳
+is_top	int	否	是否置顶，置顶传1
+can_seat	int	是	能座人数
+oth_requst	string	是	其它需求
+driver_tel	long	是	联系号码
+contact	string	是	联系人
+* */
+    public static void addchefindren(String token,int city,int is_top,int setout,int destination,
+                                     int time,String contact,String driver_tel,String oth_requst,int can_seat,
+                                     final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.ADDCHRFINDREN)
+                .params("token",token)
+                .params("city",city)
+                .params("is_top",is_top)
+                .params("setout",setout)
+                .params("destination",destination)
+                .params("time",time)
+                .params("can_seat",can_seat)
+                .params("contact",contact)
+                .params("driver_tel",driver_tel)
+                .params("oth_requst",oth_requst)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+
+    /*
+用途：		添加天天拼车
+token	string	是	token
+city	int	是	当前城市ID
+setout		是	出发城市
+destination		是	目的城市
+time		是	出发时间戳
+is_top		是	是否置顶，置顶传1
+passenger		是	人数
+contact_tel		是	联系电话
+contact		是	联系人
+oth_requst		是	其它需求
+* */
+    public static void addtiantianpinche(String token,int city,int is_top,int setout,int destination,
+                                     int time,String contact,String driver_tel,String oth_requst,int passenger,
+                                     final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.ADDTIANTIAN)
+                .params("token",token)
+                .params("city",city)
+                .params("is_top",is_top)
+                .params("setout",setout)
+                .params("destination",destination)
+                .params("time",time)
+                .params("passenger",passenger)
+                .params("contact",contact)
+                .params("driver_tel",driver_tel)
+                .params("oth_requst",oth_requst)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+
+    /*
+用途：			获取拼车详情
+token	string	是	token
+city		是	城市ID
+id		是	拼车信息的id
+* */
+    public static void pinchedelite(String token,int city,int id,
+                                         final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.PINCHEDELITE)
+                .params("token",token)
+                .params("city",city)
+                .params("id",id)
+                .execute(new StringDialogCallback(activity,"加载中")
                 {
                     @Override
                     public void onSuccess(Response<String> response)

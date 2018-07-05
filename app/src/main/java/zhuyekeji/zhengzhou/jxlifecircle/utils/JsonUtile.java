@@ -28,7 +28,19 @@ public class JsonUtile
         }
         return "";
     }
-
+public static String getCode(String body)
+{
+    try
+    {
+        JSONObject o=new JSONObject(body);
+        String code=o.getString("code");
+        return code;
+    } catch (JSONException e)
+    {
+        e.printStackTrace();
+    }
+    return "";
+}
     public static String getresulter(String body)
     {
         try

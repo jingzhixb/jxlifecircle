@@ -70,6 +70,8 @@ dependencies {
     compile files('libs/BaiduLBS_Android.jar')
     //图片选择器
     implementation 'me.iwf.photopicker:PhotoPicker:0.8.4@aar'
+    //
+    compile 'com.github.clans:fab:1.6.4'
 
 
 }

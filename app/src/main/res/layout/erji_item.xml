@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="15dp"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <ImageView
+            android:layout_width="81dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/im_img"
+            android:background="@mipmap/ic_launcher"
+            android:layout_height="60dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/sp_15"
+            android:textColor="@color/title_333"
+            android:maxLines="2"
+            android:layout_alignTop="@id/im_img"
+            android:text="商品商品"
+            android:layout_toRightOf="@id/im_img"
+            android:layout_marginRight="22dp"
+            android:layout_marginLeft="11dp"
+            android:id="@+id/tv_name"
+            android:layout_height="wrap_content" />
+  <TextView
+      android:layout_width="wrap_content"
+      android:textColor="@color/title_999"
+      android:textSize="@dimen/sp_12"
+      android:layout_alignLeft="@id/tv_name"
+      android:layout_below="@id/tv_name"
+      android:layout_marginTop="14dp"
+      android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/sp_15"
+            android:textColor="@color/red"
+            android:id="@+id/tv_price"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="45dp"
+            android:textColor="@color/jxcolor"
+            android:layout_marginRight="22dp"
+            android:textSize="@dimen/sp_12"
+            android:gravity="center"
+            android:text="下架"
+            android:id="@+id/tv_xiajia"
+            android:layout_centerVertical="true"
+            android:background="@drawable/green_stoken"
+            android:layout_alignParentRight="true"
+            android:layout_height="20dp" />
+        <TextView
+            android:layout_width="45dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_12"
+            android:gravity="center"
+            android:text="编辑"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="75dp"
+            android:layout_toLeftOf="@id/tv_xiajia"
+            android:id="@+id/tv_bianji"
+            android:layout_centerVertical="true"
+            android:background="@drawable/next"
+            android:layout_height="20dp" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/view_color"/>
+</LinearLayout>

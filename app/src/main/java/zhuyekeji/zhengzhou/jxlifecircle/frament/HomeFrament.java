@@ -3,10 +3,10 @@ package zhuyekeji.zhengzhou.jxlifecircle.frament;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ViewFlipper;
 
+import com.github.clans.fab.FloatingActionButton;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
@@ -74,8 +75,12 @@ public class HomeFrament extends BaseFragment implements FragmentBackHandler
     SmartRefreshLayout refreshlayout;
     @BindView(R.id.home_viewpage)
     ViewPager homeViewpage;
+
+    @BindView(R.id.rv)
+    RecyclerView rv;
     @BindView(R.id.fl_button)
     FloatingActionButton flButton;
+
     private View view;
     Unbinder unbinder;
     private boolean isDoubleClick = false;
@@ -108,7 +113,7 @@ public class HomeFrament extends BaseFragment implements FragmentBackHandler
             @Override
             public void onClick(View view)
             {
-                Intent intent=new Intent(getActivity(),TouPiaoActivity.class);
+                Intent intent = new Intent(getActivity(), TouPiaoActivity.class);
                 startActivity(intent);
             }
         });
