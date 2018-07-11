@@ -30,6 +30,7 @@ import zhuyekeji.zhengzhou.jxlifecircle.bean.JiFenOrderBean;
 
 public class ShopPinJia2Frament extends BaseFragment
 {
+    //商家酒店
     @BindView(R.id.rv_shop)
     RecyclerView rvShop;
     @BindView(R.id.refreshlayout)
@@ -56,7 +57,7 @@ public class ShopPinJia2Frament extends BaseFragment
         List<JiFenOrderBean> beans=new ArrayList<>();
         beans.add(new JiFenOrderBean());
         rvShop.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter=new ShopDaiXiaoFeiAdapter(getActivity(),R.layout.shop_daixiaofei_item,beans);
+       // adapter=new ShopDaiXiaoFeiAdapter(getActivity(),R.layout.shop_daixiaofei_item,beans);
         rvShop.setAdapter(adapter);
         adapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener()
         {

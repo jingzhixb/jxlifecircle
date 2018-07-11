@@ -9,9 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.google.gson.Gson;
+import com.lzy.okgo.model.Response;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -20,8 +23,13 @@ import butterknife.Unbinder;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.OrderDelitActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.adapter.ShopDaiXiaoFeiAdapter;
+import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
+import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseFragment;
 import zhuyekeji.zhengzhou.jxlifecircle.bean.JiFenOrderBean;
+import zhuyekeji.zhengzhou.jxlifecircle.bean.UserOrderYOuHuiBean;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.JsonUtile;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
 
 /**
  * Created by Administrator on 2018/6/9.
@@ -29,6 +37,7 @@ import zhuyekeji.zhengzhou.jxlifecircle.bean.JiFenOrderBean;
 
 public class ShopDaiXiaoFeiFrament extends BaseFragment
 {
+    //商家待消费
     @BindView(R.id.rv_shop)
     RecyclerView rvShop;
     @BindView(R.id.refreshlayout)
@@ -36,7 +45,7 @@ public class ShopDaiXiaoFeiFrament extends BaseFragment
     Unbinder unbinder;
     private View view;
     private ShopDaiXiaoFeiAdapter adapter;
-
+    private List<UserOrderYOuHuiBean> beans;
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container)
     {
@@ -52,20 +61,7 @@ public class ShopDaiXiaoFeiFrament extends BaseFragment
     @Override
     protected void initData()
     {
-        List<JiFenOrderBean> beans=new ArrayList<>();
-        beans.add(new JiFenOrderBean());
-        rvShop.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter=new ShopDaiXiaoFeiAdapter(getActivity(),R.layout.shop_daixiaofei_item,beans);
-        rvShop.setAdapter(adapter);
-        adapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener()
-        {
-            @Override
-            public void onItemClick(View view, int i)
-            {
-                Intent intent=new Intent(getActivity(),OrderDelitActivity.class);
-                startActivity(intent);
-            }
-        });
+        JxApiCallBack.shoporder_you(getToken(),"1","",1,getActivity(),callBack);
     }
 
     @Override
@@ -83,4 +79,48 @@ public class ShopDaiXiaoFeiFrament extends BaseFragment
         super.onDestroyView();
         unbinder.unbind();
     }
+    CallBack callBack=new CallBack()
+    {
+        @Override
+        public void onSuccess(int what, Response<String> result)
+        {
+             switch (what)
+             {
+                 case 1:
+
+                     if (JsonUtile.getCode(result.body()).equals("200"))
+                     {
+                         List list= Arrays.asList(new Gson().fromJson(JsonUtile.getbody(result.body()),UserOrderYOuHuiBean[].class));
+                         beans=new ArrayList<>(list);
+                         rvShop.setLayoutManager(new LinearLayoutManager(getActivity()));
+                         adapter=new ShopDaiXiaoFeiAdapter(getActivity(),R.layout.shop_daixiaofei_item,beans,1);
+                         rvShop.setAdapter(adapter);
+                         adapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener()
+                         {
+                             @Override
+                             public void onItemClick(View view, int i)
+                             {
+                                 Intent intent=new Intent(getActivity(),OrderDelitActivity.class);
+                                 startActivity(intent);
+                             }
+                         });
+                     }else {
+                         ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+                     }
+                     break;
+             }
+        }
+
+        @Override
+        public void onFail(int what, Response<String> result)
+        {
+
+        }
+
+        @Override
+        public void onFinish(int what)
+        {
+
+        }
+    };
 }

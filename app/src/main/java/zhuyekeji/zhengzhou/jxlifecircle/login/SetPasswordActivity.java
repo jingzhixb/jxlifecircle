@@ -46,6 +46,7 @@ public class SetPasswordActivity extends BaseActivity
     LinearLayout llXieyi;
     private boolean mXieyi = false;
     private String mType;
+    private String password;
 
     @Override
     public int getViewId()
@@ -102,8 +103,9 @@ public class SetPasswordActivity extends BaseActivity
                 break;
             case R.id.wancheng:
                 String number = edMobile.getText().toString().trim();//第一次密码
-                String password = edAgainpassword.getText().toString().trim();//第二次密码
-                if (number != null && number.equals(password) & number.length() > 0)
+                //第二次密码
+                password = edAgainpassword.getText().toString().trim();
+                if (number != null && number.equals(password) && number.length() > 0)
                 {
                     String phone = getIntent().getStringExtra("phone");
                     if (mType.equals("1"))
@@ -155,6 +157,7 @@ public class SetPasswordActivity extends BaseActivity
                     JSONObject object = new JSONObject(JsonUtile.getbody(result.body()));
                     String token = object.getString("token");
                     SPUtils.getInstance().put("token", token);
+                    SPUtils.getInstance().put("password",password);
                     Intent intent = new Intent(SetPasswordActivity.this, UserWanShanActivity.class);//用戶
                     startActivity(intent);
                 } catch (JSONException e)

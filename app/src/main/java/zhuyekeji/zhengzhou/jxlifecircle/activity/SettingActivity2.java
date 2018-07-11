@@ -7,11 +7,22 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lzy.okgo.model.Response;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
+import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
+import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.JsonUtile;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.CacheUtils;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.CleanUtils;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
 
 public class SettingActivity2 extends BaseActivity
 {
@@ -41,7 +52,7 @@ public class SettingActivity2 extends BaseActivity
     @Override
     protected void processLogic()
     {
-tvTitle.setText("设置");
+        tvTitle.setText("设置");
     }
 
     @Override
@@ -49,6 +60,7 @@ tvTitle.setText("设置");
     {
 
     }
+
 
     @Override
     protected Context getActivityContext()
@@ -73,13 +85,17 @@ tvTitle.setText("设置");
                 finish();
                 break;
             case R.id.rl_xiugaipassword:
-                Intent intent2=new Intent(SettingActivity2.this,XiuGaiMMActivity.class);
+                Intent intent2 = new Intent(SettingActivity2.this, XiuGaiMMActivity.class);
                 startActivity(intent2);
                 break;
-            case R.id.rl_calean:
+            case R.id.rl_calean://清除缓存
+               if ( CacheUtils.getInstance().clear())
+               {
+                   ToastUtils.showShort("已清除缓存："+(CacheUtils.getInstance().getCacheSize()/(1024*1024)+"M"));
+               }
                 break;
             case R.id.rl_guanyu:
-                Intent intent=new Intent(SettingActivity2.this,SettingActivity.class);
+                Intent intent = new Intent(SettingActivity2.this, SettingActivity.class);
                 startActivity(intent);
                 break;
             case R.id.rl_genduo:

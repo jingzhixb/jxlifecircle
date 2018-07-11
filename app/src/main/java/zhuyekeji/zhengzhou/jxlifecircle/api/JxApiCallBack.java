@@ -94,6 +94,146 @@ repassword	string	是	再次输入新密码
                 });
     }
 
+
+    /*
+用途：忘记密码，重新设置密码
+user_phone	string	是	手机号
+send_type		是	0或不传是注册 1更改手机 绑定银行卡 修改密码
+* */
+    public static void sedmsm(String user_phone, String send_type,
+                                          final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.SEDMSM)
+                .params("user_phone",user_phone)
+                .params("send_type",send_type)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+    /*
+用途：忘记密码，重新设置密码
+token	string	是	手机号
+* */
+    public static void guanyu(String token,
+                              final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.GUANYU)
+                .params("token",token)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+    /*
+用途：点击完成，实现密码修改
+token	string	是
+first	string	是	新密码
+second	string	是	再次确认密码
+* */
+    public static void updatapassword(String token,String first,String second,
+                              final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.UPDATAPASSWORD)
+                .params("token",token)
+                .params("first",first)
+                .params("second",second)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+    /*
+用途：	获取验证码数字
+token		是
+thetel	string	是	用户输入的手机号
+* */
+    public static void getverify(String token,String thetel,
+                              final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.GETVERIFY)
+                .params("token",token)
+                .params("thetel",thetel)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+    /*
+用途：积分签到
+token	string	是
+* */
+    public static void sign(String token,
+                              final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.SIGN)
+                .params("token",token)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+    /*
+用途：积分签到
+token	string	是	手机号
+* */
+    public static void kanjia(String token,
+                            final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.KANJIALIST)
+                .params("token",token)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+    /*
+用途：忘记密码，重新设置密码
+img_str	string	是	base64文件，多个用英文逗号拼接
+* */
+    public static void upduotu(String img_str,
+                              final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.UPDUOTU)
+                .params("img_str",img_str)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
     /*
 用途：忘记密码，重新设置密码
 user_phone	string	是	手机号
@@ -132,6 +272,42 @@ token
                 });
     }
 
+
+    /*
+用途：	进商家中心，店铺简要信息展示
+token
+* */
+    public static void city_all(final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.CITY_ALL)
+                .execute(new StringDialogCallback(activity,"请稍后")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：	进商家中心，店铺简要信息展示
+typeid	int	是	一级分类id
+* */
+    public static void youhui_er(int typeid,final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>get(Jxapi.YOUHUIERJI)
+                .params("typeid",typeid)
+                .execute(new StringDialogCallback(activity,"请稍后")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
     /*
 用途：	商家入驻
 token	string	是	登录唯一标识
@@ -150,7 +326,7 @@ card_f	int	是	身份证反面照片id
 license	int	是	营业执照id
 * */
     public static void shopjoin(String token,int typeid,int classid,String name,String brand_pic,
-                              float lat,float lng,String addr,int city,String legal_person,String tel,
+                              double lat,double lng,String addr,int city,String legal_person,String tel,
                                 String card_z,String card_f,String license,final int what, Activity activity, final CallBack callBack)
     {
         OkGo.<String>post(Jxapi.SHOPJOIN)
@@ -904,6 +1080,332 @@ id		是	拼车信息的id
         OkGo.<String>post(Jxapi.PINCHEDELITE)
                 .params("token",token)
                 .params("city",city)
+                .params("id",id)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+
+    /*
+用途：			获取热门线路
+token	string	是	token
+city	int	是	城市id
+* */
+    public static void gethot(String token,int city,
+                                    final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.GETHOT)
+                .params("token",token)
+                .params("city",city)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：			获取热门线路
+token	string	是	token
+* */
+    public static void myaddress(String token,
+                              final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.MYSHOUHUO)
+                .params("token",token)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+    /*
+用途：				用户添加收货地址
+token		是
+name	string	是	收货人姓名
+tel	string	是	收货人联系方式
+diqu	string	是	收货人所在省市区
+jiedao	string	是	收货人所在街道
+* */
+    public static void addaddress(String token,String name,String tel,String diqu,String jiedao,
+                                 final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.ADDADDRESS)
+                .params("token",token)
+                .params("name",name)
+                .params("tel",tel)
+                .params("diqu",diqu)
+                .params("jiedao",jiedao)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：			点击编辑获取要修改的数据
+token	string	是	token
+theid	int	是	收货地址id
+* */
+    public static void edaddress(String token,String theid,
+                                 final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.EDADDRESS)
+                .params("token",token)
+                .params("theid",theid)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：				用户添加收货地址
+token		是
+id	int	是	收货地址id
+name	string	是	收货人姓名
+tel	string	是	收货人联系方式
+diqu	string	是	收货人所在省市区
+jiedao	string	是	收货人所在街道
+status	int	是	收货地址状态值，（1：为默认地址 0：不是默认地址）
+* */
+    public static void tijiaoaddress(String token,String name,String tel,String diqu,String jiedao,
+                                  String id,int status,
+                                  final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.TIJIAOEDADDRESS)
+                .params("token",token)
+                .params("name",name)
+                .params("tel",tel)
+                .params("diqu",diqu)
+                .params("jiedao",jiedao)
+                .params("id",id)
+                .params("status",status)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+    /*
+用途：			删除收货地址信息
+token	string	是	token
+theid	int	是	收货地址id
+* */
+    public static void deleteaddress(String token,String theid,
+                                 final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.DELETEADDRESS)
+                .params("token",token)
+                .params("theid",theid)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：			设置收货地址的默认状态
+token		是
+theid	int	是	收货地址id
+status	int	是	默认状态值，只能取0或1；0代表取消默认 1代表设置为默认地址
+* */
+    public static void defaddress(String token,String theid,int status,
+                                     final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.DEFADDRESS)
+                .params("token",token)
+                .params("theid",theid)
+                .params("status",status)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+
+    /*
+用途：			订单-优惠购订单（买家）
+token	string	是	用户登录唯一标识
+type	int	是	（1待消费，2待评价，3历史订单）
+* */
+    public static void order_youhui(String token,int type,
+                                  final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.ORDER_YOUHUI)
+                .params("token",token)
+                .params("type",type)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：			订单-优惠购订单（买家）
+token	string	是	用户登录唯一标识
+type		是	1待入住 2入住中 3待评价 4申请退款 5历史订单
+* */
+    public static void order_jiudian(String token,int type,
+                                    final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.ORDER_JIUDIAN)
+                .params("token",token)
+                .params("type",type)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：			删除订单
+token	string	是	用户登录唯一标识
+orderid	int	是	订单id
+* */
+    public static void delete_order(String token,String orderid,
+                                     final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.DELITE_ORDER)
+                .params("token",token)
+                .params("orderid",orderid)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+
+    /*
+用途：			删除订单
+token	string	是	用户登录唯一标识
+type	int	是	1待消费 2已消费 3申请退款 4评价列表
+shopid	int	是	店铺id
+* */
+    public static void shoporder_you(String token,String type,String shopid,
+                                    final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.SHOPORDER_YOUHUIGOU)
+                .params("token",token)
+                .params("type",type)
+                .params("shopid",shopid)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+    /*
+用途：			酒店订单（商家）
+token	string	是	token
+type	int	是	类型ID，1为店铺，2为商品
+* */
+    public static void myshoucang(String token,String type,
+                                     final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.MYCONLL)
+                .params("token",token)
+                .params("type",type)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+    /*
+用途：			酒店订单（商家）
+token	string	是	用户登录唯一标识
+shopid	int	是	店铺id
+type	int	是	//1待消费 2已入住 3已退房 4申请退款 5评价列表
+* */
+    public static void shopjiudian_order(String token,String type,String shopid,
+                                         final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.SHOPJIUDIANORDER)
+                .params("token",token)
+                .params("type",type)
+                .params("shopid",shopid)
+                .execute(new StringDialogCallback(activity,"加载中")
+                {
+                    @Override
+                    public void onSuccess(Response<String> response)
+                    {
+                        callBack.onSuccess(what,response);
+                    }
+                });
+    }
+
+    /*
+用途：			删除商品、店铺的收藏
+token		是	token
+id		是	收藏id
+* */
+    public static void delete_conllect(String token,String id,
+                                         final int what, Activity activity, final CallBack callBack)
+    {
+        OkGo.<String>post(Jxapi.DELETE_COMLLLECT)
+                .params("token",token)
                 .params("id",id)
                 .execute(new StringDialogCallback(activity,"加载中")
                 {

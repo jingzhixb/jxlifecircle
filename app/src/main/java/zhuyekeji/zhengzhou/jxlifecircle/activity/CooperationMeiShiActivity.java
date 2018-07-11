@@ -1,9 +1,11 @@
 package zhuyekeji.zhengzhou.jxlifecircle.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -33,8 +35,6 @@ import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
 
 public class CooperationMeiShiActivity extends BaseActivity
 {
-
-
     @BindView(R.id.rl_back)
     RelativeLayout rlBack;
     @BindView(R.id.tv_title)
@@ -87,9 +87,21 @@ public class CooperationMeiShiActivity extends BaseActivity
     RelativeLayout rlFan;
     @BindView(R.id.tv_zhizhao)
     TextView tvZhizhao;
+    @BindView(R.id.ed_deliteaddress)
+    EditText edDeliteaddress;
+    @BindView(R.id.tv_shoptype)
+    TextView tvShoptype;
+    @BindView(R.id.rl_xiuxian)
+    RelativeLayout rlXiuxian;
     private String mDianpuId, mZhengId, mFanId, mZhizhaoId;
     private int type = 0;
+    private int mShopType = 0;
     private String img;
+    private String classid = "0";
+    private String type1;
+    private double lat;
+    private double lng;
+    private String mType;
 
     @Override
     public int getViewId()
@@ -100,19 +112,30 @@ public class CooperationMeiShiActivity extends BaseActivity
     @Override
     protected void processLogic()
     {
-        String type = getIntent().getStringExtra("type");
-        if (type.equals("1"))
+        mType = getIntent().getStringExtra("type");
+        if (mType.equals("1"))
         {
             tvTitle.setText("美食商家入驻");
-        } else if (type.equals("2"))
+            mShopType = 1;
+        } else if (mType.equals("2"))
         {
             tvTitle.setText("酒店商家入驻");
-        } else if (type.equals("3"))
+            tvMingcheng.setText("酒店名称");
+            tvZhaopai.setText("酒店招牌");
+            rlShangjia.setVisibility(View.GONE);
+            mShopType = 3;
+        } else if (mType.equals("3"))
         {
             tvTitle.setText("境内度假商家入驻");
-        } else if (type.equals("4"))
+            tvMingcheng.setText("旅行社名称");
+            tvZhaopai.setText("旅行社招牌");
+            rlShangjia.setVisibility(View.GONE);
+            mShopType = 8;
+        } else if (mType.equals("4"))
         {
             tvTitle.setText("综合商家入驻");
+             rlXiuxian.setVisibility(View.VISIBLE);
+            mShopType = 4;
         }
 
     }
@@ -135,9 +158,10 @@ public class CooperationMeiShiActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+        getWindow().setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
-    @OnClick({R.id.rl_back, R.id.rl_zhaopai, R.id.rl_address, R.id.rl_shangjia, R.id.rl_zhizhao, R.id.tijiao, R.id.rl_zheng, R.id.rl_fan})
+    @OnClick({R.id.rl_back, R.id.rl_zhaopai, R.id.rl_address, R.id.rl_shangjia, R.id.rl_zhizhao, R.id.tijiao, R.id.rl_zheng, R.id.rl_fan,R.id.rl_xiuxian})
     public void onViewClicked(View view)
     {
         switch (view.getId())
@@ -151,18 +175,90 @@ public class CooperationMeiShiActivity extends BaseActivity
                 break;
             case R.id.rl_address://店铺地址
                 Intent intent = new Intent(CooperationMeiShiActivity.this, AddressSelectActivity.class);
-                startActivityForResult(intent,1);
+                startActivityForResult(intent, 1);
                 break;
             case R.id.rl_shangjia://商家分类
                 Intent intent1 = new Intent(CooperationMeiShiActivity.this, ShopTypeActivity.class);
-                startActivity(intent1);
+                intent1.putExtra("type", mShopType);
+                startActivityForResult(intent1, 2);
                 break;
             case R.id.rl_zhizhao://营业执照
                 type = 4;
                 getTu();
                 break;
+            case R.id.rl_xiuxian://综合
+                Intent intent2 = new Intent(CooperationMeiShiActivity.this, ShopTypeActivity.class);
+                intent2.putExtra("type", mShopType);
+                startActivityForResult(intent2, 2);
+                break;
             case R.id.tijiao:
-              // JxApiCallBack.shopjoin();
+                String name = edMingcheng.getText().toString().trim();//店铺名称
+                String address = tvAddress.getText().toString();//店铺地址
+                String deliteAddress = edDeliteaddress.getText().toString().trim();
+                String faren = edFaren.getText().toString().trim();//法人
+                String mobile = edMobile.getText().toString().trim();//电话
+
+                if (name == null || name.length() < 1)
+                {
+                    ToastUtils.showShort("请输入店铺名称");
+                    return;
+                }
+                if (mDianpuId == null || mDianpuId.length() < 1)
+                {
+                    ToastUtils.showShort("请上传店铺招牌");
+                    return;
+                }
+                if (address == null || address.length() < 1)
+                {
+                    ToastUtils.showShort("请选择店铺地址");
+                    return;
+                }
+                if (lat == 0)
+                {
+                    ToastUtils.showShort("无法获取经纬度");
+                    return;
+                }
+                if (deliteAddress == null || deliteAddress.length() < 1)
+                {
+                    ToastUtils.showShort("请输入店铺详细地址");
+                    return;
+                }
+
+                if (mType.equals("1"))
+                {
+                    if (classid == null || classid.length() < 1)
+                    {
+                        ToastUtils.showShort("请输入店铺分类");
+                        return;
+                    }
+                }
+                if (faren == null || faren.length() < 1)
+                {
+                    ToastUtils.showShort("请输入法人姓名");
+                    return;
+                }
+                if (mobile == null || mobile.length() < 1)
+                {
+                    ToastUtils.showShort("请输入联系电话");
+                    return;
+                }
+                if (mZhengId == null || mZhengId.length() < 1)
+                {
+                    ToastUtils.showShort("请上传身份证正面");
+                    return;
+                }
+                if (mFanId == null || mFanId.length() < 1)
+                {
+                    ToastUtils.showShort("请上传身份证反面");
+                    return;
+                }
+                if (mZhizhaoId == null || mZhizhaoId.length() < 1)
+                {
+                    ToastUtils.showShort("请上传营业执照");
+                    return;
+                }
+                JxApiCallBack.shopjoin(getToken(), mShopType, Integer.parseInt(classid), name, mDianpuId
+                        , lat, lng, deliteAddress, 1, faren, mobile, mZhengId, mFanId, mZhizhaoId, 2, (Activity) mContext, callBack);
                 break;
             case R.id.rl_zheng:
                 type = 2;
@@ -199,13 +295,26 @@ public class CooperationMeiShiActivity extends BaseActivity
                 JxApiCallBack.up_img(file, 1, this, callBack);
             }
         }
-        if (requestCode==1)
+        if (requestCode == 1)//地址
         {
-            String address= SPUtils.getInstance().getString("address");
-            SPUtils.getInstance().put("address","");
-            if (address!=null&&!address.equals(""))
+            String address = SPUtils.getInstance().getString("address");
+            SPUtils.getInstance().put("address", "");
+            if (address != null && !address.equals(""))
             {
                 tvAddress.setText(address);
+            }
+            if (resultCode == 1)
+            {
+                lat = data.getDoubleExtra("lat", 0);
+                lng = data.getDoubleExtra("lng", 0);
+            }
+        } else if (requestCode == 2)//商家类型
+        {
+            if (resultCode == 2)
+            {
+                classid = data.getStringExtra("classid");
+                type1 = data.getStringExtra("type");
+                tvType.setText(type1);
             }
         }
     }

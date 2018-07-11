@@ -20,8 +20,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.flyco.tablayout.SlidingTabLayout;
+import com.google.gson.Gson;
+import com.lzy.okgo.model.Response;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -29,13 +32,18 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
 import zhuyekeji.zhengzhou.jxlifecircle.adapter.PinCheHotRouteAdapter;
+import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
+import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.bean.HotRouteBean;
 import zhuyekeji.zhengzhou.jxlifecircle.frament.TouPiaoNewFrament;
 import zhuyekeji.zhengzhou.jxlifecircle.frament.home.CheFindRenFrament;
 import zhuyekeji.zhengzhou.jxlifecircle.frament.home.PinCheAllFrament;
 import zhuyekeji.zhengzhou.jxlifecircle.frament.home.RenFindCheFrament;
 import zhuyekeji.zhengzhou.jxlifecircle.frament.home.TianTianFrament;
 import zhuyekeji.zhengzhou.jxlifecircle.frament.home.TouPaioAllFrament;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.JsonUtile;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
 
 public class PinCheActivity extends BaseActivity
 {
@@ -66,7 +74,9 @@ public class PinCheActivity extends BaseActivity
     ViewPager viewpage;
     private String[] titles = new String[]{"全部", "车找人","人找车","天天拼"};
     private ArrayList<Fragment> mFraments = new ArrayList<>();
-    private List<String> beans=new ArrayList<>();
+    private List<HotRouteBean> beans;
+    private PinCheHotRouteAdapter adapter;
+
     @Override
     public int getViewId()
     {
@@ -76,6 +86,7 @@ public class PinCheActivity extends BaseActivity
     @Override
     protected void processLogic()
     {
+        JxApiCallBack.gethot(getToken(),1,1,this,callBack);
        tvTitle.setText("顺分车");
        titleRight.setText("发布");
         mFraments.add(new PinCheAllFrament());
@@ -83,11 +94,7 @@ public class PinCheActivity extends BaseActivity
         mFraments.add(new RenFindCheFrament());
         mFraments.add(new TianTianFrament());
         slidingtl.setViewPager(viewpage, titles, this, mFraments);
-        for (int i=0;i<8;i++)
-        {
-            beans.add("1");
-        }
-        PinCheHotRouteAdapter adapter=new PinCheHotRouteAdapter(this,R.layout.pinche_hot_item,beans);
+        adapter = new PinCheHotRouteAdapter(this, R.layout.pinche_hot_item,beans);
         rvHotSearch.setLayoutManager(new GridLayoutManager(this,4));
         rvHotSearch.setAdapter(adapter);
     }
@@ -132,6 +139,40 @@ public class PinCheActivity extends BaseActivity
         }
     }
 
+
+    CallBack callBack=new CallBack()
+    {
+        @Override
+        public void onSuccess(int what, Response<String> result)
+        {
+            switch (what)
+            {
+                case 1:
+                    if (JsonUtile.getCode(result.body()).equals("200"))
+                    {
+                        List list= Arrays.asList(new Gson().fromJson(JsonUtile.getbody(result.body()), HotRouteBean[].class));
+                        beans=new ArrayList<>(list);
+                        adapter.notifyDataSetChanged();
+
+                    }else {
+                        ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+                    }
+                    break;
+            }
+        }
+
+        @Override
+        public void onFail(int what, Response<String> result)
+        {
+
+        }
+
+        @Override
+        public void onFinish(int what)
+        {
+
+        }
+    };
 
     private void showPopup0(View parent)//房屋信息
     {

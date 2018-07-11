@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.SPUtils;
+
 /**
  * Created by XY on 2016/9/11.
  */
@@ -31,6 +33,10 @@ public abstract class BaseFragment extends Fragment
         initData();
     }
 
+    public String getToken()
+    {
+        return SPUtils.getInstance().getString("token");
+    }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState)
     {

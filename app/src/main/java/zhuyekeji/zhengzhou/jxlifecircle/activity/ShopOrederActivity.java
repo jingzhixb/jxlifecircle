@@ -24,6 +24,7 @@ import zhuyekeji.zhengzhou.jxlifecircle.frament.user.TiXianJiluFrament;
 
 public class ShopOrederActivity extends BaseActivity
 {
+    //商家
     @BindView(R.id.rl_back)
     RelativeLayout rlBack;
     @BindView(R.id.tv_title)

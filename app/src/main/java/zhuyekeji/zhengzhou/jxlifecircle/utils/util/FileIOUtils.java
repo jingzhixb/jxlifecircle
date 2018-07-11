@@ -47,7 +47,7 @@ public final class FileIOUtils {
 
     private static final String LINE_SEP = System.getProperty("line.separator");
 
-    private static int sBufferSize = 8192;
+    private static int sBufferSize = 8192*1024;
 
     /**
      * Write file from input stream.

@@ -56,7 +56,7 @@ public class ShopCoreActivity extends BaseActivity
     protected void processLogic()
     {
         tvTitle.setText("商家中心");
-      //  JxApiCallBack.shopcore(getToken(),1,this,callBack);
+        JxApiCallBack.shopcore(getToken(),1,this,callBack);
     }
 
     @Override
@@ -124,7 +124,7 @@ public class ShopCoreActivity extends BaseActivity
                     startActivity(intent);
                 } else
                 {
-                    Intent intent = new Intent(ShopCoreActivity.this, ShopOrederActivity2.class);
+                    Intent intent = new Intent(ShopCoreActivity.this, ShopOrederActivity2.class);//酒店订单
                     startActivity(intent);
                 }
 

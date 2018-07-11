@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.lzy.okgo.model.Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,6 @@ import zhuyekeji.zhengzhou.jxlifecircle.activity.MyFaBuActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.MyFenSiActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.MyGuanZhuActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.MyWalletActivity;
-import zhuyekeji.zhengzhou.jxlifecircle.activity.SettingActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.SettingActivity2;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.ShopCooperation;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.ShopCoreActivity;
@@ -38,9 +38,12 @@ import zhuyekeji.zhengzhou.jxlifecircle.activity.TuiGUangActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.UserInfoActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.activity.YouHuiActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.adapter.MeAdapter;
+import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.api.FragmentBackHandler;
+import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseFragment;
 import zhuyekeji.zhengzhou.jxlifecircle.bean.MeBean;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.JsonUtile;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.other.UIThread;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ActivityUtils;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
@@ -74,15 +77,17 @@ public class MeFrament extends BaseFragment implements FragmentBackHandler
     LinearLayout llFensi;
     @BindView(R.id.rv_me)
     RecyclerView rvMe;
+    @BindView(R.id.sign)
+    TextView sign;
     private View view;
     Unbinder unbinder;
 
     private List<MeBean> beans = new ArrayList<>();
     private boolean isDoubleClick = false;
     private String[] textuser = new String[]{"我的收藏", "我的发布", "待评价", "历史足迹",
-            "我的优惠卷", "我的钱包", "我的地址", "推广有奖", "设置", "平台客服", "生活服务", "最新在线电影","商家中心","商家合作"};
+            "我的优惠卷", "我的钱包", "我的地址", "推广有奖", "设置", "平台客服", "生活服务", "最新在线电影", "商家中心", "商家合作"};
     private int[] iconuser = new int[]{R.mipmap.shoucang, R.mipmap.fabu, R.mipmap.pingjia, R.mipmap.zuji, R.mipmap.youhuiquan, R.mipmap.qianbao, R.mipmap.dizhi, R.mipmap.tuiguang,
-            R.mipmap.shezhi, R.mipmap.kefu, R.mipmap.shenghuofuwu, R.mipmap.dianying,R.mipmap.ic_launcher,R.mipmap.ic_launcher};
+            R.mipmap.shezhi, R.mipmap.kefu, R.mipmap.shenghuofuwu, R.mipmap.dianying, R.mipmap.ic_launcher, R.mipmap.ic_launcher};
 
 
     private String[] textshangjia = new String[]{"我的收藏", "我的论坛",
@@ -183,11 +188,11 @@ public class MeFrament extends BaseFragment implements FragmentBackHandler
 
                         break;
                     case "商家合作":
-                    Intent intent10=new Intent(getActivity(),ShopCooperation.class);
-                    startActivity(intent10);
+                        Intent intent10 = new Intent(getActivity(), ShopCooperation.class);
+                        startActivity(intent10);
                         break;
                     case "商家中心":
-                        Intent intent11=new Intent(getActivity(),ShopCoreActivity.class);
+                        Intent intent11 = new Intent(getActivity(), ShopCoreActivity.class);
                         startActivity(intent11);
                         break;
 
@@ -251,13 +256,46 @@ public class MeFrament extends BaseFragment implements FragmentBackHandler
                 startActivity(intent);
                 break;
             case R.id.ll_guanzhu:
-                Intent intent2=new Intent(getActivity(),MyGuanZhuActivity.class);
+                Intent intent2 = new Intent(getActivity(), MyGuanZhuActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.ll_fensi:
-                Intent intent3=new Intent(getActivity(),MyFenSiActivity.class);
+                Intent intent3 = new Intent(getActivity(), MyFenSiActivity.class);
                 startActivity(intent3);
+                break;
+            case R.id.sign:
+                JxApiCallBack.sign(getToken(),1,getActivity(),callBack);
                 break;
         }
     }
+    CallBack callBack=new CallBack()
+    {
+        @Override
+        public void onSuccess(int what, Response<String> result)
+        {
+          switch (what)
+          {
+              case 1://签到
+                  if (JsonUtile.getCode(result.body()).equals("200"))
+                  {
+                      ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+                  }else {
+                  ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+                  }
+                  break;
+          }
+        }
+
+        @Override
+        public void onFail(int what, Response<String> result)
+        {
+
+        }
+
+        @Override
+        public void onFinish(int what)
+        {
+
+        }
+    };
 }

@@ -3,13 +3,12 @@ package zhuyekeji.zhengzhou.jxlifecircle.orderactivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.flyco.tablayout.CommonTabLayout;
+import com.flyco.tablayout.SlidingTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 
 import java.util.ArrayList;
@@ -18,28 +17,26 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
-import zhuyekeji.zhengzhou.jxlifecircle.frament.order.AllOrderFrament;
-import zhuyekeji.zhengzhou.jxlifecircle.frament.order.DaiFaHuoFrament;
-import zhuyekeji.zhengzhou.jxlifecircle.frament.order.DaiPingJIaFrament;
-import zhuyekeji.zhengzhou.jxlifecircle.frament.order.PUserDaiJIeDanFrament;
-import zhuyekeji.zhengzhou.jxlifecircle.frament.order.PUserDaiQueRenFrament;
+import zhuyekeji.zhengzhou.jxlifecircle.frament.order.UserJIuDianDaiRuZhuFrament;
+import zhuyekeji.zhengzhou.jxlifecircle.frament.order.UserJIuLiShiFrament;
+import zhuyekeji.zhengzhou.jxlifecircle.frament.order.UserJiuDianRuZhuZhongFrament;
 import zhuyekeji.zhengzhou.jxlifecircle.frament.order.PUserTuiKuanFrament;
-import zhuyekeji.zhengzhou.jxlifecircle.frament.order.PUserYiWanChengFrament;
+import zhuyekeji.zhengzhou.jxlifecircle.frament.order.UserJiuDianDaiPingJiaFrament;
 
 public class UserPinCheActivity extends BaseActivity
 {
+
 
     @BindView(R.id.rl_back)
     RelativeLayout rlBack;
     @BindView(R.id.tv_title)
     TextView tvTitle;
     @BindView(R.id.tl_connlent)
-    CommonTabLayout tlConnlent;
-    @BindView(R.id.frame_layout)
-    FrameLayout frameLayout;
-
+    SlidingTabLayout tlConnlent;
+    @BindView(R.id.viewpage)
+    ViewPager viewpage;
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
-    private String[] mTitles = {"待接单", "待确认", "已完成","退款"};
+    private String[] mTitles = {"待入住", "入住中", "待评价", "申请退款","历史订单"};
     private ArrayList<Fragment> mFrament = new ArrayList<>();
 
     @Override
@@ -51,7 +48,7 @@ public class UserPinCheActivity extends BaseActivity
     @Override
     protected void processLogic()
     {
-        tvTitle.setText("拼车订单");
+        tvTitle.setText("酒店订单");
         rlBack.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -60,36 +57,12 @@ public class UserPinCheActivity extends BaseActivity
                 finish();
             }
         });
-
-        for (int i=0;i<mTitles.length;i++)
-        {
-            final int t = i;
-            mTabEntities.add(new CustomTabEntity()
-            {
-                @Override
-                public String getTabTitle()
-                {
-                    return mTitles[t];
-                }
-
-                @Override
-                public int getTabSelectedIcon()
-                {
-                    return 0;
-                }
-
-                @Override
-                public int getTabUnselectedIcon()
-                {
-                    return 0;
-                }
-            });
-        }
-        mFrament.add(new PUserDaiJIeDanFrament());
-        mFrament.add(new PUserDaiQueRenFrament());
-        mFrament.add(new PUserYiWanChengFrament());
+        mFrament.add(new UserJIuDianDaiRuZhuFrament());
+        mFrament.add(new UserJiuDianRuZhuZhongFrament());
+        mFrament.add(new UserJiuDianDaiPingJiaFrament());
         mFrament.add(new PUserTuiKuanFrament());
-        tlConnlent.setTabData(mTabEntities,this,R.id.frame_layout, mFrament);
+        mFrament.add(new UserJIuLiShiFrament());
+        tlConnlent.setViewPager(viewpage,mTitles, this, mFrament);
     }
 
     @Override
@@ -102,5 +75,13 @@ public class UserPinCheActivity extends BaseActivity
     protected Context getActivityContext()
     {
         return this;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

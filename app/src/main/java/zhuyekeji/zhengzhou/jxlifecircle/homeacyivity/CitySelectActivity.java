@@ -11,7 +11,11 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.lzy.okgo.model.Response;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,10 +23,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
 import zhuyekeji.zhengzhou.jxlifecircle.adapter.ListSortAdapter;
+import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
+import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.bean.SortModel;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.JsonUtile;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.other.CharacterParser;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.other.PinyinComparator;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.SPUtils;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
 import zhuyekeji.zhengzhou.jxlifecircle.widget.SideBar;
 
 public class CitySelectActivity extends BaseActivity
@@ -40,7 +49,7 @@ public class CitySelectActivity extends BaseActivity
     @BindView(R.id.sidrbar)
     SideBar sideBar;
 
-    private List<SortModel> SourceDateList;
+    private List<SortModel> SourceDateList,citys;
     private PinyinComparator pinyinComparator;
     private ListSortAdapter adapter;
     private RecyclerView recyclerView_hot;
@@ -55,6 +64,7 @@ public class CitySelectActivity extends BaseActivity
     @Override
     protected void processLogic()
     {
+        JxApiCallBack.city_all(1,this,callBack);
         location_city=getIntent().getStringExtra("location_city");
         characterParser = CharacterParser.getInstance();
 
@@ -92,6 +102,7 @@ public class CitySelectActivity extends BaseActivity
 //                    Toast.makeText(getApplication(), ((SortModel) adapter.getItem(position - 1)).getName(), Toast.LENGTH_SHORT).show();
 //                    SharedPreferences sp = getSharedPreferences("data", MODE_PRIVATE);
 //                    sp.edit().putString("Location", ((SortModel) adapter.getItem(position - 1)).getName()).apply();
+                    SPUtils.getInstance().put("city_id",((SortModel) adapter.getItem(position - 1)).getCity_id());
                     Intent intent = getIntent();
                     intent.putExtra("address", ((SortModel) adapter.getItem(position - 1)).getName());
                     CitySelectActivity.this.setResult(0, intent);
@@ -100,15 +111,44 @@ public class CitySelectActivity extends BaseActivity
             }
         });
 
-        SourceDateList = filledData(getResources().getStringArray(R.array.date));
+        //SourceDateList = filledData(getResources().getStringArray(R.array.date));
 //       根据a-z进行排序源数据
-        Collections.sort(SourceDateList, pinyinComparator);
-//        创建adapter
-        adapter = new ListSortAdapter(this, SourceDateList);
-//        给listView设置数据
-        sortListView.setAdapter(adapter);
+
     }
 
+
+    CallBack callBack=new CallBack()
+    {
+        @Override
+        public void onSuccess(int what, Response<String> result)
+        {
+            if (JsonUtile.getCode(result.body()).equals("200"))
+            {
+                List list= Arrays.asList(new Gson().fromJson(JsonUtile.getbody(result.body()),SortModel[].class));
+                SourceDateList=new ArrayList<>(list);
+                citys= filledData(SourceDateList);
+                Collections.sort(citys, pinyinComparator);
+//        创建adapter
+                adapter = new ListSortAdapter(CitySelectActivity.this, citys);
+//        给listView设置数据
+                sortListView.setAdapter(adapter);
+            }else {
+                ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+            }
+        }
+
+        @Override
+        public void onFail(int what, Response<String> result)
+        {
+
+        }
+
+        @Override
+        public void onFinish(int what)
+        {
+
+        }
+    };
     @Override
     protected void setListener()
     {
@@ -123,14 +163,14 @@ public class CitySelectActivity extends BaseActivity
      * @param date
      * @return
      */
-    private List<SortModel> filledData(String[] date) {
+    private List<SortModel> filledData(List<SortModel> date) {
         List<SortModel> mSortList = new ArrayList<SortModel>();
 
-        for (int i = 0; i < date.length; i++) {
+        for (int i = 0; i < date.size(); i++) {
             SortModel sortModel = new SortModel();
-            sortModel.setName(date[i]);
+            sortModel.setCity_name(date.get(i).getCity_name());
 //            汉字转拼音
-            String pinyin = characterParser.getSelling(date[i]);
+            String pinyin = characterParser.getSelling(date.get(i).getCity_name());
 //            转换为大写
             String sortString = pinyin.substring(0, 1).toUpperCase();
 

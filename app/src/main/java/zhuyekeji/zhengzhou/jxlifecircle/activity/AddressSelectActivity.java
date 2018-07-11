@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -45,6 +46,7 @@ import butterknife.ButterKnife;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
 import zhuyekeji.zhengzhou.jxlifecircle.adapter.DingWeiAdapter;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.bean.PoiBean;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.SPUtils;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
 
@@ -60,6 +62,8 @@ public class AddressSelectActivity extends BaseActivity
     private PoiSearch poiSearch;                                //POI搜索模块
     private BDLocation currentLocation;                         //当前定位信息[最好使用这个]
     private LocationClient locationClient;                      //定位SDK核心类
+    private DingWeiAdapter adapter;
+
     @Override
     public int getViewId()
     {
@@ -145,13 +149,18 @@ public class AddressSelectActivity extends BaseActivity
             if (suggestionResult == null || suggestionResult.getAllSuggestions() == null) {
                 return;
             }
-            List<String> suggest = new ArrayList<>();
+            List<PoiBean> suggest = new ArrayList<>();
             for (SuggestionResult.SuggestionInfo suggestionInfo : suggestionResult.getAllSuggestions()) {
                 if (suggestionInfo.key != null) {
-                    suggest.add(suggestionInfo.key);
+                    PoiBean bean=new PoiBean();
+                    bean.setAddress(suggestionInfo.key);
+                    bean.setLat(suggestionInfo.pt.latitude);
+                    bean.setLng(suggestionInfo.pt.longitude);
+                    suggest.add(bean);
+                    Log.i("aaaaaa",suggestionInfo.pt.longitude+"--"+suggestionInfo.pt.latitude);
                 }
             }
-            final DingWeiAdapter adapter=new DingWeiAdapter(AddressSelectActivity.this,R.layout.address_item, suggest);
+            adapter = new DingWeiAdapter(AddressSelectActivity.this, R.layout.address_item, suggest);
             rvAddrsee.setLayoutManager(new LinearLayoutManager(AddressSelectActivity.this));
             rvAddrsee.setAdapter(adapter);
             adapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener()
@@ -159,8 +168,12 @@ public class AddressSelectActivity extends BaseActivity
                 @Override
                 public void onItemClick(View view, int i)
                 {
-                    String address=adapter.getItem(i);
+                    String address= adapter.getItem(i).getAddress();
                     SPUtils.getInstance().put("address",address);
+                    Intent intent=new Intent();
+                    intent.putExtra("lat",adapter.getItem(i).getLat());
+                    intent.putExtra("lng",adapter.getItem(i).getLng());
+                    setResult(1,intent);
                     finish();
                 }
             });

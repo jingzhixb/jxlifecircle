@@ -32,6 +32,7 @@ public class JDaiFaHuoFrament extends BaseFragment
     @Override
     protected void initData()
     {
-adapter=new JiFenOrderAdapter(getActivity(),R.layout.jifenorder_item,null);
+
+     adapter=new JiFenOrderAdapter(getActivity(),R.layout.jifenorder_item,null);
     }
 }

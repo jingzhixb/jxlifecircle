@@ -27,7 +27,7 @@ import zhuyekeji.zhengzhou.jxlifecircle.frament.order.STuiKuanFrament;
 public class OrderJiFenActivity extends BaseActivity
 {
 
-
+//	订单-优惠购订单（买家）
     @BindView(R.id.rl_back)
     RelativeLayout rlBack;
     @BindView(R.id.tv_title)

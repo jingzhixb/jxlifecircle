@@ -7,11 +7,18 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lzy.okgo.model.Response;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
+import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
+import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.JsonUtile;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.SPUtils;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
 
 public class XiuGaiMMActivity2 extends BaseActivity
 {
@@ -27,6 +34,7 @@ public class XiuGaiMMActivity2 extends BaseActivity
     EditText passworeagain;
     @BindView(R.id.wancheng)
     TextView wancheng;
+    private String again;
 
     @Override
     public int getViewId()
@@ -69,7 +77,47 @@ tvTitle.setText("修改密码");
                 finish();
                 break;
             case R.id.wancheng:
+                String first=firstpassword.getText().toString().trim();
+                again = passworeagain.getText().toString().trim();
+                if (first==null|| again ==null||first.length()==0|| again.length()==0)
+                {
+                    ToastUtils.showShort("请输入密码");
+                    return;
+                }
+                if (first.equals(again))
+                {
+                    JxApiCallBack.updatapassword(getToken(),first, again,1,XiuGaiMMActivity2.this,callBack);
+                }else {
+                    ToastUtils.showShort("两次密码不一致");
+                    return;
+                }
                 break;
         }
     }
+    CallBack callBack=new CallBack()
+    {
+        @Override
+        public void onSuccess(int what, Response<String> result)
+        {
+          if (JsonUtile.getCode(result.body()).equals("200"))
+          {
+              ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+              SPUtils.getInstance().put("password",again);
+          }else {
+              ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+          }
+        }
+
+        @Override
+        public void onFail(int what, Response<String> result)
+        {
+
+        }
+
+        @Override
+        public void onFinish(int what)
+        {
+
+        }
+    };
 }

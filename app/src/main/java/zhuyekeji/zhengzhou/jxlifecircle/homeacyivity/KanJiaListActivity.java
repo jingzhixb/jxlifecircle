@@ -11,8 +11,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.google.gson.Gson;
+import com.lzy.okgo.model.Response;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -20,8 +23,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
 import zhuyekeji.zhengzhou.jxlifecircle.adapter.KanJiaAdapter;
+import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
+import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.bean.JiFenOrderBean;
+import zhuyekeji.zhengzhou.jxlifecircle.bean.KanJiaBean;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.JsonUtile;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
 
 public class KanJiaListActivity extends BaseActivity
 {
@@ -35,7 +43,7 @@ public class KanJiaListActivity extends BaseActivity
     @BindView(R.id.rv_kj)
     RecyclerView rvKj;
     private KanJiaAdapter adapter;
-    private List<JiFenOrderBean> beans = new ArrayList<>();
+    private List<KanJiaBean> beans = new ArrayList<>();
 
     @Override
     public int getViewId()
@@ -46,10 +54,7 @@ public class KanJiaListActivity extends BaseActivity
     @Override
     protected void processLogic()
     {
-        for (int i = 0; i < 10; i++)
-        {
-            beans.add(new JiFenOrderBean());
-        }
+        JxApiCallBack.kanjia(getToken(),1,this,callBack);
         adapter = new KanJiaAdapter(this, R.layout.kanjia_item, beans);
         rvKj.setLayoutManager(new LinearLayoutManager(this));
         rvKj.setAdapter(adapter);
@@ -101,4 +106,31 @@ public class KanJiaListActivity extends BaseActivity
                 break;
         }
     }
+    CallBack callBack=new CallBack()
+    {
+        @Override
+        public void onSuccess(int what, Response<String> result)
+        {
+             if (JsonUtile.getCode(result.body()).equals("200"))
+             {
+                 List list= Arrays.asList(new Gson().fromJson(JsonUtile.getbody(result.body()),KanJiaBean[].class));
+                 beans.addAll(list);
+                 adapter.notifyDataSetChanged();
+             }else {
+                 ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+             }
+        }
+
+        @Override
+        public void onFail(int what, Response<String> result)
+        {
+
+        }
+
+        @Override
+        public void onFinish(int what)
+        {
+
+        }
+    };
 }

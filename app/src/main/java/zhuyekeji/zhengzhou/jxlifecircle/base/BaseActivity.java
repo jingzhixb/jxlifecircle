@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import java.lang.reflect.Method;
 import butterknife.ButterKnife;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.BarUtils;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.KeyboardUtils;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.NetWorkStateReceiver;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.SPUtils;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.SpanUtils;
@@ -41,6 +43,8 @@ public abstract class BaseActivity extends AppCompatActivity
         setContentView(getViewId());
         mContext = getActivityContext();
         setstatucolor(this,getResources().getColor(R.color.jxcolor));
+        KeyboardUtils.hideSoftInput(this);
+        getWindow().setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);//首次进入界面不让软键盘弹出
         initView();
         ButterKnife.bind(this);
         initdata();
@@ -61,6 +65,12 @@ public abstract class BaseActivity extends AppCompatActivity
     public String getToken()
     {
         return SPUtils.getInstance().getString("token");
+    }
+
+
+    public String getCity_id()
+    {
+        return SPUtils.getInstance().getString("city_id");
     }
 
     public abstract int getViewId();

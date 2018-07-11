@@ -68,7 +68,7 @@ public class ListSortAdapter extends BaseAdapter implements SectionIndexer {
 		}else {
 			viewHolder.tvLetter.setVisibility(View.GONE);
 		}
-		viewHolder.tvTitle.setText(this.list.get(position).getName());
+		viewHolder.tvTitle.setText(this.list.get(position).getCity_name());
 		return convertView;
 	}
 

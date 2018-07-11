@@ -3,12 +3,12 @@ package zhuyekeji.zhengzhou.jxlifecircle.orderactivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.flyco.tablayout.CommonTabLayout;
+import com.flyco.tablayout.SlidingTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 
 import java.util.ArrayList;
@@ -17,12 +17,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
-import zhuyekeji.zhengzhou.jxlifecircle.frament.order.AllOrderFrament;
-import zhuyekeji.zhengzhou.jxlifecircle.frament.order.DaiFaHuoFrament;
 import zhuyekeji.zhengzhou.jxlifecircle.frament.order.DaiPingJIaFrament;
-import zhuyekeji.zhengzhou.jxlifecircle.frament.user.DianPuFrament;
-import zhuyekeji.zhengzhou.jxlifecircle.frament.user.ShopFrament;
-import zhuyekeji.zhengzhou.jxlifecircle.frament.user.TieZiFrament;
+import zhuyekeji.zhengzhou.jxlifecircle.frament.order.JLiShiOrderFrament;
+import zhuyekeji.zhengzhou.jxlifecircle.frament.order.UserDaiXiaoFeiFrament;
 
 public class ShopOrderActivity extends BaseActivity
 {
@@ -30,13 +27,15 @@ public class ShopOrderActivity extends BaseActivity
     RelativeLayout rlBack;
     @BindView(R.id.tv_title)
     TextView tvTitle;
+
     @BindView(R.id.tl_connlent)
-    CommonTabLayout tlConnlent;
-    @BindView(R.id.frame_layout)
-    FrameLayout frameLayout;
+    SlidingTabLayout tlConnlent;
+    @BindView(R.id.viewpage)
+    ViewPager viewpage;
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
-    private String[] mTitles = {"全部订单", "代发货", "待收货","待评价"};
+    private String[] mTitles = {"代消费", "待评价", "待收货"};
     private ArrayList<Fragment> mFrament = new ArrayList<>();
+
     @Override
     public int getViewId()
     {
@@ -57,35 +56,12 @@ public class ShopOrderActivity extends BaseActivity
             }
         });
 
-        for (int i=0;i<mTitles.length;i++)
-        {
-            final int t = i;
-            mTabEntities.add(new CustomTabEntity()
-            {
-                @Override
-                public String getTabTitle()
-                {
-                    return mTitles[t];
-                }
-
-                @Override
-                public int getTabSelectedIcon()
-                {
-                    return 0;
-                }
-
-                @Override
-                public int getTabUnselectedIcon()
-                {
-                    return 0;
-                }
-            });
-        }
-        mFrament.add(new AllOrderFrament());
-        mFrament.add(new DaiFaHuoFrament());
-        mFrament.add(new DaiFaHuoFrament());
+        // mFrament.add(new AllOrderFrament());
+        mFrament.add(new UserDaiXiaoFeiFrament());
         mFrament.add(new DaiPingJIaFrament());
-        tlConnlent.setTabData(mTabEntities,this,R.id.frame_layout, mFrament);
+        mFrament.add(new JLiShiOrderFrament());
+
+        tlConnlent.setViewPager(viewpage,mTitles,this,mFrament);
     }
 
     @Override

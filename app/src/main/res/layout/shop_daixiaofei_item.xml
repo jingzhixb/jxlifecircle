@@ -12,6 +12,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_marginTop="15dp"
+            android:id="@+id/img"
             android:layout_marginLeft="22dp"
             android:layout_height="80dp" />
         <RelativeLayout
@@ -103,6 +104,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="22dp"
             android:background="@drawable/next"
+            android:id="@+id/bt"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_14"
             android:gravity="center"
