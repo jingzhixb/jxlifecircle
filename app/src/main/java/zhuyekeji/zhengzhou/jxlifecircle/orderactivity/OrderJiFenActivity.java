@@ -23,6 +23,7 @@ import zhuyekeji.zhengzhou.jxlifecircle.frament.order.JLiShiOrderFrament;
 import zhuyekeji.zhengzhou.jxlifecircle.frament.order.SDaiPingJiaFrament;
 import zhuyekeji.zhengzhou.jxlifecircle.frament.order.SDaiXiaoFeiFrament;
 import zhuyekeji.zhengzhou.jxlifecircle.frament.order.STuiKuanFrament;
+import zhuyekeji.zhengzhou.jxlifecircle.frament.order.UserJiFenLiShiFrament;
 
 public class OrderJiFenActivity extends BaseActivity
 {
@@ -84,7 +85,7 @@ public class OrderJiFenActivity extends BaseActivity
         }
         mFrament.add(new JDaiFaHuoFrament());
         mFrament.add(new JDaiQueRenFrament());
-        mFrament.add(new JLiShiOrderFrament());
+        mFrament.add(new UserJiFenLiShiFrament());
         tlConnlent.setTabData(mTabEntities,this,R.id.frame_layout, mFrament);
 
     }

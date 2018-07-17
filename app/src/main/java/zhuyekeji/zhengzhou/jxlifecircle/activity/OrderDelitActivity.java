@@ -25,8 +25,6 @@ public class OrderDelitActivity extends BaseActivity
     TextView tvName;
     @BindView(R.id.rl_persion)
     RelativeLayout rlPersion;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
     @BindView(R.id.tv_price)
     TextView tvPrice;
     @BindView(R.id.statu)
@@ -55,6 +53,8 @@ public class OrderDelitActivity extends BaseActivity
     TextView tongyi;
     @BindView(R.id.rl_tuikuan)
     RelativeLayout rlTuikuan;
+    @BindView(R.id.tv_titles)
+    TextView tvTitle;
     private String type;
 
     @Override
@@ -69,9 +69,9 @@ public class OrderDelitActivity extends BaseActivity
         type = getIntent().getStringExtra("type");
         if (type.equals("1"))//订单详情
         {
-           tvTitles.setText("订单详情");
-           rlTuikuan.setVisibility(View.GONE);
-           hexiao.setVisibility(View.GONE);
+            tvTitles.setText("订单详情");
+            rlTuikuan.setVisibility(View.GONE);
+            hexiao.setVisibility(View.GONE);
         } else if (type.equals("2"))//退款原因
         {
             tvTitles.setText("退款原因");

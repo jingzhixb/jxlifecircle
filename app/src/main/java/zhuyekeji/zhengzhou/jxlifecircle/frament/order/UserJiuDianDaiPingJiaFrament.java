@@ -1,5 +1,6 @@
 package zhuyekeji.zhengzhou.jxlifecircle.frament.order;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.lzy.okgo.model.Response;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -25,6 +27,7 @@ import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseFragment;
 import zhuyekeji.zhengzhou.jxlifecircle.bean.OrderJIudianBean;
+import zhuyekeji.zhengzhou.jxlifecircle.orderactivity.UserPingJiaActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.JsonUtile;
 
 /**
@@ -63,7 +66,7 @@ public class UserJiuDianDaiPingJiaFrament extends BaseFragment
     CallBack callBack = new CallBack()
     {
         @Override
-        public void onSuccess(int what, Response<String> result)
+        public void onSuccess(final int what, Response<String> result)
         {
             if (JsonUtile.getCode(result.body()).equals("200"))
             {
@@ -72,6 +75,21 @@ public class UserJiuDianDaiPingJiaFrament extends BaseFragment
                 adapter = new PUserDaiJieAdapter(getActivity(), R.layout.item_jiudian_order, beans,3);
                 rvShop.setLayoutManager(new LinearLayoutManager(getActivity()));
                 rvShop.setAdapter(adapter);
+                adapter.setOnRecyclerViewItemChildClickListener(new BaseQuickAdapter.OnRecyclerViewItemChildClickListener()
+                {
+                    @Override
+                    public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i)
+                    {
+                        switch (what)
+                        {
+                            case R.id.bt:
+                                Intent intent=new Intent(getActivity(), UserPingJiaActivity.class);
+                                intent.putExtra("orderid",adapter.getItem(i).getId());
+                                startActivity(intent);
+                                break;
+                        }
+                    }
+                });
             } else
             {
 

@@ -24,6 +24,7 @@ public class PinCheAdapter extends BaseQuickAdapter<PinCheBean>
     @Override
     protected void convert(BaseViewHolder baseViewHolder, PinCheBean pinCheBean)
     {
+        baseViewHolder.setOnClickListener(R.id.phone,new OnItemChildClickListener());
         //1是车找人，2是人找车，3是天天拼车
         if (pinCheBean.getType().equals("1"))
         {

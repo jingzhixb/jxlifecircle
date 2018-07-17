@@ -7,6 +7,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
 
+import zhuyekeji.zhengzhou.jxlifecircle.R;
 import zhuyekeji.zhengzhou.jxlifecircle.bean.JiFenOrderBean;
 import zhuyekeji.zhengzhou.jxlifecircle.bean.KanJiaBean;
 
@@ -22,8 +23,11 @@ public class KanJiaAdapter extends BaseQuickAdapter<KanJiaBean>
     }
 
     @Override
-    protected void convert(BaseViewHolder baseViewHolder, KanJiaBean jiFenOrderBean)
+    protected void convert(BaseViewHolder baseViewHolder, KanJiaBean s)
     {
-
+        baseViewHolder.setText(R.id.title, s.getName());
+        baseViewHolder.setText(R.id.price, s.getPrice());
+        baseViewHolder.setText(R.id.desc, s.getNum() + "万人已拿奖");
+        baseViewHolder.setOnClickListener(R.id.tv_kanjia, new OnItemChildClickListener());
     }
 }

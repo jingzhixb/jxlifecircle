@@ -54,4 +54,23 @@ public static String getCode(String body)
         }
         return "";
     }
+    public static boolean isTrue(String body)
+    {
+        try
+        {
+            JSONObject o=new JSONObject(body);
+            String code=o.getString("code");
+            if (code.equals("200"))
+            {
+                return true;
+            }else {
+                return false;
+            }
+
+        } catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+       return false;
+    }
 }

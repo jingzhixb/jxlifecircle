@@ -1,5 +1,6 @@
 package zhuyekeji.zhengzhou.jxlifecircle.frament.order;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.lzy.okgo.model.Response;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -19,11 +21,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
+import zhuyekeji.zhengzhou.jxlifecircle.activity.DaiPingJiaActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.activity.PingJiaDeliteActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.adapter.UserDaiXiafeiAdapter;
 import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseFragment;
 import zhuyekeji.zhengzhou.jxlifecircle.bean.UserOrderYOuHuiBean;
+import zhuyekeji.zhengzhou.jxlifecircle.orderactivity.UserPingJiaActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.JsonUtile;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
 
@@ -87,6 +92,21 @@ public class DaiPingJIaFrament extends BaseFragment
                 beans = new ArrayList<>(list);
                 adapter = new UserDaiXiafeiAdapter(getActivity(), R.layout.shop_daixiaofei_item, beans, 2);
                 rvShop.setAdapter(adapter);
+                adapter.setOnRecyclerViewItemChildClickListener(new BaseQuickAdapter.OnRecyclerViewItemChildClickListener()
+                {
+                    @Override
+                    public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i)
+                    {
+                        switch (view.getId())
+                        {
+                            case R.id.bt://评价
+                            Intent intent=new Intent(getActivity(), UserPingJiaActivity.class);
+                            intent.putExtra("orderid",adapter.getItem(i).getId());
+                            startActivity(intent);
+                                break;
+                        }
+                    }
+                });
             } else
             {
                 ToastUtils.showShort(JsonUtile.getresulter(result.body()));

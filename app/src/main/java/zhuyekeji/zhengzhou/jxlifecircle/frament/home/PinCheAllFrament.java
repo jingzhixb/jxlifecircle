@@ -14,6 +14,9 @@ import com.google.gson.Gson;
 import com.lzy.okgo.model.Response;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -74,36 +77,45 @@ public class PinCheAllFrament extends BaseFragment
                 case 1:
                     if (JsonUtile.getCode(result.body()).equals("200"))
                     {
-                        PinCheBean[] bean = new Gson().fromJson(JsonUtile.getbody(result.body()), PinCheBean[].class);
-                        List list = Arrays.asList(bean);
-                        beans = new ArrayList<>(list);
-                        adapter = new PinCheAdapter(getActivity(), R.layout.pinche_item, beans);
-                        rvShop.setLayoutManager(new LinearLayoutManager(getActivity()));
-                        rvShop.setAdapter(adapter);
-                        adapter.setOnRecyclerViewItemChildClickListener(new BaseQuickAdapter.OnRecyclerViewItemChildClickListener()
+                        try
                         {
-                            @Override
-                            public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i)
+                            JSONObject object=new JSONObject(result.body());
+                            String data=object.getString("data");
+                            List list = Arrays.asList( new Gson().fromJson(data, PinCheBean[].class));
+                            beans = new ArrayList<>(list);
+                            adapter = new PinCheAdapter(getActivity(), R.layout.pinche_item, beans);
+                            rvShop.setLayoutManager(new LinearLayoutManager(getActivity()));
+                            rvShop.setAdapter(adapter);
+                            adapter.setOnRecyclerViewItemChildClickListener(new BaseQuickAdapter.OnRecyclerViewItemChildClickListener()
                             {
-                                switch (view.getId())
+                                @Override
+                                public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i)
                                 {
-                                    case R.id.phone:
-                                        Intent intent=new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+adapter.getItem(i).getContact_tel()));
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        startActivity(intent);
-                                        break;
+                                    switch (view.getId())
+                                    {
+                                        case R.id.phone:
+                                            Intent intent=new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+adapter.getItem(i).getContact_tel()));
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            startActivity(intent);
+                                            break;
+                                    }
                                 }
-                            }
-                        });
-                        adapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener()
-                        {
-                            @Override
-                            public void onItemClick(View view, int i)
+                            });
+                            adapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener()
                             {
-                                Intent intent=new Intent(getActivity(),PInCheDeliteActivity.class);
-                                startActivity(intent);
-                            }
-                        });
+                                @Override
+                                public void onItemClick(View view, int i)
+                                {
+                                    Intent intent=new Intent(getActivity(),PInCheDeliteActivity.class);
+                                    intent.putExtra("id",adapter.getItem(i).getId());
+                                    startActivity(intent);
+                                }
+                            });
+                        } catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+
 
                     } else
                     {

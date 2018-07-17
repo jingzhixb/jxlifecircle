@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/tran"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginBottom="150dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/title_666"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"
+            android:id="@+id/quren"
+            android:text="确认"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <DatePicker
+        android:id="@+id/data_p"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        android:theme="@style/Animation.AppCompat.Dialog"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:layout_height="150dp"/>
+    <TimePicker
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:id="@+id/time_p"
+        android:theme="@style/Animation.Design.BottomSheetDialog"
+        android:layout_alignParentBottom="true"
+        android:timePickerMode="spinner"
+        android:background="@color/white"/>
+</RelativeLayout>

@@ -123,4 +123,16 @@
             android:layout_alignParentBottom="true"
             android:background="@color/view_color"/>
     </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="22dp"
+         android:layout_marginRight="22dp"
+        android:textSize="@dimen/sp_15"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:text="退出登录"
+        android:id="@+id/exit"
+        android:background="@drawable/next"/>
 </LinearLayout>

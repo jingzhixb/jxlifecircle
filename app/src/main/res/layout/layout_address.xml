@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:background="@color/white"
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/rl_select_address"
         android:layout_alignParentBottom="true">
         <TextView
@@ -30,6 +30,7 @@
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_below="@id/cha2"
+            android:id="@+id/rv_address"
             android:layout_marginTop="15dp"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
@@ -40,6 +41,7 @@
         android:orientation="vertical"
         android:layout_marginRight="100dp"
         android:id="@+id/ll_add_address"
+        android:visibility="gone"
         android:layout_centerInParent="true"
         android:background="@drawable/address">
         <RelativeLayout
@@ -58,6 +60,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="22dp"
                 android:layout_marginTop="14dp"
+                android:id="@+id/cha3"
                 android:background="@mipmap/cha2"
                 android:layout_height="10dp" />
         </RelativeLayout>

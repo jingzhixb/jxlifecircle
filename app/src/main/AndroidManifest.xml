@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="zhuyekeji.zhengzhou.jxlifecircle">
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -172,7 +173,12 @@
             android:name="me.iwf.photopicker.PhotoPagerActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".activity.AddTaoCanActivity" />
-        <activity android:name=".activity.PInCheDeliteActivity"></activity>
+        <activity android:name=".activity.PInCheDeliteActivity" />
+        <activity android:name=".orderactivity.UserPingJiaActivity" />
+        <activity android:name=".activity.BankListActivity" />
+        <activity android:name=".activity.AddBankActivity" />
+        <activity android:name=".activity.ChongZhiActivity" />
+        <activity android:name=".homeacyivity.PinCheSearchActivity"></activity>
     </application>
 
 </manifest>

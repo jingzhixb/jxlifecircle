@@ -1,13 +1,15 @@
 package zhuyekeji.zhengzhou.jxlifecircle.homeacyivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -36,14 +38,14 @@ import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.bean.HotRouteBean;
-import zhuyekeji.zhengzhou.jxlifecircle.frament.TouPiaoNewFrament;
 import zhuyekeji.zhengzhou.jxlifecircle.frament.home.CheFindRenFrament;
 import zhuyekeji.zhengzhou.jxlifecircle.frament.home.PinCheAllFrament;
 import zhuyekeji.zhengzhou.jxlifecircle.frament.home.RenFindCheFrament;
 import zhuyekeji.zhengzhou.jxlifecircle.frament.home.TianTianFrament;
-import zhuyekeji.zhengzhou.jxlifecircle.frament.home.TouPaioAllFrament;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.JsonUtile;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
+import zhuyekeji.zhengzhou.jxlifecircle.widget.MyViewPage;
+import zhuyekeji.zhengzhou.jxlifecircle.widget.VerticalScrollView;
 
 public class PinCheActivity extends BaseActivity
 {
@@ -71,11 +73,14 @@ public class PinCheActivity extends BaseActivity
     @BindView(R.id.slidingtl)
     SlidingTabLayout slidingtl;
     @BindView(R.id.viewpage)
-    ViewPager viewpage;
-    private String[] titles = new String[]{"全部", "车找人","人找车","天天拼"};
+    MyViewPage viewpage;
+    @BindView(R.id.scrollView)
+    VerticalScrollView scrollView;
+    private String[] titles = new String[]{"全部", "车找人", "人找车", "天天拼"};
     private ArrayList<Fragment> mFraments = new ArrayList<>();
-    private List<HotRouteBean> beans;
+    private List<HotRouteBean> beans = new ArrayList<>();
     private PinCheHotRouteAdapter adapter;
+    private WindowManager windowManager;
 
     @Override
     public int getViewId()
@@ -86,16 +91,16 @@ public class PinCheActivity extends BaseActivity
     @Override
     protected void processLogic()
     {
-        JxApiCallBack.gethot(getToken(),1,1,this,callBack);
-       tvTitle.setText("顺分车");
-       titleRight.setText("发布");
+        JxApiCallBack.gethot(getToken(), 1, 1, this, callBack);
+        tvTitle.setText("顺分车");
+        titleRight.setText("发布");
         mFraments.add(new PinCheAllFrament());
         mFraments.add(new CheFindRenFrament());
         mFraments.add(new RenFindCheFrament());
         mFraments.add(new TianTianFrament());
         slidingtl.setViewPager(viewpage, titles, this, mFraments);
-        adapter = new PinCheHotRouteAdapter(this, R.layout.pinche_hot_item,beans);
-        rvHotSearch.setLayoutManager(new GridLayoutManager(this,4));
+        adapter = new PinCheHotRouteAdapter(this, R.layout.pinche_hot_item, beans);
+        rvHotSearch.setLayoutManager(new GridLayoutManager(this, 4));
         rvHotSearch.setAdapter(adapter);
     }
 
@@ -104,6 +109,10 @@ public class PinCheActivity extends BaseActivity
     {
 
     }
+
+
+
+
 
     @Override
     protected Context getActivityContext()
@@ -133,6 +142,29 @@ public class PinCheActivity extends BaseActivity
             case R.id.rl_data:
                 break;
             case R.id.tv_search:
+                String setou = edStart.getText().toString().trim();
+                String end = edEnd.getText().toString().trim();
+                String time = tvData.getText().toString().trim();
+                if (setou == null || setou.length() == 0)
+                {
+                    ToastUtils.showShort("请输入出发地点");
+                    return;
+                }
+                if (end == null || end.length() == 0)
+                {
+                    ToastUtils.showShort("请输入目的地");
+                    return;
+                }
+                if (time == null || time.length() == 0)
+                {
+                    ToastUtils.showShort("请输入出发时间");
+                    return;
+                }
+                Intent intent=new Intent(PinCheActivity.this,PinCheSearchActivity.class);
+                intent.putExtra("start",setou);
+                intent.putExtra("end",end);
+                intent.putExtra("data",time);
+                startActivity(intent);
                 break;
             case R.id.rl_hot_route:
                 break;
@@ -140,7 +172,7 @@ public class PinCheActivity extends BaseActivity
     }
 
 
-    CallBack callBack=new CallBack()
+    CallBack callBack = new CallBack()
     {
         @Override
         public void onSuccess(int what, Response<String> result)
@@ -150,11 +182,12 @@ public class PinCheActivity extends BaseActivity
                 case 1:
                     if (JsonUtile.getCode(result.body()).equals("200"))
                     {
-                        List list= Arrays.asList(new Gson().fromJson(JsonUtile.getbody(result.body()), HotRouteBean[].class));
-                        beans=new ArrayList<>(list);
+                        List list = Arrays.asList(new Gson().fromJson(JsonUtile.getbody(result.body()), HotRouteBean[].class));
+                        beans.addAll(list);
                         adapter.notifyDataSetChanged();
 
-                    }else {
+                    } else
+                    {
                         ToastUtils.showShort(JsonUtile.getresulter(result.body()));
                     }
                     break;
@@ -189,7 +222,7 @@ public class PinCheActivity extends BaseActivity
             @Override
             public void onClick(View view)
             {
-                Intent intent=new Intent(PinCheActivity.this,PinCheFaBuActivity.class);
+                Intent intent = new Intent(PinCheActivity.this, PinCheFaBuActivity.class);
                 startActivity(intent);
 
             }
@@ -246,4 +279,6 @@ public class PinCheActivity extends BaseActivity
             }
         });
     }
+
+
 }

@@ -24,7 +24,7 @@
             android:textSize="@dimen/sp_15"
             android:textColor="@color/title_666"
             android:maxLines="2"
-            android:text="故事都是粉必读防v监督和v不行就不v"
+            android:text=""
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="wrap_content"
@@ -42,6 +42,7 @@
             android:layout_toRightOf="@id/x"
             android:layout_marginLeft="2dp"
             android:text="1000"
+            android:id="@+id/jifen"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="1dp"
             android:layout_height="wrap_content" />

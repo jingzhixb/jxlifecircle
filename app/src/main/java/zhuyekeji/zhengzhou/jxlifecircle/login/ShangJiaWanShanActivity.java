@@ -20,6 +20,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.flyco.dialog.listener.OnOperItemClickL;
 import com.flyco.dialog.widget.ActionSheetDialog;
+import com.lzy.okgo.model.Response;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.List;
@@ -29,10 +33,14 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import zhuyekeji.zhengzhou.jxlifecircle.App;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
+import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
+import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.JsonUtile;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.CropUtils;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.FilesUtil;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.PermissionUtils;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
 
 public class ShangJiaWanShanActivity extends BaseActivity
 {
@@ -74,6 +82,7 @@ public class ShangJiaWanShanActivity extends BaseActivity
     private File backFile;
     private File xieyiFile;
     private int photoType=1;
+    private int id1=999,id2=999,id3=999;
     private boolean mXieyi=false;
     @Override
     public int getViewId()
@@ -139,6 +148,27 @@ public class ShangJiaWanShanActivity extends BaseActivity
                 }
                 break;
             case R.id.wancheng:
+                if (id1==999)
+                {
+                    ToastUtils.showShort("请上传身份证正面");
+                    return;
+                }
+                if (id2==999)
+                {
+                    ToastUtils.showShort("请上传身份证反面");
+                    return;
+                }
+                if (id3==999)
+                {
+                    ToastUtils.showShort("请上传营业执照");
+                    return;
+                }
+                Intent intent=new Intent();
+                intent.putExtra("id1",id1);
+                intent.putExtra("id2",id2);
+                intent.putExtra("id3",id3);
+                setResult(1,intent);
+                finish();
                 break;
         }
     }
@@ -221,22 +251,69 @@ public class ShangJiaWanShanActivity extends BaseActivity
             imageZheng.setVisibility(View.VISIBLE);
             Glide.with(App.getInstance()).load(uri).into(imageZheng);
             frontFile = FilesUtil.getFileByUri(uri, this);
+            JxApiCallBack.up_img(frontFile,1,ShangJiaWanShanActivity.this,callBack);
         } else if (photoType == 2) {
             imageFan.setVisibility(View.VISIBLE);
             Glide.with(App.getInstance()).load(uri).into(imageFan);
             backFile = FilesUtil.getFileByUri(uri, this);
+            JxApiCallBack.up_img(backFile,1,ShangJiaWanShanActivity.this,callBack);
         }else if (photoType==3)
         {
             imageRegisterxieyi.setVisibility(View.VISIBLE);
             Glide.with(App.getInstance()).load(uri).into(imageRegisterxieyi);
             xieyiFile=FilesUtil.getFileByUri(uri,this);
+            JxApiCallBack.up_img(xieyiFile,1,ShangJiaWanShanActivity.this,callBack);
         }
+
 
 
         //上传文件
 
 //        DreamApi.uploadAvator(this, 0x002, token, file, uploadCallBack);
     }
+
+    CallBack callBack=new CallBack()
+    {
+        @Override
+        public void onSuccess(int what, Response<String> result)
+        {
+          if (JsonUtile.getCode(result.body()).equals("200"))
+          {
+              try
+              {
+                  JSONObject object=new JSONObject(JsonUtile.getbody(result.body()));
+                  int id=object.getInt("fileid");
+                  if (photoType==1)
+                  {
+                      id1=id;
+                  }else if (photoType==2)
+                  {
+                      id2=id;
+                  }else if (photoType==3)
+                  {
+                      id3=id;
+                  }
+              } catch (JSONException e)
+              {
+                  e.printStackTrace();
+              }
+          }else {
+              ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+          }
+        }
+
+        @Override
+        public void onFail(int what, Response<String> result)
+        {
+
+        }
+
+        @Override
+        public void onFinish(int what)
+        {
+
+        }
+    };
     public void startPhotoZoom(Uri uri) {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");

@@ -14,6 +14,9 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lzy.okgo.model.Response;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,9 +87,9 @@ public class MeFrament extends BaseFragment implements FragmentBackHandler
 
     private List<MeBean> beans = new ArrayList<>();
     private boolean isDoubleClick = false;
-    private String[] textuser = new String[]{"我的收藏", "我的发布", "待评价", "历史足迹",
+    private String[] textuser = new String[]{"我的收藏", "我的发布",
             "我的优惠卷", "我的钱包", "我的地址", "推广有奖", "设置", "平台客服", "生活服务", "最新在线电影", "商家中心", "商家合作"};
-    private int[] iconuser = new int[]{R.mipmap.shoucang, R.mipmap.fabu, R.mipmap.pingjia, R.mipmap.zuji, R.mipmap.youhuiquan, R.mipmap.qianbao, R.mipmap.dizhi, R.mipmap.tuiguang,
+    private int[] iconuser = new int[]{R.mipmap.shoucang, R.mipmap.fabu, R.mipmap.youhuiquan, R.mipmap.qianbao, R.mipmap.dizhi, R.mipmap.tuiguang,
             R.mipmap.shezhi, R.mipmap.kefu, R.mipmap.shenghuofuwu, R.mipmap.dianying, R.mipmap.ic_launcher, R.mipmap.ic_launcher};
 
 
@@ -95,6 +98,7 @@ public class MeFrament extends BaseFragment implements FragmentBackHandler
 
 
     private int[] iconshangjia = new int[]{R.mipmap.shoucang, R.mipmap.luntan, R.mipmap.youhuiquan, R.mipmap.shangpin, R.mipmap.qianbao, R.mipmap.dizhi, R.mipmap.shezhi, R.mipmap.tuiguang, R.mipmap.kefu};
+    private String point;
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container)
@@ -112,6 +116,7 @@ public class MeFrament extends BaseFragment implements FragmentBackHandler
     @Override
     protected void initData()
     {
+        JxApiCallBack.info(getToken(),2,getActivity(),callBack);
         for (int i = 0; i < textuser.length; i++)
         {
             MeBean bean = new MeBean();
@@ -240,7 +245,7 @@ public class MeFrament extends BaseFragment implements FragmentBackHandler
         unbinder.unbind();
     }
 
-    @OnClick({R.id.im_user, R.id.ll_message, R.id.ll_jifen, R.id.ll_guanzhu, R.id.ll_fensi})
+    @OnClick({R.id.im_user, R.id.ll_message, R.id.ll_jifen, R.id.ll_guanzhu, R.id.ll_fensi,R.id.sign})
     public void onViewClicked(View view)
     {
         switch (view.getId())
@@ -253,6 +258,7 @@ public class MeFrament extends BaseFragment implements FragmentBackHandler
                 break;
             case R.id.ll_jifen://积分
                 Intent intent = new Intent(getActivity(), JiFenActivity.class);
+                 intent.putExtra("jifen",point);
                 startActivity(intent);
                 break;
             case R.id.ll_guanzhu:
@@ -282,6 +288,32 @@ public class MeFrament extends BaseFragment implements FragmentBackHandler
                   }else {
                   ToastUtils.showShort(JsonUtile.getresulter(result.body()));
                   }
+                  break;
+              case 2:
+                if (JsonUtile.isTrue(result.body()))
+                {
+                    try
+                    {
+                        JSONObject object=new JSONObject(result.body());
+                        int message=object.getInt("message");// message =>消息数
+                        tvMessage.setText(message+"");
+                        String info=object.getString("info");
+                        JSONObject jsonObject=new JSONObject(info);
+                        String pic=jsonObject.getString("header_pic");
+                        String nickname=jsonObject.getString("nickname");
+                        String userid=jsonObject.getString("userid");
+                        //总积分
+                        point = jsonObject.getString("point");
+                        String is_seller=jsonObject.getString("is_seller");//用户角色（1：个人用户 2：商家）
+                        tvJifen.setText(point);
+                        tvUsername.setText(nickname);
+                    } catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }else {
+                    ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+                }
                   break;
           }
         }

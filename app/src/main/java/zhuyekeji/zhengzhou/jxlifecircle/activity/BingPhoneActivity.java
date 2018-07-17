@@ -36,6 +36,7 @@ public class BingPhoneActivity extends BaseActivity
     @BindView(R.id.next)
     TextView next;
     private MyCountDownTimer myCountDownTimer;
+
     @Override
     public int getViewId()
     {
@@ -45,7 +46,14 @@ public class BingPhoneActivity extends BaseActivity
     @Override
     protected void processLogic()
     {
-tvTitle.setText("手机号验证");
+        tvTitle.setText("手机号验证");
+        String phone = getIntent().getStringExtra("phone");
+        if (phone != null)
+        {
+            edMobile.setText(phone);
+            edMobile.setFocusableInTouchMode(false);
+            edMobile.setFocusable(false);
+        }
     }
 
     @Override
@@ -87,12 +95,12 @@ tvTitle.setText("手机号验证");
                 }
                 break;
             case R.id.next:
-                Intent intent=new Intent(BingPhoneActivity.this,NewPhoneActivity.class);
+                Intent intent = new Intent(BingPhoneActivity.this, NewPhoneActivity.class);
+                intent.putExtra("phone", edMobile.getText().toString().trim());
                 startActivity(intent);
                 break;
         }
     }
-
 
 
     //复写倒计时

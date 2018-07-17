@@ -10,13 +10,18 @@
 
     <include layout="@layout/title_layout"/>
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+    <com.flyco.tablayout.CommonTabLayout
+        android:id="@+id/tl_connlent"
+        app:tl_textSelectColor="@color/jxcolor"
+        app:tl_textsize="@dimen/sp_15"
+        app:tl_indicator_width="40dp"
+        app:tl_textUnselectColor="@color/title_666"
         android:layout_width="match_parent"
-        android:id="@+id/refreshlayout"
-        android:layout_height="match_parent">
-        <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
-            android:layout_width="match_parent"
-            android:id="@+id/rv_fabu"
-            android:layout_height="match_parent"/>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        app:tl_indicator_color="@color/jxcolor"
+        app:tl_underline_color="@color/jxcolor"
+        android:layout_height="48dp"/>
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

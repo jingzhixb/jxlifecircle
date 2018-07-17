@@ -59,7 +59,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:id="@+id/tv_message"
-                android:text="10"
+                android:text=""
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
@@ -83,7 +83,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:id="@+id/tv_jifen"
-                android:text="10"
+                android:text=""
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView

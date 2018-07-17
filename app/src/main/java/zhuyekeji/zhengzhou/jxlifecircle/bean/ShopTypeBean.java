@@ -7,8 +7,18 @@ package zhuyekeji.zhengzhou.jxlifecircle.bean;
 public class ShopTypeBean
 {
     private int class_id;
-    private String calass_name;
+    private String class_name;
     private int is_show;
+
+    public String getClass_name()
+    {
+        return class_name;
+    }
+
+    public void setClass_name(String class_name)
+    {
+        this.class_name = class_name;
+    }
 
     public int getIs_show()
     {
@@ -30,13 +40,4 @@ public class ShopTypeBean
         this.class_id = class_id;
     }
 
-    public String getCalass_name()
-    {
-        return calass_name;
-    }
-
-    public void setCalass_name(String calass_name)
-    {
-        this.calass_name = calass_name;
-    }
 }

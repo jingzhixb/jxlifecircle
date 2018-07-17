@@ -1,6 +1,7 @@
 package zhuyekeji.zhengzhou.jxlifecircle.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -12,6 +13,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
 
 public class MiaoShuActivity extends BaseActivity
 {
@@ -66,6 +68,17 @@ tvTitle.setText("商品描述");
                 finish();
                 break;
             case R.id.tv_baocun:
+                String content=edMiaoshu.getText().toString().trim();
+                if (content==null||content.length()==0)
+                {
+                    ToastUtils.showShort("请输入内容");
+                    return;
+                }
+                Intent inten=new Intent();
+                inten.putExtra("content",content);
+                setResult(3,inten);
+                finish();
+
                 break;
         }
     }

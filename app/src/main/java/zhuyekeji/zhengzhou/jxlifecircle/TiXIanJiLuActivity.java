@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import zhuyekeji.zhengzhou.jxlifecircle.adapter.JiLuAdapter;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.frament.user.PayJiLuFrament;
 import zhuyekeji.zhengzhou.jxlifecircle.frament.user.TiXianJiluFrament;
@@ -57,8 +56,6 @@ public class TiXIanJiLuActivity extends BaseActivity
     @Override
     protected void setListener()
     {
-        JiLuAdapter adapter = new JiLuAdapter(this, R.layout.jilu_item, null);
-
         mFraments.add(new PayJiLuFrament());
         mFraments.add(new TiXianJiluFrament());
         slidingtl.setViewPager(viewpage, titles, this, mFraments);

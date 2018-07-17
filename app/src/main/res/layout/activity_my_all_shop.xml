@@ -21,10 +21,16 @@
             android:layout_width="96dp"
             android:layout_height="match_parent">
         </android.support.v7.widget.RecyclerView>
+        <View
+            android:layout_width="1dp"
+            android:layout_toRightOf="@id/yiji"
+            android:background="@color/view_color"
+            android:id="@+id/xs"
+            android:layout_height="match_parent"/>
         <android.support.v7.widget.RecyclerView
-            android:layout_toRightOf="@+id/yiji"
+            android:layout_toRightOf="@+id/xs"
             android:id="@+id/erji"
-            android:background="#FFFFFF"
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </RelativeLayout>

@@ -8,13 +8,14 @@
         android:background="@color/jxcolor"
         android:layout_centerVertical="true"
         android:id="@+id/view"
+        android:visibility="gone"
         android:layout_height="26dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_centerVertical="true"
         android:textSize="@dimen/sp_15"
+        android:id="@+id/name"
         android:layout_marginLeft="26dp"
-        android:text="商品"
         android:layout_toRightOf="@id/view"
         android:layout_height="wrap_content" />
 </RelativeLayout>

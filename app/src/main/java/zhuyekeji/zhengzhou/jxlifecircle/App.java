@@ -109,6 +109,6 @@ public class App extends Application
         //新浪微博(第三个参数为回调地址)//原来签名d2690089032b7ee13d3e8cc5e4357b93
       //  PlatformConfig.setSinaWeibo("3729388083", "830346c946e542d1849d2951cc43ab22", "http://sns.whalecloud.com/sina2/callback");
 
-        PlatformConfig.setQQZone("1106936651", "gkB6epKYAfeznbUz");
+        PlatformConfig.setQQZone("101484253", "14e140dfe37471be993db949312efba2");
     }
 }

@@ -12,11 +12,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lzy.okgo.model.Response;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareConfig;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.utils.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Map;
 
@@ -24,7 +28,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import zhuyekeji.zhengzhou.jxlifecircle.MainActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
+import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
+import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.JsonUtile;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.RegexUtils;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.SPUtils;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener
 {
@@ -61,6 +70,11 @@ private static final String TAG=LoginActivity.class.getName();
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);// 设置全屏
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        if (SPUtils.getInstance().getBoolean("islogin"))
+        {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            return;
+        }
         rlBack.setOnClickListener(this);
         login.setOnClickListener(this);
         tvRegist.setOnClickListener(this);
@@ -77,8 +91,19 @@ private static final String TAG=LoginActivity.class.getName();
         switch (view.getId())
         {
             case R.id.login://登录
-                SPUtils.getInstance().put("token", "3125ed7e31765e51c4e7ccd987b48d70");
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                String phone=edUsername.getText().toString().trim();
+            String password=edpassword.getText().toString().trim();
+            if (phone==null|| !RegexUtils.isMobileSimple(phone))
+            {
+                ToastUtils.showShort("请输入正确的手机号");
+                return;
+            }
+            if (password==null||password.length()==0)
+            {
+                ToastUtils.showShort("请输入密码");
+                return;
+            }
+                JxApiCallBack.user_login(phone,password,"","",1,"",1,LoginActivity.this,callBack);
                 break;
             case R.id.rl_back:
                 finish();
@@ -105,6 +130,47 @@ private static final String TAG=LoginActivity.class.getName();
                 break;
         }
     }
+    CallBack callBack=new CallBack()
+    {
+        @Override
+        public void onSuccess(int what, Response<String> result)
+        {
+switch (what)
+{
+    case 1:
+        if (JsonUtile.isTrue(result.body()))
+        {
+            try
+            {
+                JSONObject object=new JSONObject(JsonUtile.getbody(result.body()));
+                String token=object.getString("token");//3125ed7e31765e51c4e7ccd987b48d70
+                SPUtils.getInstance().put("token", token);
+                SPUtils.getInstance().put("islogin",true);
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            } catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+
+        }else {
+            ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+        }
+        break;
+}
+        }
+
+        @Override
+        public void onFail(int what, Response<String> result)
+        {
+
+        }
+
+        @Override
+        public void onFinish(int what)
+        {
+
+        }
+    };
     private void authorization(SHARE_MEDIA share_media) {
         UMShareConfig config = new UMShareConfig();
         config.isNeedAuthOnGetUserInfo(true);

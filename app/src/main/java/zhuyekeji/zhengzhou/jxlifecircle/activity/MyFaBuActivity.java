@@ -2,22 +2,28 @@ package zhuyekeji.zhengzhou.jxlifecircle.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.yanzhenjie.recyclerview.swipe.SwipeMenu;
-import com.yanzhenjie.recyclerview.swipe.SwipeMenuBridge;
-import com.yanzhenjie.recyclerview.swipe.SwipeMenuCreator;
-import com.yanzhenjie.recyclerview.swipe.SwipeMenuItem;
-import com.yanzhenjie.recyclerview.swipe.SwipeMenuItemClickListener;
-import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
+import com.flyco.tablayout.CommonTabLayout;
+import com.flyco.tablayout.listener.CustomTabEntity;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
-import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
+import zhuyekeji.zhengzhou.jxlifecircle.frament.user.DianPuFrament;
+import zhuyekeji.zhengzhou.jxlifecircle.frament.user.FaBuFangChanFrament;
+import zhuyekeji.zhengzhou.jxlifecircle.frament.user.FaBuFriendFrament;
+import zhuyekeji.zhengzhou.jxlifecircle.frament.user.FaBuPinCheFrament;
+import zhuyekeji.zhengzhou.jxlifecircle.frament.user.FaBuQiCheFrament;
+import zhuyekeji.zhengzhou.jxlifecircle.frament.user.ShopFrament;
+import zhuyekeji.zhengzhou.jxlifecircle.frament.user.TieZiFrament;
 
 public class MyFaBuActivity extends BaseActivity
 {
@@ -26,11 +32,13 @@ public class MyFaBuActivity extends BaseActivity
     RelativeLayout rlBack;
     @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.rv_fabu)
-    SwipeMenuRecyclerView rvFabu;
-    @BindView(R.id.refreshlayout)
-    SmartRefreshLayout refreshlayout;
-
+    @BindView(R.id.tl_connlent)
+    CommonTabLayout tlConnlent;
+    @BindView(R.id.frame_layout)
+    FrameLayout frameLayout;
+    private String[] mTitles = {"朋友圈", "汽车圈", "房产圈","拼车"};
+    private ArrayList<Fragment> mFrament = new ArrayList<>();
+    private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
     @Override
     public int getViewId()
     {
@@ -40,38 +48,36 @@ public class MyFaBuActivity extends BaseActivity
     @Override
     protected void processLogic()
     {
+        for (int i=0;i<mTitles.length;i++)
+        {
+            final int t=i;
+            mTabEntities.add(new CustomTabEntity()
+            {
+                @Override
+                public String getTabTitle()
+                {
+                    return mTitles[t];
+                }
 
+                @Override
+                public int getTabSelectedIcon()
+                {
+                    return 0;
+                }
+
+                @Override
+                public int getTabUnselectedIcon()
+                {
+                    return 0;
+                }
+            });
+        }
+        mFrament.add(new FaBuFriendFrament());
+        mFrament.add(new FaBuQiCheFrament());
+        mFrament.add(new FaBuFangChanFrament());
+        mFrament.add(new FaBuPinCheFrament());
+        tlConnlent.setTabData(mTabEntities,this,R.id.frame_layout, mFrament);
     }
-
-
-    // 创建菜单：
-    SwipeMenuCreator mSwipeMenuCreator = new SwipeMenuCreator() {
-        @Override
-        public void onCreateMenu(SwipeMenu leftMenu, SwipeMenu rightMenu, int viewType) {
-            SwipeMenuItem deleteItem = new SwipeMenuItem(MyFaBuActivity.this); // 各种文字和图标属性设置。
-            deleteItem.setText("删除");
-            deleteItem.setBackground(R.color.red);
-            deleteItem.setWidth(250);
-            deleteItem.setHeight(300);
-            rightMenu.addMenuItem(deleteItem); // 在Item左侧添加一个菜单。
-
-//            SwipeMenuItem deleteItem = new SwipeMenuItem(getActivity()); // 各种文字和图标属性设置。
-//            leftMenu.addMenuItem(deleteItem); // 在Item右侧添加一个菜单。
-
-            // 注意：哪边不想要菜单，那么不要添加即可。
-        }
-    };
-    SwipeMenuItemClickListener mMenuItemClickListener = new SwipeMenuItemClickListener() {
-        @Override
-        public void onItemClick(SwipeMenuBridge menuBridge) {
-            // 任何操作必须先关闭菜单，否则可能出现Item菜单打开状态错乱。
-            menuBridge.closeMenu();
-            ToastUtils.showShort("点击了侧滑菜单");
-            int direction = menuBridge.getDirection(); // 左侧还是右侧菜单。
-            int adapterPosition = menuBridge.getAdapterPosition(); // RecyclerView的Item的position。
-            int menuPosition = menuBridge.getPosition(); // 菜单在RecyclerView的Item中的Position。
-        }
-    };
 
     @Override
     protected void setListener()
@@ -91,5 +97,11 @@ public class MyFaBuActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.rl_back)
+    public void onViewClicked()
+    {
+        finish();
     }
 }

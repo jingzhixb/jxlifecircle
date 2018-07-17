@@ -18,6 +18,8 @@ import zhuyekeji.zhengzhou.jxlifecircle.R;
 import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.JsonUtile;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
 
 public class AddYouHuiJuanActivity extends BaseActivity
 {
@@ -87,8 +89,27 @@ tvTitle.setText("新增优惠卷");
                 startActivity(intent);
                 break;
             case R.id.tv_baocun:
-                JxApiCallBack.add_youhuijuan(getToken(),"",1,1,
-                        "",1,AddYouHuiJuanActivity.this,callBack);//新增优惠卷
+                String money=edJiage.getText().toString().trim();
+                int biaoqian=1;
+                String unm=edShuliang.getText().toString().trim();
+                String mianzhi=edMianzhi.getText().toString().trim();
+                if (mianzhi==null||mianzhi.length()==0)
+                {
+                    ToastUtils.showShort("请输入面值金额");
+                    return;
+                }
+                if (unm==null||unm.length()==0)
+                {
+                    ToastUtils.showShort("请输入优惠卷数量");
+                    return;
+                }
+                if (money==null||money.length()==0)
+                {
+                    ToastUtils.showShort("请输入优惠卷价格");
+                    return;
+                }
+                JxApiCallBack.add_youhuijuan(getToken(),mianzhi,biaoqian,Integer.parseInt(unm),
+                        money,1,AddYouHuiJuanActivity.this,callBack);//新增优惠卷
                 if (false)
                 {
                     JxApiCallBack.updatecoupon(getToken(),"",1,
@@ -102,7 +123,19 @@ tvTitle.setText("新增优惠卷");
         @Override
         public void onSuccess(int what, Response<String> result)
         {
-
+switch (what)
+{
+    case 1:
+        if (JsonUtile.getCode(result.body()).equals("200"))
+        {
+            ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+            setResult(1);
+            finish();
+        }else {
+            ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+        }
+        break;
+}
         }
 
         @Override

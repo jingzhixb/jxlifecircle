@@ -108,6 +108,7 @@
             android:layout_centerVertical="true"
             android:textColor="@color/title_666"
             android:textSize="@dimen/sp_12"
+            android:id="@+id/tv_keti"
             android:text="55555"
             android:layout_toRightOf="@id/xxx"
             android:layout_height="wrap_content" />

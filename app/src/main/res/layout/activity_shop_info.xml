@@ -104,7 +104,7 @@
         <EditText
             android:layout_centerVertical="true"
             android:layout_marginRight="22dp"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
             android:id="@+id/ed_phone"
             android:background="@null"
@@ -139,14 +139,17 @@
             android:layout_alignTop="@id/x"
             android:background="@mipmap/youjiant"
             android:layout_height="wrap_content" />
-        <TextView
+        <EditText
             android:layout_marginRight="22dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_marginLeft="22dp"
             android:layout_below="@id/x"
+            android:background="@null"
+            android:hint="请输入店铺地址"
+            android:textSize="@dimen/sp_14"
             android:id="@+id/tv_address"
             android:layout_centerVertical="true"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:textColor="@color/title_666"
            />
         <View

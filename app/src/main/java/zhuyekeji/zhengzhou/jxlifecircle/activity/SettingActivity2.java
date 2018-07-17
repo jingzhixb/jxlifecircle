@@ -20,8 +20,10 @@ import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.JsonUtile;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.AppUtils;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.CacheUtils;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.CleanUtils;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.util.SPUtils;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
 
 public class SettingActivity2 extends BaseActivity
@@ -76,7 +78,7 @@ public class SettingActivity2 extends BaseActivity
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.rl_back, R.id.rl_xiugaipassword, R.id.rl_calean, R.id.rl_guanyu, R.id.rl_genduo})
+    @OnClick({R.id.rl_back, R.id.rl_xiugaipassword, R.id.rl_calean, R.id.rl_guanyu, R.id.rl_genduo,R.id.exit})
     public void onViewClicked(View view)
     {
         switch (view.getId())
@@ -99,6 +101,10 @@ public class SettingActivity2 extends BaseActivity
                 startActivity(intent);
                 break;
             case R.id.rl_genduo:
+                break;
+            case R.id.exit:
+                SPUtils.getInstance().put("islogin",false,true);
+                AppUtils.exitApp();
                 break;
         }
     }

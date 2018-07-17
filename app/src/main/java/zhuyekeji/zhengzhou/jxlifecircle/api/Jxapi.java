@@ -6,9 +6,9 @@ package zhuyekeji.zhengzhou.jxlifecircle.api;
 
 public class Jxapi
 {
-    public static final String BASE="http://192.168.1.19/jxsc/index.php/";
+    public static final String BASE="http://192.168.1.19/index.php/";
 
-
+    public static final String INFO=BASE+"Home/Personal/personalcenter";//个人中心
     public static final String UPDATAPASSWORD=BASE+"Home/Setsysterm/updatepass";
     public static final String GETVERIFY=BASE+"Home/Setsysterm/getverify";
     public static final String GUANYU=BASE+"Home/Setsysterm/aboutsysterm";//关于软件
@@ -32,9 +32,15 @@ public class Jxapi
     public static final String SIGN=BASE+"Home/Integralmall/jifenqiandao";//签到
     public static final String CITY_ALL=BASE+"Home/Mobile/all_city";//城市列表
     public static final String GOODS_LIST=BASE+"Home/Shop/goods_list";	//商品管理-商品列表
-
+    public static final String JIFENSHOP=BASE+"Home/Integralmall/orderlist";//积分商城 订单
+    public static final String ADDBANK=BASE+"Home/Personal/addbankcard";//绑定银行卡
+    public static final String JIFEN=BASE+"Home/Integralmall/mysignin";//我的积分模块显示总积分和积分明细
     public static final String YOUHUIERJI=BASE+"Home/Mobile/sub_discount";//优惠购对应的二级分类
-
+    public static final String EDUSERINFO=BASE+"Home/Personal/updatenickname";//编辑用户昵称 名字头像
+    public static final String EDPHONE=BASE+"Home/Personal/nextway";//修改手机号
+    public static final String KANJIA=BASE+"Home/Cutdownprice/cutstyle";//展示砍价成功和砍价进行中页面信息
+    public static final String MYFABU=BASE+"Home/message/getMynews";
+    public static final String LABEL=BASE+"Home/Mobile/label";
     public static final String KANJIALIST=BASE+"Home/Cutdownprice/cutdownlist";
     /*
     * 优惠卷
@@ -63,7 +69,8 @@ public class Jxapi
     public static final String ADDCHRFINDREN=BASE+"/Home/message/addCarpoolingForHum";//添加车找人
     public static final String ADDTIANTIAN=BASE+"/Home/message/addCarpoolingForDay";//添加天天拼车
     public static final String PINCHEDELITE=BASE+"/Home/message/getCarpoolingDetail";//获取拼车详情
-    public static final String GETHOT=BASE+"/Home/message/getHotroad";
+    public static final String GETHOT=BASE+"/Home/message/getHotroad";//获取热门路线
+    public static final String SEARCH=BASE+"/Home/message/getSearch";//获取搜索信息
 
 
     /*
@@ -84,10 +91,16 @@ public static final String ORDER_JIUDIAN=BASE+"Home/Order/hotel_order";//用户�
 public static final String DELITE_ORDER=BASE+"Home/Order/del_order";//删除订单
     public static final String SHOPORDER_YOUHUIGOU=BASE+"Home/Order/sell_order";//商家订单
     public static final String SHOPJIUDIANORDER=BASE+"Home/Order/hotelsell_order";//商家酒店订单
+    public static final String PINGJIA=BASE+"Home/Order/comment";
 
     /*
     * 我的收藏
     * */
     public static final String MYCONLL=BASE+"Home/message/getCollectionMessage";//	读取商品、店铺的信息收藏
     public static final String DELETE_COMLLLECT=BASE+"/getCollectionGoods";
+    /*
+    * 我的钱包
+    * */
+    public static final String TIXIAN=BASE+"Home/Mywallet/wallet";//	充值、提现记录读取
+    public static final String TI=BASE+"Home/Mywallet/putforward";//	提现操作
 }

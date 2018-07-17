@@ -10,16 +10,24 @@ public class KanJiaBean
     /**
      * id : 1
      * name : 商品1
-     * title : 这是商品1
      * img : Uploads/Picture/2018-07-09/5b42fac1f18f8.png
      * price : 89.90
+     * yikan : 20
+     * num : 10
+     * time : 172800
+     * type : 0
+     * userid : 58
      */
 
     private String id;
     private String name;
-    private String title;
     private String img;
     private String price;
+    private String yikan;
+    private String num;
+    private String time;
+    private int type;
+    private int userid;
 
     public String getId()
     {
@@ -41,16 +49,6 @@ public class KanJiaBean
         this.name = name;
     }
 
-    public String getTitle()
-    {
-        return title;
-    }
-
-    public void setTitle(String title)
-    {
-        this.title = title;
-    }
-
     public String getImg()
     {
         return img;
@@ -69,5 +67,55 @@ public class KanJiaBean
     public void setPrice(String price)
     {
         this.price = price;
+    }
+
+    public String getYikan()
+    {
+        return yikan;
+    }
+
+    public void setYikan(String yikan)
+    {
+        this.yikan = yikan;
+    }
+
+    public String getNum()
+    {
+        return num;
+    }
+
+    public void setNum(String num)
+    {
+        this.num = num;
+    }
+
+    public String getTime()
+    {
+        return time;
+    }
+
+    public void setTime(String time)
+    {
+        this.time = time;
+    }
+
+    public int getType()
+    {
+        return type;
+    }
+
+    public void setType(int type)
+    {
+        this.type = type;
+    }
+
+    public int getUserid()
+    {
+        return userid;
+    }
+
+    public void setUserid(int userid)
+    {
+        this.userid = userid;
     }
 }

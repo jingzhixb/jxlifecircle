@@ -22,6 +22,7 @@
             android:text="几番沙发上看就是解放军分身乏术的方式的方式"
             android:textColor="@color/title_666"
             android:maxLines="2"
+            android:id="@+id/title"
             android:layout_height="wrap_content" />
         <RelativeLayout
             android:layout_width="match_parent"
@@ -51,6 +52,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_centerVertical="true"
                 android:textSize="@dimen/sp_12"
+                android:id="@+id/desc"
                 android:textColor="@color/title_999"
                 android:text="6.6万人已拿奖"
                 android:layout_height="wrap_content" />
@@ -60,6 +62,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_12"
                 android:id="@+id/tv_kanjia"
+                android:text="砍价0元得"
                 android:gravity="center"
                 android:background="@drawable/kanjia"
                 android:layout_alignParentRight="true"/>

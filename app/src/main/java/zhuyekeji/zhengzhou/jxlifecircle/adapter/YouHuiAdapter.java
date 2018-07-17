@@ -8,7 +8,6 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import java.util.List;
 
 import zhuyekeji.zhengzhou.jxlifecircle.bean.MyCouPon;
-import zhuyekeji.zhengzhou.jxlifecircle.bean.YouHuiBean;
 
 /**
  * Created by Administrator on 2018/6/11.

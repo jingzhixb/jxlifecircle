@@ -31,7 +31,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:textStyle="bold"
-        android:text="1000"
+        android:text=""
         android:layout_height="wrap_content" />
     <TextView
         android:layout_width="wrap_content"
@@ -70,81 +70,47 @@
         android:background="@color/view_color"/>
 
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:id="@+id/rl_duihuan"
-        android:background="@color/white"
-        android:layout_height="72dp">
-        <TextView
-            android:text="积分明细"
-            android:layout_marginLeft="22dp"
-            android:id="@+id/x"
-            android:textSize="@dimen/sp_15"
-            android:textColor="@color/title_666"
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_below="@id/x"
-            android:layout_marginLeft="22dp"
-            android:textColor="@color/title_999"
-            android:textSize="@dimen/sp_12"
-            android:text="2018-1-22"
-            android:layout_marginTop="10dp"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:id="@+id/tv_shop_jifen"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="22dp"
-            android:textSize="20sp"
-            android:text="-10分"
-            android:textColor="@color/title_333"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/view_color"/>
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/rv_jifen"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
 
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:id="@+id/rl_qiandao"
-        android:background="@color/white"
-        android:layout_height="72dp">
-        <TextView
 
-            android:text="每日签到"
-            android:layout_marginLeft="22dp"
-            android:id="@+id/xx"
-            android:textSize="@dimen/sp_15"
-            android:textColor="@color/title_666"
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_below="@id/xx"
-            android:layout_marginLeft="22dp"
-            android:textColor="@color/title_999"
-            android:textSize="@dimen/sp_12"
-            android:text="2018-1-22"
-            android:layout_marginTop="10dp"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:id="@+id/tv_qiandao_jifen"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="22dp"
-            android:textSize="20sp"
-            android:text="+10分"
-            android:textColor="@color/orange"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:id="@+id/rl_qiandao"-->
+        <!--android:background="@color/white"-->
+        <!--android:layout_height="72dp">-->
+        <!--<TextView-->
+
+            <!--android:text="每日签到"-->
+            <!--android:layout_marginLeft="22dp"-->
+            <!--android:id="@+id/xx"-->
+            <!--android:textSize="@dimen/sp_15"-->
+            <!--android:textColor="@color/title_666"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_below="@id/xx"-->
+            <!--android:layout_marginLeft="22dp"-->
+            <!--android:textColor="@color/title_999"-->
+            <!--android:textSize="@dimen/sp_12"-->
+            <!--android:text="2018-1-22"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_height="wrap_content" />-->
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:id="@+id/tv_qiandao_jifen"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginRight="22dp"-->
+            <!--android:textSize="20sp"-->
+            <!--android:text="+10分"-->
+            <!--android:textColor="@color/orange"-->
+            <!--android:layout_height="wrap_content" />-->
+    <!--</RelativeLayout>-->
 </LinearLayout>

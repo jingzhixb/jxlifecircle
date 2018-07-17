@@ -19,21 +19,21 @@
            android:layout_height="match_parent">
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="75dp">
+               android:layout_height="100dp">
               <TextView
                   android:layout_width="wrap_content"
                   android:textSize="@dimen/sp_14"
+                  android:text="商品图片"
+                  android:id="@id/x"
                   android:textColor="@color/title_666"
                   android:layout_marginLeft="22dp"
                   android:layout_marginTop="10dp"
                   android:layout_height="wrap_content" />
-               <ImageView
-                   android:layout_width="75dp"
-                   android:layout_height="60dp"
-                   android:layout_marginRight="22dp"
-                   android:id="@+id/im_img"
-                   android:layout_centerVertical="true"
-                   android:layout_alignParentRight="true"/>
+               <android.support.v7.widget.RecyclerView
+                   android:id="@+id/rv_list"
+                   android:layout_width="match_parent"
+                   android:layout_below="@id/x"
+                   android:layout_height="match_parent"/>
                <View
                    android:layout_width="match_parent"
                    android:layout_height="1dp"
@@ -57,7 +57,7 @@
                    android:layout_width="match_parent"
                    android:layout_alignParentRight="true"
                    android:layout_toRightOf="@id/x"
-                   android:hint="40字以内"
+                   android:hint="30字以内"
                    android:id="@+id/tv_shopname"
                    android:textColor="@color/title_666"
                    android:gravity="end|center_vertical"
@@ -268,10 +268,14 @@
                           android:layout_gravity="center_vertical"
                           android:background="@drawable/spinner_stoken"
                           android:layout_weight="1">
-                          <Spinner
+                          <TextView
                               android:layout_width="match_parent"
                               android:layout_marginRight="6dp"
-                              android:id="@+id/sp_start_youxiao"
+                              android:textColor="@color/title_666"
+                              android:textSize="@dimen/sp_12"
+                              android:gravity="center"
+                              android:drawableRight="@mipmap/jiantoux"
+                              android:id="@+id/tv_start_date"
                               android:layout_height="match_parent"/>
                       </RelativeLayout>
 
@@ -283,10 +287,14 @@
                            android:layout_gravity="center_vertical"
                            android:background="@drawable/spinner_stoken"
                            android:layout_weight="1">
-                           <Spinner
+                           <TextView
                                android:layout_width="match_parent"
                                android:layout_marginRight="6dp"
-                               android:id="@+id/sp_end_youxiao"
+                               android:textColor="@color/title_666"
+                               android:textSize="@dimen/sp_12"
+                               android:gravity="center"
+                               android:drawableRight="@mipmap/jiantoux"
+                               android:id="@+id/tv_end_date"
                                android:layout_height="match_parent"/>
                        </RelativeLayout>
 
@@ -356,10 +364,14 @@
                        android:layout_gravity="center_vertical"
                        android:background="@drawable/spinner_stoken"
                        android:layout_weight="1">
-                       <Spinner
+                       <TextView
                            android:layout_width="match_parent"
                            android:layout_marginRight="6dp"
-                           android:id="@+id/sp_start_time"
+                           android:textColor="@color/title_666"
+                           android:textSize="@dimen/sp_12"
+                           android:gravity="center"
+                           android:drawableRight="@mipmap/jiantoux"
+                           android:id="@+id/tv_start_time"
                            android:layout_height="match_parent"/>
                    </RelativeLayout>
 
@@ -370,10 +382,14 @@
                        android:layout_gravity="center_vertical"
                        android:background="@drawable/spinner_stoken"
                        android:layout_weight="1">
-                       <Spinner
+                       <TextView
                            android:layout_width="match_parent"
                            android:layout_marginRight="6dp"
-                           android:id="@+id/sp_end_time"
+                           android:textColor="@color/title_666"
+                           android:textSize="@dimen/sp_12"
+                           android:gravity="center"
+                           android:drawableRight="@mipmap/jiantoux"
+                           android:id="@+id/tv_end_time"
                            android:layout_height="match_parent"/>
                    </RelativeLayout>
                </LinearLayout>
@@ -394,7 +410,7 @@
 
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="45dp"
+               android:layout_height="75dp"
                android:id="@+id/rl_guize"
                android:background="@color/white">
                <TextView
@@ -402,16 +418,28 @@
                    android:textColor="@color/title_666"
                    android:textSize="@dimen/sp_14"
                    android:layout_marginLeft="22dp"
-                   android:layout_centerVertical="true"
+                   android:layout_marginTop="10dp"
                    android:text="使用规则"
+                   android:id="@id/x"
                    android:layout_height="wrap_content" />
                <ImageView
                    android:layout_width="wrap_content"
                    android:layout_alignParentRight="true"
                    android:layout_marginRight="22dp"
+                   android:layout_marginTop="10dp"
                    android:background="@mipmap/youjiant"
-                   android:layout_centerVertical="true"
                    android:layout_height="wrap_content" />
+               <EditText
+                   android:layout_width="match_parent"
+                   android:layout_below="@id/x"
+                   android:background="@null"
+                   android:textColor="@color/title_666"
+                   android:textSize="@dimen/sp_12"
+                   android:paddingLeft="22dp"
+                   android:id="@+id/ed_guize"
+                   android:gravity="start|center_vertical"
+                   android:paddingRight="22dp"
+                   android:layout_height="match_parent" />
                <View
                    android:layout_width="match_parent"
                    android:layout_height="1dp"

@@ -31,6 +31,8 @@ public class MyWalletActivity extends AppCompatActivity
     RelativeLayout rlShouzhi;
     @BindView(R.id.rv_type)
     RecyclerView rvType;
+    @BindView(R.id.tv_chongzhi)
+    TextView tvChongzhi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,7 +48,7 @@ public class MyWalletActivity extends AppCompatActivity
         ZhiChuAdapter adapter = new ZhiChuAdapter(this, R.layout.zhichu_item, null);
     }
 
-    @OnClick({R.id.rl_back, R.id.rl_jilu, R.id.rl_shouzhi})
+    @OnClick({R.id.rl_back, R.id.rl_jilu, R.id.rl_shouzhi,R.id.tv_chongzhi, R.id.tv_tixian})
     public void onViewClicked(View view)
     {
         switch (view.getId())
@@ -60,13 +62,17 @@ public class MyWalletActivity extends AppCompatActivity
                 Intent intent = new Intent(MyWalletActivity.this, TiXIanJiLuActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.tv_chongzhi:
+                Intent intent1=new Intent(MyWalletActivity.this,ChongZhiActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.tv_tixian:
+                Intent intent2 = new Intent(MyWalletActivity.this, TiXianActivity.class);
+                startActivity(intent2);
+                break;
         }
     }
 
-    @OnClick(R.id.tv_tixian)
-    public void onViewClicked()
-    {
-        Intent intent=new Intent(MyWalletActivity.this,TiXianActivity.class);
-        startActivity(intent);
-    }
+
+
 }

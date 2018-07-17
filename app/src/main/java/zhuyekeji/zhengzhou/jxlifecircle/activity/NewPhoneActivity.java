@@ -11,11 +11,19 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lzy.okgo.model.Response;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import zhuyekeji.zhengzhou.jxlifecircle.R;
+import zhuyekeji.zhengzhou.jxlifecircle.api.CallBack;
+import zhuyekeji.zhengzhou.jxlifecircle.api.JxApiCallBack;
 import zhuyekeji.zhengzhou.jxlifecircle.base.BaseActivity;
+import zhuyekeji.zhengzhou.jxlifecircle.utils.JsonUtile;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.RegexUtils;
 import zhuyekeji.zhengzhou.jxlifecircle.utils.util.ToastUtils;
 
@@ -35,6 +43,9 @@ public class NewPhoneActivity extends BaseActivity
     @BindView(R.id.queding)
     TextView queding;
     private MyCountDownTimer myCountDownTimer;
+    private String mPhone;
+    private String code;
+
     @Override
     public int getViewId()
     {
@@ -45,6 +56,7 @@ public class NewPhoneActivity extends BaseActivity
     protected void processLogic()
     {
 tvTitle.setText("绑定手机号");
+
     }
 
     @Override
@@ -80,16 +92,68 @@ tvTitle.setText("绑定手机号");
                 {
                     myCountDownTimer = new MyCountDownTimer(60000, 1000);
                     myCountDownTimer.start();
+                    mPhone = edMobile.getText().toString().trim();
+                    JxApiCallBack.sedmsm(mPhone,"1",1,NewPhoneActivity.this,c);
                 } else
                 {
                     ToastUtils.showShort("请输入正确的电话号码");
                 }
                 break;
             case R.id.queding:
+                String yan=edYanzheng.getText().toString().trim();
+                if (yan!=null&&code!=null&&yan.equals(code))
+                {
+                  JxApiCallBack.edphone(getToken(),code,mPhone,2,NewPhoneActivity.this,c);
+                }
                 break;
         }
     }
+CallBack c=new CallBack()
+{
+    @Override
+    public void onSuccess(int what, Response<String> result)
+    {
+switch (what)
+{
+    case 1:
+        if (JsonUtile.isTrue(result.body()))
+        {
+            ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+            try
+            {
+                JSONObject object=new JSONObject(JsonUtile.getbody(result.body()));
+                code = object.getString("code");
+            } catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+        }else {
+            ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+        }
+        break;
+    case 2:
+        if (JsonUtile.isTrue(result.body()))
+        {
+            ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+        }else {
+            ToastUtils.showShort(JsonUtile.getresulter(result.body()));
+        }
+        break;
+}
+    }
 
+    @Override
+    public void onFail(int what, Response<String> result)
+    {
+
+    }
+
+    @Override
+    public void onFinish(int what)
+    {
+
+    }
+};
 
     //复写倒计时
     private class MyCountDownTimer extends CountDownTimer

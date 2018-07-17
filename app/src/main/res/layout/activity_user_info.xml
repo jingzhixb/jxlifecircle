@@ -58,17 +58,18 @@
             android:background="@mipmap/youjiant"
             android:layout_centerVertical="true"
             android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="用户名"
-            android:id="@+id/tv_username"
+        <EditText
+            android:layout_width="150dp"
+            android:id="@+id/ed_username"
             android:textSize="@dimen/sp_15"
+            android:gravity="end|center_vertical"
             android:textColor="@color/title_666"
             android:layout_marginLeft="22dp"
             android:layout_toLeftOf="@id/x"
+            android:background="@null"
             android:layout_marginRight="15dp"
             android:layout_centerVertical="true"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -97,17 +98,18 @@
             android:background="@mipmap/youjiant"
             android:layout_centerVertical="true"
             android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="李白"
+        <EditText
+            android:layout_width="150dp"
             android:id="@+id/tv_lianxiname"
             android:textSize="@dimen/sp_15"
             android:textColor="@color/title_666"
             android:layout_marginLeft="22dp"
+            android:gravity="end|center_vertical"
+            android:background="@null"
             android:layout_toLeftOf="@id/xx"
             android:layout_marginRight="15dp"
             android:layout_centerVertical="true"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -136,17 +138,21 @@
             android:background="@mipmap/youjiant"
             android:layout_centerVertical="true"
             android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="用户名"
+        <EditText
+            android:layout_width="150dp"
             android:id="@+id/tv_mobile"
             android:textSize="@dimen/sp_15"
             android:textColor="@color/title_666"
             android:layout_marginLeft="22dp"
             android:layout_toLeftOf="@id/xxx"
+            android:background="@null"
+            android:focusableInTouchMode="false"
+            android:focusable="false"
+            android:inputType="number"
+            android:gravity="center_vertical|end"
             android:layout_marginRight="15dp"
             android:layout_centerVertical="true"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -158,6 +164,7 @@
     <RelativeLayout
         android:id="@+id/rl_cd_number"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="60dp">
         <TextView
             android:layout_width="wrap_content"
@@ -175,17 +182,18 @@
             android:background="@mipmap/youjiant"
             android:layout_centerVertical="true"
             android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="用户名"
+        <EditText
+            android:layout_width="250dp"
             android:id="@+id/tv_cd_number"
             android:textSize="@dimen/sp_15"
             android:textColor="@color/title_666"
             android:layout_marginLeft="22dp"
             android:layout_toLeftOf="@id/xz"
+            android:gravity="end|center_vertical"
+            android:background="@null"
             android:layout_marginRight="15dp"
             android:layout_centerVertical="true"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -197,6 +205,7 @@
     <RelativeLayout
         android:id="@+id/rl_jiashi"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="60dp">
         <TextView
             android:layout_width="wrap_content"
@@ -271,4 +280,18 @@
             android:background="@color/view_color"/>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="保存"
+            android:id="@+id/baocun"
+            android:layout_alignParentBottom="true"
+            android:background="@color/jxcolor"/>
+    </RelativeLayout>
 </LinearLayout>

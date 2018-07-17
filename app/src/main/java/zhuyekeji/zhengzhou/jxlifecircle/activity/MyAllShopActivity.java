@@ -50,29 +50,26 @@ public class MyAllShopActivity extends BaseActivity
     TextView tvType;
     @BindView(R.id.rl_newshop)
     RelativeLayout rlNewshop;
-    private int mShopId;
+    private String mShopId;
     private YIJiAdapter yiJiAdapter;
     private ErJiAdapter erJiAdapter;
     private List<ShopTypeBean> yijibean=new ArrayList<>();
     private List<ErJiBean> erJiBeans;
+    private int yiPosition;
+    private View v;
+
     @Override
     public int getViewId()
     {
         return R.layout.activity_my_all_shop;
     }
 
-    private List<String> yijis = new ArrayList<>();
-    private List<JiFenOrderBean> beans = new ArrayList<>();
-
     @Override
     protected void processLogic()
     {
-        for (int i = 0; i < 4; i++)
-        {
-            yijis.add("商品");
-        }
+        mShopId=getIntent().getStringExtra("shopid");
         tvTitle.setText("全部商品");
-        JxApiCallBack.shop_list(getToken(), mShopId, 1, this, callBack);
+        JxApiCallBack.shop_list(getToken(), Integer.parseInt(mShopId), 1, this, callBack);
         yiji.setLayoutManager(new LinearLayoutManager(this));
         erji.setLayoutManager(new LinearLayoutManager(this));
         yiJiAdapter = new YIJiAdapter(this, R.layout.yiji_item, yijibean);
@@ -81,39 +78,30 @@ public class MyAllShopActivity extends BaseActivity
             @Override
             public void onItemClick(View view, int i)
             {
-              JxApiCallBack.goods_list(getToken(),mShopId,1,yiJiAdapter.getItem(i).getClass_id(),
-                      1,2,MyAllShopActivity.this,callBack);
+                yiPosition = i;
+              JxApiCallBack.goods_list(getToken(),mShopId,1,yiJiAdapter.getItem(i).getClass_id()
+                      ,2,MyAllShopActivity.this,callBack);
             }
         });
         RelativeLayout view = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.layout_type, null);
         yiJiAdapter.addFooterView(view);
-        View v = view.findViewById(R.id.v);
-        TextView tv = view.findViewById(R.id.tv);
-        for (int i = 0; i < 5; i++)
-        {
-            beans.add(new JiFenOrderBean());
-        }
-        erJiAdapter = new ErJiAdapter(this, R.layout.erji_item, erJiBeans);
-        erJiAdapter.setOnRecyclerViewItemChildClickListener(new BaseQuickAdapter.OnRecyclerViewItemChildClickListener()
+        v = view.findViewById(R.id.v);
+        v.setVisibility(View.GONE);
+        view.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i)
+            public void onClick(View view)
             {
-                switch (view.getId())
+                for (int i=0;i<yijibean.size();i++)
                 {
-                    case R.id.tv_bianji:
-                        Intent intent = new Intent(MyAllShopActivity.this, NewShopActivity.class);
-                        intent.putExtra("type", "2");
-                        startActivity(intent);
-                        break;
-                    case R.id.tv_xiajia:
-                        //  JxApiCallBack.set_shelf();
-                        break;
+                    yijibean.get(i).setIs_show(2);
                 }
+                v.setVisibility(View.VISIBLE);
             }
         });
+        TextView tv = view.findViewById(R.id.tv);
+
         yiji.setAdapter(yiJiAdapter);
-        erji.setAdapter(erJiAdapter);
     }
 
     @Override
@@ -136,9 +124,19 @@ public class MyAllShopActivity extends BaseActivity
 
 //                            JSONObject object=new JSONObject(result.body());
 //                            String type=object.getString("type");
-                            ShopTypeBean[] bean=new Gson().fromJson(result.body(),ShopTypeBean[].class);
+                            ShopTypeBean[] bean=new Gson().fromJson(JsonUtile.getbody(result.body()),ShopTypeBean[].class);
                             List list= Arrays.asList(bean);
                             yijibean.addAll(list);
+                            for (int i=0;i<yijibean.size();i++)
+                            {
+                               if (i==0)
+                               {
+                                   yijibean.get(0).setIs_show(1);
+                               }else {
+                                   yijibean.get(i).setIs_show(2);
+                               }
+                            }
+                            yiJiAdapter.notifyDataSetChanged();
                     }else {
                         ToastUtils.showShort(JsonUtile.getresulter(result.body()));
                     }
@@ -151,11 +149,39 @@ public class MyAllShopActivity extends BaseActivity
                         JSONObject object= null;
                         try
                         {
-                            object = new JSONObject(result.body());
+                            object = new JSONObject(JsonUtile.getbody(result.body()));
                             String type=object.getString("list");
-                            ErJiBean[] bean=new Gson().fromJson(result.body(),ErJiBean[].class);
+                            ErJiBean[] bean=new Gson().fromJson(type,ErJiBean[].class);
                             List list= Arrays.asList(bean);
+                            for (int i=0;i<yijibean.size();i++)
+                            {
+                                yijibean.get(i).setIs_show(2);
+                            }
+                            yijibean.get(yiPosition).setIs_show(1);
+                            v.setVisibility(View.GONE);
+                            yiJiAdapter.notifyDataSetChanged();
                             erJiBeans=new ArrayList<>(list);
+                            erJiAdapter = new ErJiAdapter(MyAllShopActivity.this, R.layout.erji_item, erJiBeans);
+                            erJiAdapter.setOnRecyclerViewItemChildClickListener(new BaseQuickAdapter.OnRecyclerViewItemChildClickListener()
+                            {
+                                @Override
+                                public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i)
+                                {
+                                    switch (view.getId())
+                                    {
+                                        case R.id.tv_bianji:
+                                            Intent intent = new Intent(MyAllShopActivity.this, NewShopActivity.class);
+                                            intent.putExtra("shopid",mShopId);
+                                            intent.putExtra("type", "2");
+                                            startActivity(intent);
+                                            break;
+                                        case R.id.tv_xiajia:
+                                            //  JxApiCallBack.set_shelf();
+                                            break;
+                                    }
+                                }
+                            });
+                            erji.setAdapter(erJiAdapter);
                         } catch (JSONException e)
                         {
                             e.printStackTrace();
@@ -205,11 +231,13 @@ public class MyAllShopActivity extends BaseActivity
                 break;
             case R.id.tv_type://管理分类
                 Intent intent = new Intent(MyAllShopActivity.this, TypeActivity.class);
+                intent.putExtra("shopid",mShopId);
                 startActivity(intent);
                 break;
             case R.id.rl_newshop://新建商品
                 Intent intent2 = new Intent(MyAllShopActivity.this, NewShopActivity.class);//新增商品
                 intent2.putExtra("type", "1");
+                intent2.putExtra("shopid",mShopId);
                 startActivity(intent2);
                 break;
         }
